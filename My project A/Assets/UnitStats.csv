@@ -1,0 +1,9 @@
+id,name,class,hp,attack,defense,groggy
+1,player1,a,100,20,10,0
+2,player2,b,80,25,5,0
+3,player3,c,90,22,8,0
+4,player4,d,60,8,5,0
+5,goblin1,None,180,40,15,100
+6,goblin2,None,180,40,15,100
+7,goblin3,None,180,40,15,100
+8,goblin4,None,180,40,15,100
