@@ -13,10 +13,14 @@ public class PlayerUnit : MonoBehaviour, IInitializableUnit
     [SerializeField] int statId;
     [HideInInspector] public SkillData SkillData;
 
+    private HealthBarFollower _healthBarUI;
+    
     public int MaxHP     { get; private set; }
     public int CurrentHP { get; private set; }
     public int AttackPower{get;private set;}
     public int Defense{get;private set;}
+    
+    
     
     public bool IsDead=>CurrentHP<=0;
 
@@ -38,12 +42,22 @@ public class PlayerUnit : MonoBehaviour, IInitializableUnit
         MaxHP = stat.MaxHP; CurrentHP = stat.MaxHP;
         AttackPower=stat.Attack; Defense=stat.Defense;
         SkillData = DataManager.Instance.SkillTable[id];
+        if (_healthBarUI != null)
+            _healthBarUI.SetHealth(CurrentHP / (float)MaxHP);
     }
 
     public void TakeDamage(int amount)
     {
         CurrentHP = Mathf.Max(CurrentHP - amount, 0);
-    } 
+        if (_healthBarUI != null)
+            _healthBarUI.SetHealth(CurrentHP / (float)MaxHP);
+    }
+    
+    public void BindHealthBar(HealthBarFollower hb)
+    {
+        _healthBarUI = hb;
+        hb.SetHealth(CurrentHP / (float)MaxHP);
+    }
     
     public void Heal(int amount)
     {
