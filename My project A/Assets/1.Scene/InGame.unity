@@ -2232,7 +2232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c957ddc207840734aacef24be58662db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asset: {fileID: -944628639613478452, guid: 2dfe6eb0e3f6d5d488fdeac7f95210db, type: 3}
+  inputAsset: {fileID: -944628639613478452, guid: 2dfe6eb0e3f6d5d488fdeac7f95210db, type: 3}
 --- !u!114 &1486511039
 MonoBehaviour:
   m_ObjectHideFlags: 0

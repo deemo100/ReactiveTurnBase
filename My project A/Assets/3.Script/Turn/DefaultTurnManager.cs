@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;                   // ★ 이 줄을 추가
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Game.Input;            // ← 이 줄 꼭!
 
 [RequireComponent(typeof(UnitFactory))]
 [RequireComponent(typeof(SimpleCombatExecutor))]
@@ -14,10 +13,10 @@ public class DefaultTurnManager : MonoBehaviour
     [Header("Cost & UI")]
     [SerializeField] private CostManager costManager;
     [SerializeField] private CostBar     costBar;
-    
+
     private int turnCount = 0;
-    private bool  battleOver = false;
-    
+    private bool battleOver = false;
+
     private List<PlayerUnit>     players;
     private List<EnemyUnit>      enemies;
     private InputServiceNew      _inputSvc;
@@ -89,7 +88,6 @@ public class DefaultTurnManager : MonoBehaviour
         {
             if (token.IsCancellationRequested) break;
 
-            // ← 여기서 오류 나던 부분
             var action = await _inputSvc.WaitForPlayerAction(p);
 
             switch (action.Type)

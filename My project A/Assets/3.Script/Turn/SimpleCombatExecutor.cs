@@ -3,29 +3,32 @@ using UnityEngine;
 
 public class SimpleCombatExecutor : MonoBehaviour
 {
-    public async UniTask ExecuteBasicAttack(PlayerUnit attacker, MonoBehaviour target)
+    public async UniTask ExecuteBasicAttack(Unit attacker, Unit target)
     {
-        Debug.Log($"[Combat] {attacker.name} BasicAttack → {target.name}");
+        Debug.Log($"[Combat] {attacker.UnitName} BasicAttack → {target.UnitName}");
         await UniTask.Delay(500);
 
-        if (target.TryGetComponent<IDamageable>(out var dmg))
-            dmg.TakeDamage(attacker.AttackPower);
+        // 데미지 공식 예시 (공격력 - 방어력, 0 이하 방지)
+        int damage = Mathf.Max(0, attacker.ATK - target.DEF);
+        target.TakeDamage(damage);
     }
 
-    public async UniTask ExecuteSkill(PlayerUnit attacker, MonoBehaviour target)
+    public async UniTask ExecuteSkill(Unit attacker, Unit target)
     {
-        Debug.Log($"[Combat] {attacker.name} Skill → {target.name}");
+        Debug.Log($"[Combat] {attacker.UnitName} Skill → {target.UnitName}");
         await UniTask.Delay(500);
 
-        if (target.TryGetComponent<IDamageable>(out var dmg))
-            dmg.TakeDamage(attacker.AttackPower * 2);
+        // 예시: 스킬은 공격력 2배, 방어력 적용
+        int skillDamage = Mathf.Max(0, (attacker.ATK * 2) - target.DEF);
+        target.TakeDamage(skillDamage);
     }
 
-    public async UniTask ExecuteEnemyAction(EnemyUnit attacker, PlayerUnit target)
+    public async UniTask ExecuteEnemyAction(Unit attacker, Unit target)
     {
-        Debug.Log($"[Combat] {attacker.name} AI → {target.name}");
+        Debug.Log($"[Combat] {attacker.UnitName} AI → {target.UnitName}");
         await UniTask.Delay(500);
 
-        target.TakeDamage(attacker.Attack);
+        int damage = Mathf.Max(0, attacker.ATK - target.DEF);
+        target.TakeDamage(damage);
     }
 }

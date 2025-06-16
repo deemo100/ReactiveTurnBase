@@ -1,4 +1,3 @@
-// 1. Scripts/Data/SkillData.cs
 using System;
 
 [Serializable]
@@ -11,5 +10,9 @@ public class SkillData
     public TargetType TargetType;
 }
 
-public enum TargetType { EnemyOnly, AllyOnly, All }
-
+public enum TargetType
+{
+    EnemyOnly,
+    AllyOnly,
+    All
+}

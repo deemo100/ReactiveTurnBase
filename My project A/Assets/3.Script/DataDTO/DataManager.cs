@@ -86,7 +86,6 @@ public class DataManager : MonoBehaviour
                 Defense   = int.Parse(cols[5].Trim()),
                 MaxGroggy = int.Parse(cols[6].Trim())
             };
-
             UnitStatTable[idVal] = us;
         }
     }
