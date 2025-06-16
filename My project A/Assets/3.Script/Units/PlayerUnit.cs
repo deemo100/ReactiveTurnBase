@@ -49,8 +49,6 @@ public class PlayerUnit : MonoBehaviour, IInitializableUnit
     public void TakeDamage(int amount)
     {
         CurrentHP = Mathf.Max(CurrentHP - amount, 0);
-        if (_healthBarUI != null)
-            _healthBarUI.SetHealth(CurrentHP / (float)MaxHP);
     }
     
     public void BindHealthBar(HealthBarFollower hb)
