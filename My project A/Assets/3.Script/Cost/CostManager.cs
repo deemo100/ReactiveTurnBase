@@ -8,6 +8,10 @@ public class CostManager : MonoBehaviour
     private int _currentCost;
     private int _maxCost = 8;
 
+    
+    public int CurrentCost => _currentCost;
+    public int MaxCost => _maxCost;
+    
     /// <summary>
     /// 초기 코스트 설정. Init만 불러주면 됩니다.
     /// </summary>

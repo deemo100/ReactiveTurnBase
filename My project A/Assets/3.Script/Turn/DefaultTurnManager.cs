@@ -31,8 +31,8 @@ public class DefaultTurnManager : MonoBehaviour
         _executor = GetComponent<SimpleCombatExecutor>();
         _factory  = GetComponent<UnitFactory>();
 
-        costManager.Init(startCost: 4);
-        costBar.Initialize(costManager);
+        costBar.Initialize(costManager);      // 1. 먼저 구독!
+        costManager.Init(startCost: 4);       // 2. 
     }
 
     public void InitializeUnits(List<PlayerUnit> playerList, List<EnemyUnit> enemyList)

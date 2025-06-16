@@ -1,31 +1,30 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CostBar : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> costIcons; // 8개의 방패 슬롯
+    [SerializeField] private GameObject[] costObjects;
+    private CostManager costManager;
 
-    /// <summary>
-    /// CostManager를 받아서 이벤트를 구독합니다.
-    /// </summary>
-    public void Initialize(CostManager mgr)
+    public void SetCost(int current, int max)
     {
-        mgr.OnCostChanged += UpdateUI;
-    }
-
-    private void OnDestroy()
-    {
-        // 구독 해제 (메모리 누수 방지)
-        var mgr = FindObjectOfType<CostManager>();
-        if (mgr != null) mgr.OnCostChanged -= UpdateUI;
-    }
-
-    private void UpdateUI(int current, int max)
-    {
-        for (int i = 0; i < costIcons.Count; i++)
+        for (int i = 0; i < costObjects.Length; i++)
         {
-            costIcons[i].SetActive(i < current);
+            if (i < max)
+                costObjects[i].SetActive(i < current);
+            else
+                costObjects[i].SetActive(false);
         }
     }
+
+    public void Initialize(CostManager cm)
+    {
+        costManager = cm;
+        costManager.OnCostChanged += SetCost;
+        // ★ 최초 1회 강제 동기화
+        SetCost(GetCurrentCost(), GetMaxCost());
+    }
+
+    // CostManager의 현재 값 읽기 (프로퍼티 추가 필요)
+    private int GetCurrentCost() => costManager != null ? costManager.CurrentCost : 0;
+    private int GetMaxCost() => costManager != null ? costManager.MaxCost : 0;
 }
