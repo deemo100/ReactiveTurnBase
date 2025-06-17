@@ -2,21 +2,27 @@ using UnityEngine;
 
 public class PlayerUnit : Unit
 {
-    // 플레이어 전용 행동/상태만 여기!
-    // 예시: 턴 내 행동 상태
-    public bool HasAttackedThisTurn { get; private set; }
-    public bool HasUsedSkillThisTurn { get; private set; }
+    public bool HasActedThisTurn { get; private set; }
+    public bool IsSelected { get; private set; }
 
-    public void ResetTurnState()
+    public void MarkActed()
     {
-        HasAttackedThisTurn = false;
-        HasUsedSkillThisTurn = false;
+        HasActedThisTurn = true;
+        SetSelected(false);
+        Debug.Log($"[PlayerUnit] {UnitName} MarkActed 호출, HasActedThisTurn: {HasActedThisTurn}");
     }
 
-    public void MarkAttack() => HasAttackedThisTurn = true;
-    public void MarkSkill()  => HasUsedSkillThisTurn = true;
+    public void ResetTurn()
+    {
+        HasActedThisTurn = false;
+        SetSelected(false);
+        Debug.Log($"[PlayerUnit] {UnitName} ResetTurn 호출, HasActedThisTurn: {HasActedThisTurn}");
+    }
+    
 
-    public bool CanAttack => !HasAttackedThisTurn && !IsDead && !IsGroggy;
-    public bool CanUseSkill(int cost, int currentCost) =>
-        !HasUsedSkillThisTurn && (currentCost >= cost) && !IsDead && !IsGroggy;
+    public void SetSelected(bool selected)
+    {
+        IsSelected = selected;
+        Debug.Log($"[PlayerUnit] SetSelected 호출: {UnitName} 지정 상태 → {IsSelected}");
+    }
 }

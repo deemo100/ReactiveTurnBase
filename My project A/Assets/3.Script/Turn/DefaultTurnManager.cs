@@ -106,49 +106,22 @@ public class DefaultTurnManager : MonoBehaviour
 
     private async UniTask PlayerPhase(CancellationToken token)
     {
-        Debug.Log("플레이어 턴 시작");
-        foreach (var p in players)
+        Debug.Log("[DefaultTurnManager] PlayerPhase 시작");
+        _inputSvc.SetPlayerUnits(players);
+
+        while (!_inputSvc.AllPlayerActed())
         {
-            if (token.IsCancellationRequested) break;
+            Debug.Log("[DefaultTurnManager] 유닛 지정 대기...");
+            var selectedUnit = await _inputSvc.WaitForUnitSelect();
+            Debug.Log($"[DefaultTurnManager] 선택된 유닛: {selectedUnit.UnitName}");
 
-            if (p.IsDead)
-            {
-                Debug.Log($"[플레이어 {p.UnitName}] 사망 상태로 건너뜀");
-                continue;
-            }
+            var action = await _inputSvc.WaitForPlayerAction(selectedUnit);
+            Debug.Log($"[DefaultTurnManager] 행동 타입: {action.Type}, 타겟: {action.Target?.UnitName}");
 
-            Debug.Log($"[플레이어 {p.UnitName}] 행동 대기");
-            var action = await _inputSvc.WaitForPlayerAction(p);
+            // 행동 실행 ... (생략)
 
-            Debug.Log($"[플레이어 {p.UnitName}] 선택: {action.Type}, 타겟: {(action.Target != null ? action.Target.UnitName : "없음")}");
-
-            switch (action.Type)
-            {
-                case PlayerActionType.BasicAttack:
-                    Debug.Log($"[플레이어 {p.UnitName}] 기본 공격 시작");
-                    await _executor.ExecuteBasicAttack(p, action.Target);
-                    Debug.Log($"[플레이어 {p.UnitName}] 기본 공격 종료");
-                    break;
-
-                case PlayerActionType.Skill:
-                    int cost = p.SkillData.Cost;
-                    Debug.Log($"[플레이어 {p.UnitName}] 스킬 시도 (코스트: {cost}, 현재: {costManager.CurrentCost})");
-                    if (costManager.Use(cost))
-                    {
-                        Debug.Log($"[플레이어 {p.UnitName}] 스킬 실행!");
-                        await _executor.ExecuteSkill(p, action.Target);
-                        Debug.Log($"[플레이어 {p.UnitName}] 스킬 실행 완료");
-                        continue;
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"[플레이어 {p.UnitName}] 코스트 부족! (필요: {cost}, 현재: {costManager.CurrentCost})");
-                        continue;
-                    }
-            }
-
-            if (action.Type == PlayerActionType.BasicAttack)
-                continue;
+            _inputSvc.MarkUnitActed(selectedUnit);
+            Debug.Log($"[DefaultTurnManager] {selectedUnit.UnitName} 행동 완료, 다음 선택 가능");
         }
     }
 

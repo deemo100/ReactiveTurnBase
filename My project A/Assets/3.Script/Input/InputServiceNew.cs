@@ -1,174 +1,125 @@
+using System.Collections.Generic;
+using System.Linq;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using Game.Input; 
+using Game.Input;
+using UnityEngine.InputSystem; // 반드시 필요!
 
 public class InputServiceNew : MonoBehaviour
 {
-    [Header("Input Actions 에셋")]
-    [SerializeField] private InputActionAsset inputAsset;
+    private List<Vector3> clickPositions = new List<Vector3>();
+    
+    private List<PlayerUnit> _players;
+    private PlayerUnit _selectedUnit;
+    private UniTaskCompletionSource<PlayerUnit> _selectTcs;
+    private UniTaskCompletionSource<PlayerAction> _actionTcs;
 
-    private PlayerControls _controls;
-    private InputAction _pointer;
-    private InputAction _trigger;
-    private Camera _cam;
-    private UniTaskCompletionSource<PlayerAction> _tcs;
+    // (UI 버튼/기타 모드 전환용 변수 - 필요시 확장)
     private bool _skillMode;
-    private PlayerUnit _activePlayer;
-    private SkillData _selectedSkill; // 스킬 정보 저장
+    private SkillData _selectedSkill;
 
-    void Awake()
+    public void SetPlayerUnits(List<PlayerUnit> players)
     {
-        _controls = new PlayerControls();
-        _cam = Camera.main;
-
-        _pointer = _controls.GamePlay.Pointer;
-        _trigger = _controls.GamePlay.Trigger;
-
-        _trigger.performed += ctx => OnTrigger();
-
-        Debug.Log("[InputServiceNew] Awake 완료");
+        Debug.Log("[InputServiceNew] SetPlayerUnits 호출");
+        _players = players;
+        foreach (var unit in players)
+        {
+            unit.ResetTurn();
+        }
+        _selectedUnit = null;
     }
 
-    void OnEnable()
+    public async UniTask<PlayerUnit> WaitForUnitSelect()
     {
-        _controls.Enable();
-        Debug.Log("[InputServiceNew] 입력 시스템 Enable");
-    }
-    void OnDisable()
-    {
-        _controls.Disable();
-        Debug.Log("[InputServiceNew] 입력 시스템 Disable");
+        Debug.Log("[InputServiceNew] WaitForUnitSelect 진입, 선택 대기 중...");
+        _selectedUnit = null;
+        _selectTcs = new UniTaskCompletionSource<PlayerUnit>();
+        // 대기: Raycast에서 TrySetResult로 해제
+        return await _selectTcs.Task;
     }
 
-    // 평타(칼) 버튼에서 호출
-    public void SelectBasicAttack()
+    void Update()
     {
-        _skillMode = false;
-        _selectedSkill = null;
-        Debug.Log("[InputServiceNew] 공격(칼) 모드 진입");
+        if (Mouse.current == null) return;
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Vector3 screenPos = Mouse.current.position.ReadValue();
+
+            // 3D Ray 생성 (카메라에서 마우스 위치로)
+            Ray ray = Camera.main.ScreenPointToRay(screenPos);
+
+            // RaycastHit 결과
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Vector3 hitPos = hit.point;
+                clickPositions.Add(hitPos);
+                if (clickPositions.Count > 20)
+                    clickPositions.RemoveAt(0);
+
+                // PlayerUnit 감지 (3D Collider가 붙어있어야 함!)
+                var unit = hit.collider.GetComponent<PlayerUnit>();
+                if (unit != null && !unit.HasActedThisTurn)
+                {
+                    if (_selectedUnit != null)
+                        _selectedUnit.SetSelected(false);
+
+                    _selectedUnit = unit;
+                    unit.SetSelected(true);
+
+                    Debug.Log($"[선택] {unit.UnitName}이 선택됨 (3D Raycast)");
+                }
+                else
+                {
+                    Debug.Log("[Raycast] 클릭한 오브젝트: " + hit.collider.name);
+                }
+            }
+        }
     }
 
-    // 스킬(방패) 버튼에서 호출 (UI에서 사용)
-    public void SelectSkill(SkillData skill)
+    public async UniTask<PlayerAction> WaitForPlayerAction(PlayerUnit p)
     {
-        _skillMode = true;
-        _selectedSkill = skill;
-        Debug.Log($"[InputServiceNew] 스킬(방패) 모드 진입 - 선택 스킬: {skill?.Name} (타겟타입: {skill?.TargetType})");
+        Debug.Log($"[InputServiceNew] WaitForPlayerAction 진입: {p.UnitName}");
+        SetActivePlayer(p);
+        _actionTcs = new UniTaskCompletionSource<PlayerAction>();
+        // 실제 행동 입력(스킬/공격/타겟) 로직은 추가 구현 필요
+        // (예: OnTrigger, 버튼 이벤트 등에서 TrySetResult 호출)
+        return await _actionTcs.Task;
     }
 
     public void SetActivePlayer(PlayerUnit p)
     {
-        _activePlayer = p;
-        _skillMode = false;
-        _selectedSkill = null;
-        Debug.Log($"[InputServiceNew] 현재 행동할 플레이어: {p.UnitName}");
+        Debug.Log($"[InputServiceNew] SetActivePlayer 호출: {p.UnitName}");
+        _selectedUnit = p;
+        // 공격/스킬 모드 초기화 등
     }
 
-    /// <summary>
-    /// 플레이어 유닛 p가 행동할 때까지 대기한 뒤 PlayerAction 반환
-    /// </summary>
-    public async UniTask<PlayerAction> WaitForPlayerAction(PlayerUnit p)
+    public void MarkUnitActed(PlayerUnit unit)
     {
-        SetActivePlayer(p);
-        _tcs = new UniTaskCompletionSource<PlayerAction>();
-        Debug.Log($"[InputServiceNew] {p.UnitName} 행동 입력 대기 시작");
-        return await _tcs.Task;
-    }
-
-    /// <summary>
-    /// 클릭/터치 트리거
-    /// </summary>
-   private void OnTrigger()
-{
-    if (_tcs == null) return;
-
-    Vector2 sp = Mouse.current.position.ReadValue();
-    Vector3 wp = _cam.ScreenToWorldPoint(new Vector3(sp.x, sp.y, Mathf.Abs(_cam.transform.position.z)));
-    wp.z = 0;
-    Debug.Log($"[InputServiceNew] 클릭 위치: {wp}");
-
-    foreach (var col in Physics2D.OverlapPointAll(wp))
-    {
-        // 1. 스킬 모드 (스킬의 TargetType에 따라 분기)
-        if (_skillMode && _selectedSkill != null)
+        Debug.Log($"[InputServiceNew] MarkUnitActed 호출: {unit.UnitName}");
+        unit.MarkActed();
+        if (_selectedUnit == unit)
         {
-            switch (_selectedSkill.TargetType)
-            {
-                case TargetType.AllyOnly:
-                    if (col.TryGetComponent<PlayerUnit>(out var ally))
-                    {
-                        Debug.Log($"[InputServiceNew] PlayerUnit 클릭됨: {ally.UnitName} (ID: {ally.Id})");
-                        TrySetSkillAction(ally);
-                        return;
-                    }
-                    break;
-                case TargetType.EnemyOnly:
-                    if (col.TryGetComponent<EnemyUnit>(out var enemy))
-                    {
-                        Debug.Log($"[InputServiceNew] EnemyUnit 클릭됨: {enemy.UnitName} (ID: {enemy.Id})");
-                        TrySetSkillAction(enemy);
-                        return;
-                    }
-                    break;
-                case TargetType.All:
-                    if (col.TryGetComponent<Unit>(out var unit))
-                    {
-                        Debug.Log($"[InputServiceNew] Unit 클릭됨: {unit.UnitName} (ID: {unit.Id})");
-                        TrySetSkillAction(unit);
-                        return;
-                    }
-                    break;
-            }
+            Debug.Log($"[InputServiceNew] MarkUnitActed: 현재 선택 유닛 해제 {_selectedUnit.UnitName}");
+            _selectedUnit = null;
         }
-        // 2. 평타(공격) 모드: 적만 타겟팅
-        if (!_skillMode && col.TryGetComponent<EnemyUnit>(out var targetEnemy))
-        {
-            Debug.Log($"[InputServiceNew] 평타로 EnemyUnit 클릭됨: {targetEnemy.UnitName} (ID: {targetEnemy.Id})");
-            _tcs.TrySetResult(new PlayerAction
-            {
-                Type = PlayerActionType.BasicAttack,
-                Actor = _activePlayer,
-                Target = targetEnemy
-            });
-            Debug.Log($"[InputServiceNew] 평타 입력 완료: {_activePlayer?.UnitName} -> {targetEnemy.UnitName}");
-            EndInput();
-            return;
-        }
-
-        // --- 추가: 디버깅 용도로, 어떤 콜라이더가 걸렸는지 확인
-        Debug.Log($"[InputServiceNew] Overlap된 오브젝트: {col.gameObject.name}");
     }
-}
 
-    // 스킬 입력 처리
-    private void TrySetSkillAction(Unit target)
+    public bool AllPlayerActed()
     {
-        int cost = _selectedSkill.Cost;
-        if (_activePlayer == null || _selectedSkill == null)
-        {
-            Debug.LogWarning("[InputServiceNew] TrySetSkillAction: _activePlayer or _selectedSkill null!");
-            return;
-        }
-
-        Debug.Log($"[InputServiceNew] 스킬 입력 완료: {_activePlayer.UnitName} ({_selectedSkill.Name}) -> {target.UnitName}");
-
-        _tcs.TrySetResult(new PlayerAction
-        {
-            Type = PlayerActionType.Skill,
-            Actor = _activePlayer,
-            Target = target,
-            SkillData = _selectedSkill
-        });
-        EndInput();
+        bool result = _players != null && _players.All(p => p.HasActedThisTurn || p.IsDead);
+        Debug.Log($"[InputServiceNew] AllPlayerActed? : {result}");
+        return result;
     }
-
-    private void EndInput()
+    
+    private void OnDrawGizmos()
     {
-        Debug.Log("[InputServiceNew] 입력 종료");
-        _skillMode = false;
-        _activePlayer = null;
-        _selectedSkill = null;
-        _tcs = null;
+        Gizmos.color = Color.yellow;
+        foreach (var pos in clickPositions)
+        {
+            Gizmos.DrawSphere(pos, 0.25f); // 클릭 위치에 구
+            Gizmos.DrawLine(pos + Vector3.left * 0.4f, pos + Vector3.right * 0.4f);
+            Gizmos.DrawLine(pos + Vector3.up * 0.4f, pos + Vector3.down * 0.4f);
+        }
     }
+    
 }
