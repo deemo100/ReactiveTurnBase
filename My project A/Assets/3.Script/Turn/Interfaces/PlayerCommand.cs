@@ -1,4 +1,6 @@
 // Assets/Scripts/Turn/DTO/PlayerCommand.cs
+
+using Game.Input;
 using UnityEngine;
 
 public class PlayerCommand

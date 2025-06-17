@@ -2,3 +2,4 @@ id,name,cost,iconName,targetType
 1,Slash,2,icon_slash,EnemyOnly
 2,Heal,3,icon_heal,AllyOnly
 3,Fireball,5,icon_fireball,EnemyOnly
+4,Buf,1,icon_buf,AllyOnly

@@ -1,18 +1,19 @@
-using System;
-
-[Serializable]
-public class SkillData
+namespace Game.Input
 {
-    public int Id;
-    public string Name;
-    public int Cost;
-    public string IconName;
-    public TargetType TargetType;
-}
+    public enum TargetType
+    {
+        EnemyOnly,
+        AllyOnly,
+        All
+    }
 
-public enum TargetType
-{
-    EnemyOnly,
-    AllyOnly,
-    All
+    public class SkillData
+    {
+        public int Id;
+        public string Name;
+        public int Cost;
+        public string IconName;
+        public TargetType TargetType;
+    }
+    
 }

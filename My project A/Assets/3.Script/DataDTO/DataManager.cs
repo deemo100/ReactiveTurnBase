@@ -2,7 +2,9 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using Game.Input;
 using UnityEngine;
+
 [DefaultExecutionOrder(-1000)]
 public class DataManager : MonoBehaviour
 {
