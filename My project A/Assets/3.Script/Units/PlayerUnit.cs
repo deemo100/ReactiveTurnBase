@@ -29,4 +29,18 @@ public class PlayerUnit : Unit
         IsSelected = selected;
         Debug.Log($"[PlayerUnit] SetSelected 호출: {UnitName} 지정 상태 → {IsSelected}");
     }
+    public override void Init(UnitStat stat)
+    {
+        base.Init(stat);
+        if (DataManager.Instance.SkillTable.TryGetValue(stat.SkillId, out var skill))
+        {
+            SkillData = skill;
+            Debug.Log($"[PlayerUnit] {UnitName} SkillData 할당 완료! → {skill.Name}");
+        }
+        else
+        {
+            Debug.LogWarning($"[PlayerUnit] {UnitName} SkillData 할당 실패! (SkillId={stat.SkillId})");
+        }
+    }
+    
 }

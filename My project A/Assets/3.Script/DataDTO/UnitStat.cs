@@ -11,4 +11,5 @@ public class UnitStat
     public int Attack;
     public int Defense;
     public int MaxGroggy;
+    public int SkillId; // ← 추가!
 }
