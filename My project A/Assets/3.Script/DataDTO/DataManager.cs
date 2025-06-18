@@ -1,4 +1,3 @@
-// 3. Scripts/Data/DataManager.cs
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -30,6 +29,15 @@ public class DataManager : MonoBehaviour
             Debug.LogWarning("중복 DataManager 파괴");
             Destroy(gameObject);
         }
+    }
+
+    // ✅ Skill id로 SkillData 반환
+    public SkillData GetSkillById(int id)
+    {
+        if (SkillTable.TryGetValue(id, out var skill))
+            return skill;
+        Debug.LogWarning($"[DataManager] Skill id={id} 없음!");
+        return null;
     }
 
     private void LoadSkills()

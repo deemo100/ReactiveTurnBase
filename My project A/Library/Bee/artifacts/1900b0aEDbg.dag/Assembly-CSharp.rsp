@@ -380,6 +380,7 @@
 "Assets/3.Script/DataDTO/SkillData.cs"
 "Assets/3.Script/DataDTO/UnitStat.cs"
 "Assets/3.Script/Factory/UnitFactory.cs"
+"Assets/3.Script/Input/ActionMode.cs"
 "Assets/3.Script/Input/IDamageable.cs"
 "Assets/3.Script/Input/InputServiceNew.cs"
 "Assets/3.Script/Input/PlayerAction.cs"

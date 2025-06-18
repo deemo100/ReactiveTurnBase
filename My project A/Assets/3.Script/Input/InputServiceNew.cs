@@ -1,125 +1,179 @@
 using System.Collections.Generic;
-using System.Linq;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Cysharp.Threading.Tasks;
 using Game.Input;
-using UnityEngine.InputSystem; // 반드시 필요!
+
+public enum ActionMode { None, Attack, Skill }
 
 public class InputServiceNew : MonoBehaviour
 {
-    private List<Vector3> clickPositions = new List<Vector3>();
     
-    private List<PlayerUnit> _players;
-    private PlayerUnit _selectedUnit;
-    private UniTaskCompletionSource<PlayerUnit> _selectTcs;
-    private UniTaskCompletionSource<PlayerAction> _actionTcs;
+    private UniTaskCompletionSource<PlayerUnit> _unitSelectTcs;
+    private List<PlayerUnit> _unitSelectCandidates;
+    
+    public static InputServiceNew Instance { get; private set; }
 
-    // (UI 버튼/기타 모드 전환용 변수 - 필요시 확장)
-    private bool _skillMode;
+    private PlayerUnit _selectedUnit;
+    private ActionMode _currentMode = ActionMode.None;
+    private bool _awaitTarget = false;
     private SkillData _selectedSkill;
 
-    public void SetPlayerUnits(List<PlayerUnit> players)
+    private UniTaskCompletionSource<PlayerAction> _actionTcs;
+
+    void Awake()
     {
-        Debug.Log("[InputServiceNew] SetPlayerUnits 호출");
-        _players = players;
-        foreach (var unit in players)
-        {
-            unit.ResetTurn();
-        }
-        _selectedUnit = null;
+        Instance = this;
     }
 
-    public async UniTask<PlayerUnit> WaitForUnitSelect()
+    public async UniTask<PlayerUnit> WaitForUnitSelect(List<PlayerUnit> candidates)
     {
-        Debug.Log("[InputServiceNew] WaitForUnitSelect 진입, 선택 대기 중...");
-        _selectedUnit = null;
-        _selectTcs = new UniTaskCompletionSource<PlayerUnit>();
-        // 대기: Raycast에서 TrySetResult로 해제
-        return await _selectTcs.Task;
+        Debug.Log("[InputServiceNew] WaitForUnitSelect 진입, 행동 가능한 유닛 선택 대기 중...");
+        _unitSelectCandidates = candidates;
+        _unitSelectTcs = new UniTaskCompletionSource<PlayerUnit>();
+        return await _unitSelectTcs.Task;
     }
-
+    
     void Update()
     {
         if (Mouse.current == null) return;
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Vector3 screenPos = Mouse.current.position.ReadValue();
-
-            // 3D Ray 생성 (카메라에서 마우스 위치로)
             Ray ray = Camera.main.ScreenPointToRay(screenPos);
 
-            // RaycastHit 결과
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Vector3 hitPos = hit.point;
-                clickPositions.Add(hitPos);
-                if (clickPositions.Count > 20)
-                    clickPositions.RemoveAt(0);
+                // --- 공격/스킬 명령 입력 상태 ---
+                if (_awaitTarget)
+                {
+                    // 1. 공격 모드 - EnemyUnit만 허용
+                    if (_currentMode == ActionMode.Attack && hit.collider.TryGetComponent<EnemyUnit>(out var enemy))
+                    {
+                        Debug.Log($"{_selectedUnit.UnitName}이 {enemy.UnitName}을 공격!");
+                        TryCompletePlayerAction(new PlayerAction
+                        {
+                            Type = PlayerActionType.BasicAttack,
+                            Actor = _selectedUnit,
+                            Target = enemy
+                        });
+                        return;
+                    }
+                    // 2. 스킬 모드 - 타겟 타입에 따라 분기
+                    if (_currentMode == ActionMode.Skill && hit.collider.TryGetComponent<Unit>(out var unit) && IsSkillTargetValid(unit))
+                    {
+                        Debug.Log($"{_selectedUnit.UnitName}이 {unit.UnitName}에게 스킬({_selectedSkill.Name}) 사용!");
+                        TryCompletePlayerAction(new PlayerAction
+                        {
+                            Type = PlayerActionType.Skill,
+                            Actor = _selectedUnit,
+                            Target = unit,
+                            SkillData = _selectedSkill
+                        });
+                        return;
+                    }
+                    // 3. 타겟이 아니면(빈 화면 클릭): 행동 명령 취소
+                    Debug.Log("빈 화면 클릭 - 행동 명령 취소");
+                    CancelActionMode();
+                    DeselectCurrentUnit();
+                    UIManager.Instance.HideActionButtons();
+                    // 실패 시 Task도 해제 필요(옵션)
+                    TryCompletePlayerAction(null); // null로 해제(실패 취급)
+                    return;
+                }
 
-                // PlayerUnit 감지 (3D Collider가 붙어있어야 함!)
-                var unit = hit.collider.GetComponent<PlayerUnit>();
-                if (unit != null && !unit.HasActedThisTurn)
+                // --- 평상시 유닛 선택 ---
+                if (hit.collider.TryGetComponent<PlayerUnit>(out var playerUnit) && !playerUnit.HasActedThisTurn)
                 {
                     if (_selectedUnit != null)
+                    {
+                        Debug.Log("[InputServiceNew] 빈 화면 클릭 - 유닛 선택 해제/액션 버튼 숨김");
                         _selectedUnit.SetSelected(false);
-
-                    _selectedUnit = unit;
-                    unit.SetSelected(true);
-
-                    Debug.Log($"[선택] {unit.UnitName}이 선택됨 (3D Raycast)");
+                        _selectedUnit = null;
+                        UIManager.Instance.HideActionButtons();
+                    }
+                    _selectedUnit = playerUnit;
+                    playerUnit.SetSelected(true);
+                    Debug.Log($"[선택] {playerUnit.UnitName}이 선택됨");
+                    UIManager.Instance.ShowActionButtons(playerUnit);
                 }
-                else
+            }
+            else
+            {
+                // 아무 오브젝트도 클릭되지 않은(=빈 화면 클릭) 경우: 유닛 선택 해제
+                if (!_awaitTarget && _selectedUnit != null)
                 {
-                    Debug.Log("[Raycast] 클릭한 오브젝트: " + hit.collider.name);
+                    Debug.Log("빈 화면 클릭 - 유닛 선택 해제");
+                    DeselectCurrentUnit();
+                    UIManager.Instance.HideActionButtons();
                 }
+                // 행동 명령 모드 중이면, 위에서 이미 처리됨
             }
         }
     }
 
-    public async UniTask<PlayerAction> WaitForPlayerAction(PlayerUnit p)
+    // --- 외부에서 호출(버튼 등) ---
+    public void EnterAttackMode()
     {
-        Debug.Log($"[InputServiceNew] WaitForPlayerAction 진입: {p.UnitName}");
-        SetActivePlayer(p);
-        _actionTcs = new UniTaskCompletionSource<PlayerAction>();
-        // 실제 행동 입력(스킬/공격/타겟) 로직은 추가 구현 필요
-        // (예: OnTrigger, 버튼 이벤트 등에서 TrySetResult 호출)
-        return await _actionTcs.Task;
+        if (_selectedUnit == null) return;
+        _currentMode = ActionMode.Attack;
+        _awaitTarget = true;
     }
-
-    public void SetActivePlayer(PlayerUnit p)
+    public void EnterSkillMode(SkillData skill)
     {
-        Debug.Log($"[InputServiceNew] SetActivePlayer 호출: {p.UnitName}");
-        _selectedUnit = p;
-        // 공격/스킬 모드 초기화 등
+        if (_selectedUnit == null) return;
+        _currentMode = ActionMode.Skill;
+        _selectedSkill = skill;
+        _awaitTarget = true;
     }
-
-    public void MarkUnitActed(PlayerUnit unit)
+    public void CancelActionMode()
     {
-        Debug.Log($"[InputServiceNew] MarkUnitActed 호출: {unit.UnitName}");
-        unit.MarkActed();
-        if (_selectedUnit == unit)
+        _currentMode = ActionMode.None;
+        _selectedSkill = null;
+        _awaitTarget = false;
+    }
+    private void DeselectCurrentUnit()
+    {
+        if (_selectedUnit != null)
         {
-            Debug.Log($"[InputServiceNew] MarkUnitActed: 현재 선택 유닛 해제 {_selectedUnit.UnitName}");
+            _selectedUnit.SetSelected(false);
             _selectedUnit = null;
         }
     }
-
-    public bool AllPlayerActed()
+    private bool IsSkillTargetValid(Unit target)
     {
-        bool result = _players != null && _players.All(p => p.HasActedThisTurn || p.IsDead);
-        Debug.Log($"[InputServiceNew] AllPlayerActed? : {result}");
-        return result;
-    }
-    
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        foreach (var pos in clickPositions)
+        if (_selectedSkill == null) return false;
+        switch (_selectedSkill.TargetType)
         {
-            Gizmos.DrawSphere(pos, 0.25f); // 클릭 위치에 구
-            Gizmos.DrawLine(pos + Vector3.left * 0.4f, pos + Vector3.right * 0.4f);
-            Gizmos.DrawLine(pos + Vector3.up * 0.4f, pos + Vector3.down * 0.4f);
+            case TargetType.AllyOnly: return target is PlayerUnit;
+            case TargetType.EnemyOnly: return target is EnemyUnit;
+            case TargetType.All: return true;
+            default: return false;
         }
     }
-    
+
+    // ✅ PlayerPhase에서 호출 (반드시 필요!)
+    public async UniTask<PlayerAction> WaitForPlayerAction(PlayerUnit p)
+    {
+        Debug.Log($"[InputServiceNew] WaitForPlayerAction 진입: {p.UnitName}");
+        _selectedUnit = p;
+        _currentMode = ActionMode.None;
+        _selectedSkill = null;
+        _awaitTarget = false;
+        _actionTcs = new UniTaskCompletionSource<PlayerAction>();
+        // 버튼 클릭(EnterAttackMode/EnterSkillMode) → 타겟 클릭 → TryCompletePlayerAction()에서 SetResult!
+        return await _actionTcs.Task;
+    }
+
+    // 실제 행동 입력시 결과 전달
+    private void TryCompletePlayerAction(PlayerAction action)
+    {
+        _actionTcs?.TrySetResult(action);
+        _selectedUnit?.SetSelected(false);
+        _selectedUnit = null;
+        _currentMode = ActionMode.None;
+        _selectedSkill = null;
+        _awaitTarget = false;
+        UIManager.Instance.HideActionButtons();
+    }
 }

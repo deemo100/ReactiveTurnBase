@@ -2180,7 +2180,6 @@ GameObject:
   - component: {fileID: 1486511039}
   - component: {fileID: 1486511038}
   - component: {fileID: 1486511037}
-  - component: {fileID: 1486511042}
   m_Layer: 5
   m_Name: 'GameInitializer '
   m_TagString: Untagged
@@ -2275,18 +2274,6 @@ MonoBehaviour:
   enemySpawnRoot: {fileID: 1655648911}
   healthBarPrefab: {fileID: 8574345398579908019, guid: 199c67a6edb803c4baae1fb1e56a0e2e, type: 3}
   uiCanvas: {fileID: 1787023276}
---- !u!114 &1486511042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486511032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 811bb350635f9264ab0732fc10ace811, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1519685224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2905,9 +2892,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39a8f5d87e62a24c95bd11af47df255, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnText: {fileID: 2015402828}
+  turnNumberText: {fileID: 2015402828}
   victoryPanel: {fileID: 901730472}
   defeatPanel: {fileID: 834394681}
+  attackButton: {fileID: 589346025}
+  skill1Button: {fileID: 456147450}
+  targetGuideText: {fileID: 0}
+  actionButtonPanel: {fileID: 973479674}
 --- !u!1 &1949471211
 GameObject:
   m_ObjectHideFlags: 0

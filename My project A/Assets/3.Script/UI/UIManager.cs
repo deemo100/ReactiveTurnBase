@@ -1,33 +1,66 @@
-using TMPro;
+using TMPro; // TextMeshPro 사용 시
 using UnityEngine;
+using UnityEngine.UI; // Button, Text 타입
+
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
-
-    [SerializeField] private TMP_Text turnText;
-    [SerializeField] private GameObject victoryPanel;
-    [SerializeField] private GameObject defeatPanel;
+    
+    public TMP_Text turnNumberText;   // Inspector에서 드래그
+    public GameObject victoryPanel;   // Inspector에서 승리 패널 드래그
+    public GameObject defeatPanel;    // Inspector에서 패배 패널 드래그
+    
+    public Button attackButton, skill1Button;
+    
+    // 이거 나중에 잘못된 타겟이나 이미 행동한 유닛입니다라는 텍스트 띄우는 용도 사용
+    public TMP_Text targetGuideText;
+    
+    public GameObject actionButtonPanel;
 
     void Awake()
     {
         Instance = this;
-        victoryPanel.SetActive(false);
-        defeatPanel .SetActive(false);
+        attackButton.onClick.AddListener(() => 
+            InputServiceNew.Instance.EnterAttackMode());
+        
+        skill1Button.onClick.AddListener(() => 
+            InputServiceNew.Instance.EnterSkillMode(DataManager.Instance.GetSkillById(1)));
     }
 
-    public void UpdateTurnText(int turn)
+    public void ShowActionButtons(PlayerUnit unit)
     {
-        turnText.text = $"TURN {turn}";
+        actionButtonPanel.SetActive(true);
+        attackButton.interactable = !unit.HasActedThisTurn;
+        skill1Button.interactable = !unit.HasActedThisTurn;
+    }
+    public void HideActionButtons() => actionButtonPanel.SetActive(false);
+
+    public void ShowTargetGuide(string msg)
+    {
+        targetGuideText.gameObject.SetActive(true);
+        targetGuideText.text = msg;
+    }
+    public void HideTargetGuide()
+    {
+        targetGuideText.gameObject.SetActive(false);
+    }
+    
+    // --- 턴 표시 ---
+    public void UpdateTurnText(int turnNum)
+    {
+        if (turnNumberText != null)
+            turnNumberText.text = $"TURN {turnNum}";
     }
 
+    // --- 승리/패배 패널 표시 ---
     public void ShowVictory()
     {
-        victoryPanel.SetActive(true);
+        if (victoryPanel != null) victoryPanel.SetActive(true);
     }
-
     public void ShowDefeat()
     {
-        defeatPanel.SetActive(true);
+        if (defeatPanel != null) defeatPanel.SetActive(true);
     }
+    
 }

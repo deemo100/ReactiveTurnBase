@@ -106,22 +106,54 @@ public class DefaultTurnManager : MonoBehaviour
 
     private async UniTask PlayerPhase(CancellationToken token)
     {
-        Debug.Log("[DefaultTurnManager] PlayerPhase 시작");
-        _inputSvc.SetPlayerUnits(players);
+        Debug.Log("플레이어 턴 시작");
 
-        while (!_inputSvc.AllPlayerActed())
+        while (players.Any(p => !p.IsDead && !p.HasActedThisTurn))
         {
-            Debug.Log("[DefaultTurnManager] 유닛 지정 대기...");
-            var selectedUnit = await _inputSvc.WaitForUnitSelect();
-            Debug.Log($"[DefaultTurnManager] 선택된 유닛: {selectedUnit.UnitName}");
+            // 유저가 원하는 유닛 아무나 선택할 때까지 대기
+            var unit = await _inputSvc.WaitForUnitSelect(players.Where(p => !p.IsDead && !p.HasActedThisTurn).ToList());
 
-            var action = await _inputSvc.WaitForPlayerAction(selectedUnit);
-            Debug.Log($"[DefaultTurnManager] 행동 타입: {action.Type}, 타겟: {action.Target?.UnitName}");
+            Debug.Log($"[플레이어 {unit.UnitName}] 행동 입력 대기");
 
-            // 행동 실행 ... (생략)
+            while (true)
+            {
+                var action = await _inputSvc.WaitForPlayerAction(unit);
 
-            _inputSvc.MarkUnitActed(selectedUnit);
-            Debug.Log($"[DefaultTurnManager] {selectedUnit.UnitName} 행동 완료, 다음 선택 가능");
+                if (action == null)
+                {
+                    Debug.Log($"[플레이어 {unit.UnitName}] 행동 취소됨 (다시 선택 가능)");
+                    break; // 다시 유닛 선택 루프로 이동
+                }
+
+                switch (action.Type)
+                {
+                    case PlayerActionType.BasicAttack:
+                        Debug.Log($"[플레이어 {unit.UnitName}] 기본 공격 시작");
+                        await _executor.ExecuteBasicAttack(unit, action.Target);
+                        unit.MarkActed(); // 반드시 행동 처리
+                        Debug.Log($"[플레이어 {unit.UnitName}] 기본 공격 종료");
+                        break;
+
+                    case PlayerActionType.Skill:
+                        int cost = unit.SkillData.Cost;
+                        Debug.Log($"[플레이어 {unit.UnitName}] 스킬 시도 (코스트: {cost}, 현재: {costManager.CurrentCost})");
+                        if (costManager.Use(cost))
+                        {
+                            Debug.Log($"[플레이어 {unit.UnitName}] 스킬 실행!");
+                            await _executor.ExecuteSkill(unit, action.Target);
+                            unit.MarkActed();
+                            Debug.Log($"[플레이어 {unit.UnitName}] 스킬 실행 완료");
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"[플레이어 {unit.UnitName}] 코스트 부족! (필요: {cost}, 현재: {costManager.CurrentCost})");
+                            continue; // **코스트 부족: 행동 입력 재시도!**
+                        }
+                        break;
+                }
+                // 행동 성공 시에만 다음 유닛으로 이동!
+                break;
+            }
         }
     }
 
