@@ -6474,6 +6474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d823fd31c6bfde469968da3e1d85c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponIcon: {fileID: 21300000, guid: 530bcabb1501d8148a19a77465ecac03, type: 3}
+  SkillIcon: {fileID: 21300000, guid: b123bdad4f47a734c80135e456f2d162, type: 3}
 --- !u!136 &8374092735652354096
 CapsuleCollider:
   m_ObjectHideFlags: 0

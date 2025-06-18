@@ -44,6 +44,8 @@ public class InputServiceNew : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
+                
+                
                 // --- 공격/스킬 명령 입력 상태 ---
                 if (_awaitTarget)
                 {
@@ -83,14 +85,14 @@ public class InputServiceNew : MonoBehaviour
                 }
 
                 // --- 평상시 유닛 선택 ---
-                if (hit.collider.TryGetComponent<PlayerUnit>(out var playerUnit) && !playerUnit.HasActedThisTurn)
+                if (!_awaitTarget && hit.collider.TryGetComponent<PlayerUnit>(out var playerUnit) && !playerUnit.HasActedThisTurn)
                 {
                     if (_selectedUnit != null)
                     {
-                        Debug.Log("[InputServiceNew] 빈 화면 클릭 - 유닛 선택 해제/액션 버튼 숨김");
-                        _selectedUnit.SetSelected(false);
-                        _selectedUnit = null;
-                        UIManager.Instance.HideActionButtons();
+                        _selectedUnit = playerUnit;
+                        playerUnit.SetSelected(true);
+                        // **이때만 버튼 활성화**
+                        UIManager.Instance.ShowActionButtons(playerUnit);
                     }
                     _selectedUnit = playerUnit;
                     playerUnit.SetSelected(true);
@@ -127,7 +129,8 @@ public class InputServiceNew : MonoBehaviour
         if (_selectedUnit == null) return;
         _currentMode = ActionMode.Attack;
         _awaitTarget = true;
-        UIManager.Instance.SetAttackHighlight(true);
+        UIManager.Instance.SetAttackHighlight(true); // 공격 효과 활성화
+        UIManager.Instance.SetSkillHighlight(false); // 스킬 효과 비활성
     }
     public void EnterSkillMode(SkillData skill)
     {
@@ -135,6 +138,8 @@ public class InputServiceNew : MonoBehaviour
         _currentMode = ActionMode.Skill;
         _selectedSkill = skill;
         _awaitTarget = true;
+        UIManager.Instance.SetSkillHighlight(true);   // 스킬 효과 활성화
+        UIManager.Instance.SetAttackHighlight(false); // 공격 효과 비활성
     }
     public void CancelActionMode()
     {
@@ -142,6 +147,7 @@ public class InputServiceNew : MonoBehaviour
         _selectedSkill = null;
         _awaitTarget = false;
         UIManager.Instance.SetAttackHighlight(false);
+        UIManager.Instance.SetSkillHighlight(false);
     }
     private void DeselectCurrentUnit()
     {

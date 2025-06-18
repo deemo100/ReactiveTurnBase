@@ -3051,7 +3051,10 @@ MonoBehaviour:
   skill1Button: {fileID: 456147450}
   targetGuideText: {fileID: 0}
   actionButtonPanel: {fileID: 973479674}
-  attackHighlight: {fileID: 920793916}
+  attackIconImage: {fileID: 593701756}
+  skillIconImage: {fileID: 305475680}
+  inputAttack: {fileID: 920793916}
+  inputSkill: {fileID: 994355744}
 --- !u!1 &1949471211
 GameObject:
   m_ObjectHideFlags: 0
