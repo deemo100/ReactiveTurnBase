@@ -17,7 +17,10 @@ public class UIManager : MonoBehaviour
     public TMP_Text targetGuideText;
     
     public GameObject actionButtonPanel;
-
+   
+    [Header("액션 버튼 하이라이트/이펙트")]
+    [SerializeField] private GameObject attackHighlight; // inputattack 오브젝트 Drag&Drop
+    
     void Awake()
     {
         Instance = this;
@@ -27,7 +30,12 @@ public class UIManager : MonoBehaviour
         skill1Button.onClick.AddListener(() => 
             InputServiceNew.Instance.EnterSkillMode(DataManager.Instance.GetSkillById(1)));
     }
-
+    public void SetAttackHighlight(bool active)
+    {
+        if (attackHighlight != null)
+            attackHighlight.SetActive(active);
+    }
+    
     public void ShowActionButtons(PlayerUnit unit)
     {
         actionButtonPanel.SetActive(true);

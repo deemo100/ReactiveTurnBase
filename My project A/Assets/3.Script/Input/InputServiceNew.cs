@@ -96,6 +96,15 @@ public class InputServiceNew : MonoBehaviour
                     playerUnit.SetSelected(true);
                     Debug.Log($"[선택] {playerUnit.UnitName}이 선택됨");
                     UIManager.Instance.ShowActionButtons(playerUnit);
+                    
+                    // === 추가 ===
+                    // 만약 WaitForUnitSelect() 중이라면 유닛 선택 결과 반환!
+                    if (_unitSelectTcs != null && _unitSelectCandidates != null && _unitSelectCandidates.Contains(playerUnit))
+                    {
+                        _unitSelectTcs.TrySetResult(playerUnit);
+                        _unitSelectTcs = null;
+                    }
+                    
                 }
             }
             else
@@ -118,6 +127,7 @@ public class InputServiceNew : MonoBehaviour
         if (_selectedUnit == null) return;
         _currentMode = ActionMode.Attack;
         _awaitTarget = true;
+        UIManager.Instance.SetAttackHighlight(true);
     }
     public void EnterSkillMode(SkillData skill)
     {
@@ -131,6 +141,7 @@ public class InputServiceNew : MonoBehaviour
         _currentMode = ActionMode.None;
         _selectedSkill = null;
         _awaitTarget = false;
+        UIManager.Instance.SetAttackHighlight(false);
     }
     private void DeselectCurrentUnit()
     {
@@ -174,6 +185,8 @@ public class InputServiceNew : MonoBehaviour
         _currentMode = ActionMode.None;
         _selectedSkill = null;
         _awaitTarget = false;
+
         UIManager.Instance.HideActionButtons();
+        UIManager.Instance.SetAttackHighlight(false); // ← 반드시 추가!
     }
 }

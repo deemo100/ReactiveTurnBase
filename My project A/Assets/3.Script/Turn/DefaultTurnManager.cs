@@ -74,6 +74,13 @@ public class DefaultTurnManager : MonoBehaviour
 
             PrintAllUnitsState();
 
+            // **여기서 모든 플레이어 유닛의 행동 플래그를 초기화!**
+            foreach (var p in players)
+            {
+                if (!p.IsDead)
+                    p.ResetTurn(); // ResetTurn 내부에서 HasActedThisTurn=false 등 초기화
+            }
+
             await PlayerPhase(token);
             Debug.Log("플레이어 턴 종료");
             CheckVictory();
@@ -87,7 +94,6 @@ public class DefaultTurnManager : MonoBehaviour
         Debug.Log("==== 전투 종료 ====");
         PrintAllUnitsState();
     }
-
     private void CheckVictory()
     {
         if (enemies.All(e => e.IsDead))
@@ -156,6 +162,7 @@ public class DefaultTurnManager : MonoBehaviour
             }
         }
     }
+    
 
     private async UniTask EnemyPhase(CancellationToken token)
     {
