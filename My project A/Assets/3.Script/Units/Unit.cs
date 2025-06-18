@@ -15,7 +15,10 @@ public class Unit : MonoBehaviour
 
     public bool IsDead => HP <= 0;
     public bool IsGroggy => Groggy <= 0;
-
+    
+    public HealthBar healthBar;
+    public HealthBarFollower healthBarFollower;
+    
     public virtual void Init(UnitStat stat)
     {
         Id = stat.Id;
@@ -28,17 +31,26 @@ public class Unit : MonoBehaviour
         MaxGroggy = stat.MaxGroggy;
         Groggy = stat.MaxGroggy;
     }
-    
     public SkillData SkillData { get; protected set; }
-    
+
     public virtual void TakeDamage(int amount)
     {
         HP = Mathf.Max(0, HP - amount);
+        Debug.Log($"[Unit.TakeDamage] {UnitName}, HP: {HP}/{MaxHP}");
+        if (healthBarFollower != null)
+        {
+            Debug.Log("[Unit] HP Bar SetHealth 호출됨");
+            healthBarFollower.SetHealth(HP / (float)MaxHP);
+        }
     }
-
     public virtual void Heal(int amount)
     {
         HP = Mathf.Min(MaxHP, HP + amount);
+        if (healthBarFollower != null)
+        {
+            Debug.Log($"[Unit] Heal: {UnitName}, HP: {HP}/{MaxHP}");
+            healthBarFollower.SetHealth(HP / (float)MaxHP);
+        }
     }
 
     public virtual void TakeGroggy(int amount)
