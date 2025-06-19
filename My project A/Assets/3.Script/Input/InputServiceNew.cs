@@ -132,15 +132,29 @@ public class InputServiceNew : MonoBehaviour
         UIManager.Instance.SetAttackHighlight(true); // 공격 효과 활성화
         UIManager.Instance.SetSkillHighlight(false); // 스킬 효과 비활성
     }
+    // 스킬 버튼 누를 때 전체 타겟형 처리
     public void EnterSkillMode(SkillData skill)
     {
-        if (_selectedUnit == null) return;
-        _currentMode = ActionMode.Skill;
         _selectedSkill = skill;
+        _currentMode = ActionMode.Skill;
         _awaitTarget = true;
-        UIManager.Instance.SetSkillHighlight(true);   // 스킬 효과 활성화
-        UIManager.Instance.SetAttackHighlight(false); // 공격 효과 비활성
+        UIManager.Instance.SetAttackHighlight(false); // ⛔️ 공격 하이라이트 꺼두기(겹침 방지)
+        UIManager.Instance.SetSkillHighlight(true);   // ✅ 스킬 진입시
+
+        if (skill.TargetType == SkillTargetType.EnemyAll ||
+            skill.TargetType == SkillTargetType.AllyAll)
+        {
+            // 전체형이면 타겟 입력 없이 바로 Action 생성/완료
+            TryCompletePlayerAction(new PlayerAction
+            {
+                Type = PlayerActionType.Skill,
+                Actor = _selectedUnit,
+                Target = null, // 후처리에서 전체 리스트 참조
+                SkillData = skill
+            });
+        }
     }
+    
     public void CancelActionMode()
     {
         _currentMode = ActionMode.None;
@@ -159,12 +173,11 @@ public class InputServiceNew : MonoBehaviour
     }
     private bool IsSkillTargetValid(Unit target)
     {
-        if (_selectedSkill == null) return false;
         switch (_selectedSkill.TargetType)
         {
-            case TargetType.AllyOnly: return target is PlayerUnit;
-            case TargetType.EnemyOnly: return target is EnemyUnit;
-            case TargetType.All: return true;
+            case SkillTargetType.EnemySingle: return target is EnemyUnit;
+            case SkillTargetType.AllySingle:  return target is PlayerUnit && target != _selectedUnit;
+            case SkillTargetType.Self:        return target == _selectedUnit;
             default: return false;
         }
     }

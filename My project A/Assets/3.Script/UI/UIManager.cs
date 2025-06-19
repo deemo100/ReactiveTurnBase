@@ -1,73 +1,84 @@
-using TMPro; // TextMeshPro 사용 시
+using Game.Input;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI; // Button, Text 타입
+using UnityEngine.UI;
 
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
-    
-    public TMP_Text turnNumberText;   // Inspector에서 드래그
-    public GameObject victoryPanel;   // Inspector에서 승리 패널 드래그
-    public GameObject defeatPanel;    // Inspector에서 패배 패널 드래그
-    
+
+    public TMP_Text turnNumberText;
+    public GameObject victoryPanel;
+    public GameObject defeatPanel;
     public Button attackButton, skill1Button;
-    // 이거 나중에 잘못된 타겟이나 이미 행동한 유닛입니다라는 텍스트 띄우는 용도 사용
     public TMP_Text targetGuideText;
     public GameObject actionButtonPanel;
-    
+
     [Header("버튼 아이콘 Image")]
-    public Image attackIconImage;  // 공격 아이콘
-    public Image skillIconImage;   // 스킬 아이콘
-    
-    [Header("공격/스킬 하이라이트(Effect 등)")]
-    public GameObject inputAttack; // 공격시 활성화
-    public GameObject inputSkill;  // 스킬시 활성화 (원하면 추가)
-    
+    public Image attackIconImage;
+    public Image skillIconImage;
+
+    [Header("공격/스킬 하이라이트(Effect 등)")] 
+    public GameObject inputAttack;
+    public GameObject inputSkill;
+
+    [Header("툴팁 UI")] [SerializeField] 
+    private GameObject tooltipPanel;
+    [SerializeField] private TMP_Text tooltipText;
+
     void Awake()
     {
         Instance = this;
-        
-        // **처음에 버튼 패널 비활성화**
         if (actionButtonPanel != null)
             actionButtonPanel.SetActive(false);
 
-        attackButton.onClick.AddListener(() => 
+        attackButton.onClick.AddListener(() =>
             InputServiceNew.Instance.EnterAttackMode());
-        
-        skill1Button.onClick.AddListener(() => 
+
+        skill1Button.onClick.AddListener(() =>
             InputServiceNew.Instance.EnterSkillMode(DataManager.Instance.GetSkillById(1)));
-        
+
         if (inputAttack) inputAttack.SetActive(false);
         if (inputSkill) inputSkill.SetActive(false);
+        HideTooltip();
     }
-    
+
     public void SetAttackIcon(Sprite icon)
     {
         if (attackIconImage) attackIconImage.sprite = icon;
     }
+
     public void SetSkillIcon(Sprite icon)
     {
         if (skillIconImage) skillIconImage.sprite = icon;
     }
-    
+
     public void SetAttackHighlight(bool active)
     {
         if (inputAttack) inputAttack.SetActive(active);
     }
+
     public void SetSkillHighlight(bool active)
     {
         if (inputSkill) inputSkill.SetActive(active);
     }
-    
+
     public void ShowActionButtons(PlayerUnit unit)
     {
         actionButtonPanel.SetActive(true);
         attackButton.interactable = !unit.HasActedThisTurn;
         skill1Button.interactable = !unit.HasActedThisTurn;
-        SetAttackIcon(unit.WeaponIcon); // 일반 공격 아이콘
-        SetSkillIcon(unit.SkillIcon);   // 스킬 아이콘
+
+        SetAttackIcon(unit.WeaponIcon);
+        SetSkillIcon(unit.SkillIcon);
+
+        // [중요] 버튼에 SkillData 동적 할당!
+        var tooltip = skill1Button.GetComponent<SkillButtonTooltip>();
+        if (tooltip != null)
+            tooltip.SetSkill(unit.SkillData);  // 유닛이 가진 SkillData로 설명 동적 생성
     }
+
     public void HideActionButtons()
     {
         actionButtonPanel.SetActive(false);
@@ -75,31 +86,65 @@ public class UIManager : MonoBehaviour
         SetSkillHighlight(false);
     }
 
+    // ⭐ SkillData용 툴팁 표시
+    public void ShowSkillTooltip(SkillData skill)
+    {
+        if (skill == null)
+        {
+            HideTooltip();
+            return;
+        }
+
+        string desc =
+            $"<b>{skill.Name}</b>\n" +
+            $"<size=90%>코스트: {skill.Cost}\n" +
+            $"타겟: {skill.TargetType}\n" +
+            $"효과: {skill.Description}\n" +
+            $"공격력/회복량: {skill.Power}</size>";
+
+        tooltipText.text = desc;
+        tooltipPanel.SetActive(true);
+
+        // 원하는 위치에 표시 (예시: 고정 좌측 하단)
+        tooltipPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(30, -30);
+    }
+
+    public void HideTooltip()
+    {
+        tooltipPanel.SetActive(false);
+    }
+
+    public void ShowTooltip(string desc, Vector2 anchoredPos)
+    {
+        tooltipText.text = desc;
+        tooltipPanel.SetActive(true);
+        tooltipPanel.GetComponent<RectTransform>().anchoredPosition = anchoredPos;
+    }
+    
     public void ShowTargetGuide(string msg)
     {
         targetGuideText.gameObject.SetActive(true);
         targetGuideText.text = msg;
     }
+
     public void HideTargetGuide()
     {
         targetGuideText.gameObject.SetActive(false);
     }
-    
-    // --- 턴 표시 ---
+
     public void UpdateTurnText(int turnNum)
     {
         if (turnNumberText != null)
             turnNumberText.text = $"TURN {turnNum}";
     }
 
-    // --- 승리/패배 패널 표시 ---
     public void ShowVictory()
     {
         if (victoryPanel != null) victoryPanel.SetActive(true);
     }
+
     public void ShowDefeat()
     {
         if (defeatPanel != null) defeatPanel.SetActive(true);
     }
-    
 }

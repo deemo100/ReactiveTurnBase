@@ -1,5 +1,6 @@
-id,name,cost,iconName,targetType
-1,Slash,2,icon_slash,EnemyOnly
-2,Heal,3,icon_heal,AllyOnly
-3,Fireball,5,icon_fireball,EnemyOnly
-4,Buf,1,icon_buf,AllyOnly
+Id,Name,Cost,Icon,TargetType,EffectType,Power,BuffValue,Description
+1,Slash,2,Weapon_01,EnemySingle,Damage,30,0,적 1명에게 검으로 피해를 줍니다.
+2,Heal,2,Heal_Icon,AllySingle,Heal,40,0,아군 1명의 체력을 회복합니다.
+3,Fireball,4,Weapon_02,EnemyAll,Damage,18,0,적 전체를 마법으로 피해를 줍니다.
+4,AllHeal,4,Heal_Icon,AllyAll,Heal,20,0,모든 아군을 치유합니다.
+5,PowerUp,3,Buff_Icon,Self,Buff,0,0,본인 공격력을 올립니다.

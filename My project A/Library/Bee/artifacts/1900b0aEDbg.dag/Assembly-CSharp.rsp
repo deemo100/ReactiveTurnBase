@@ -393,6 +393,7 @@
 "Assets/3.Script/Turn/SimpleCombatExecutor.cs"
 "Assets/3.Script/UI/HealthBar.cs"
 "Assets/3.Script/UI/HealthBarFollower.cs"
+"Assets/3.Script/UI/SkillButtonTooltip.cs"
 "Assets/3.Script/UI/UIManager.cs"
 "Assets/3.Script/Units/EnemyUnit.cs"
 "Assets/3.Script/Units/PlayerUnit.cs"

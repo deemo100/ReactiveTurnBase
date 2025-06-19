@@ -1,5 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using Game.Input;
+using System.Collections.Generic;
 
 public class SimpleCombatExecutor : MonoBehaviour
 {
@@ -13,14 +15,54 @@ public class SimpleCombatExecutor : MonoBehaviour
         target.TakeDamage(damage);
     }
 
-    public async UniTask ExecuteSkill(Unit attacker, Unit target)
+    public async UniTask ExecuteSkill(
+        PlayerUnit actor,
+        Unit target,
+        SkillData skill,
+        List<PlayerUnit> allPlayers,
+        List<EnemyUnit> allEnemies)
     {
-        Debug.Log($"[Combat] {attacker.UnitName} Skill → {target.UnitName}");
-        await UniTask.Delay(500);
+        switch (skill.TargetType)
+        {
+            case SkillTargetType.EnemySingle:
+            case SkillTargetType.AllySingle:
+                ApplySkillEffect(actor, target, skill);
+                break;
+            case SkillTargetType.EnemyAll:
+                foreach (var enemy in allEnemies)
+                    if (!enemy.IsDead) ApplySkillEffect(actor, enemy, skill);
+                break;
+            case SkillTargetType.AllyAll:
+                foreach (var player in allPlayers)
+                    if (!player.IsDead) ApplySkillEffect(actor, player, skill);
+                break;
+            case SkillTargetType.Self:
+                ApplySkillEffect(actor, actor, skill);
+                break;
+        }
+        await UniTask.Delay(300);
+    }
 
-        // 예시: 스킬은 공격력 2배, 방어력 적용
-        int skillDamage = Mathf.Max(0, (attacker.ATK * 2) - target.DEF);
-        target.TakeDamage(skillDamage);
+    private void ApplySkillEffect(PlayerUnit actor, Unit target, SkillData skill)
+    {
+        switch (skill.EffectType)
+        {
+            case SkillEffectType.Damage:
+                Debug.Log($"[Skill] {actor.UnitName}이(가) {skill.Name} (위력:{skill.Power})로 {target.UnitName}에게 {skill.Power} 데미지!");
+                target.TakeDamage(skill.Power);
+                break;
+            case SkillEffectType.Heal:
+                Debug.Log($"[Skill] {actor.UnitName}이(가) {skill.Name} (회복:{skill.Power})로 {target.UnitName}을 {skill.Power}만큼 회복!");
+                target.Heal(skill.Power);
+                break;
+            case SkillEffectType.Buff:
+                Debug.Log($"[Skill] {actor.UnitName}이(가) {skill.Name} (버프:{skill.BuffValue})로 자신의 공격력을 {skill.BuffValue} 증가!");
+                actor.ATK += skill.BuffValue;
+                break;
+            default:
+                Debug.Log($"[Skill] {actor.UnitName}이(가) {skill.Name} 사용! (타입:{skill.EffectType})");
+                break;
+        }
     }
 
     public async UniTask ExecuteEnemyAction(Unit attacker, Unit target)

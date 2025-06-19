@@ -8,7 +8,7 @@ public class Unit : MonoBehaviour
     public string ClassName { get; protected set; }
     public int MaxHP { get; protected set; }
     public int HP { get; protected set; }
-    public int ATK { get; protected set; }
+    public int ATK { get; set; }  
     public int DEF { get; protected set; }
     public int MaxGroggy { get; protected set; }
     public int Groggy { get; protected set; }

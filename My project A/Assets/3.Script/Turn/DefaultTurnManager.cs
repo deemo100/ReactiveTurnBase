@@ -146,7 +146,13 @@ public class DefaultTurnManager : MonoBehaviour
                         int cost = unit.SkillData.Cost;
                         if (costManager.Use(cost))
                         {
-                            await _executor.ExecuteSkill(unit, action.Target);
+                            await _executor.ExecuteSkill(
+                                unit,
+                                action.Target,
+                                unit.SkillData,
+                                players,
+                                enemies
+                            );
                             unit.MarkActed();
                         }
                         else

@@ -43,32 +43,23 @@ public class DataManager : MonoBehaviour
     private void LoadSkills()
     {
         var ta = Resources.Load<TextAsset>("Skills");
-        if (ta == null)
-        {
-            Debug.LogError("Failed to load Skills.csv");
-            return;
-        }
-
         using var reader = new StringReader(ta.text);
         bool header = true;
         while (reader.Peek() != -1)
         {
             var line = reader.ReadLine();
-            if (header)
-            {
-                header = false;
-                continue;
-            }
-
+            if (header) { header = false; continue; }
             var cols = line.Split(',');
-            if (cols.Length < 5) continue;
-            var sd = new SkillData
-            {
-                Id = int.Parse(cols[0].Trim()),
-                Name = cols[1].Trim(),
-                Cost = int.Parse(cols[2].Trim()),
-                IconName = cols[3].Trim(),
-                TargetType = Enum.Parse<TargetType>(cols[4].Trim(), true)
+            var sd = new SkillData {
+                Id          = int.Parse(cols[0].Trim()),
+                Name        = cols[1].Trim(),
+                Cost        = int.Parse(cols[2].Trim()),
+                IconName    = cols[3].Trim(),
+                TargetType  = Enum.Parse<SkillTargetType>(cols[4].Trim(), true),
+                EffectType  = Enum.Parse<SkillEffectType>(cols[5].Trim(), true),
+                Power       = int.Parse(cols[6].Trim()),
+                BuffValue   = int.Parse(cols[7].Trim()),
+                Description = cols[8].Trim()         // <-- 여기!
             };
             SkillTable[sd.Id] = sd;
         }
