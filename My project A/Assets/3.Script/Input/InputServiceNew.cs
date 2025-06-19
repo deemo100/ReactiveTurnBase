@@ -173,15 +173,25 @@ public class InputServiceNew : MonoBehaviour
     }
     private bool IsSkillTargetValid(Unit target)
     {
+        if (_selectedSkill == null || _selectedUnit == null || target == null) return false;
+
         switch (_selectedSkill.TargetType)
         {
-            case SkillTargetType.EnemySingle: return target is EnemyUnit;
-            case SkillTargetType.AllySingle:  return target is PlayerUnit && target != _selectedUnit;
-            case SkillTargetType.Self:        return target == _selectedUnit;
-            default: return false;
+            case SkillTargetType.EnemySingle:
+                return target.Team != _selectedUnit.Team;
+
+            case SkillTargetType.AllySingle:
+                return target.Team == _selectedUnit.Team; // ← 자기 자신도 OK
+
+            case SkillTargetType.Self:
+                return target == _selectedUnit;
+
+            default:
+                return false;
         }
     }
-
+    
+    
     // ✅ PlayerPhase에서 호출 (반드시 필요!)
     public async UniTask<PlayerAction> WaitForPlayerAction(PlayerUnit p)
     {

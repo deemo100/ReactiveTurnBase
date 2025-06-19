@@ -23,7 +23,7 @@ public class GameInitializer : MonoBehaviour
         {
             // 1. 유닛 생성
             var player = _factory
-                .Create(sp.prefab, sp.statId, sp.transform.position, Quaternion.Euler(0,180,0))
+                    .Create(sp.prefab, sp.statId, sp.transform.position, TeamType.Player, Quaternion.Euler(0,180,0))
                 as PlayerUnit;
             if (player == null) continue;
             players.Add(player);
@@ -41,7 +41,7 @@ public class GameInitializer : MonoBehaviour
         foreach (var sp in enemySpawnRoot.GetComponentsInChildren<SpawnPoint>())
         {
             var enemy = _factory
-                .Create(sp.prefab, sp.statId, sp.transform.position, Quaternion.identity)
+                    .Create(sp.prefab, sp.statId, sp.transform.position, TeamType.Enemy, Quaternion.identity)
                 as EnemyUnit;
             if (enemy == null) continue;
             enemies.Add(enemy);

@@ -7,6 +7,7 @@ public class UnitFactory : MonoBehaviour
         GameObject prefab,
         int statId,
         Vector3 position,
+        TeamType team,                      // ⭐ 추가
         Quaternion rotation = default
     )
     {
@@ -36,7 +37,7 @@ public class UnitFactory : MonoBehaviour
             return null;
         }
 
-        unit.Init(stat);
+        unit.Init(stat, team); // ⭐ 2개 파라미터로 호출
         return unit;
     }
 }

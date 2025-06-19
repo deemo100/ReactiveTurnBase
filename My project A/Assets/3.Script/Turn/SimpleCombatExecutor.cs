@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class SimpleCombatExecutor : MonoBehaviour
 {
+    bool result = false;
+    
     public async UniTask ExecuteBasicAttack(Unit attacker, Unit target)
     {
         Debug.Log($"[Combat] {attacker.UnitName} BasicAttack → {target.UnitName}");
@@ -15,7 +17,7 @@ public class SimpleCombatExecutor : MonoBehaviour
         target.TakeDamage(damage);
     }
 
-    public async UniTask ExecuteSkill(
+    public async UniTask<bool> ExecuteSkill(
         PlayerUnit actor,
         Unit target,
         SkillData skill,
@@ -26,7 +28,7 @@ public class SimpleCombatExecutor : MonoBehaviour
         {
             case SkillTargetType.EnemySingle:
             case SkillTargetType.AllySingle:
-                ApplySkillEffect(actor, target, skill);
+                result = ApplySkillEffect(actor, target, skill);
                 break;
             case SkillTargetType.EnemyAll:
                 foreach (var enemy in allEnemies)
@@ -40,28 +42,62 @@ public class SimpleCombatExecutor : MonoBehaviour
                 ApplySkillEffect(actor, actor, skill);
                 break;
         }
+        if (!result)
+        {
+            Debug.LogWarning("[Skill] 실패! 턴/코스트를 소모하지 않습니다.");
+            return false; // 실패!
+        }
         await UniTask.Delay(300);
+        return true; // 성공!
     }
 
-    private void ApplySkillEffect(PlayerUnit actor, Unit target, SkillData skill)
+    private bool ApplySkillEffect(PlayerUnit actor, Unit target, SkillData skill)
     {
         switch (skill.EffectType)
         {
             case SkillEffectType.Damage:
-                Debug.Log($"[Skill] {actor.UnitName}이(가) {skill.Name} (위력:{skill.Power})로 {target.UnitName}에게 {skill.Power} 데미지!");
-                target.TakeDamage(skill.Power);
-                break;
+                if (actor.Team != target.Team && !target.IsDead)
+                {
+                    target.TakeDamage(skill.Power);
+                    return true;
+                }
+                else
+                {
+                    Debug.LogWarning($"[Skill] 잘못된 대상에게 데미지 스킬 적용 시도!");
+                    return false;
+                }
             case SkillEffectType.Heal:
-                Debug.Log($"[Skill] {actor.UnitName}이(가) {skill.Name} (회복:{skill.Power})로 {target.UnitName}을 {skill.Power}만큼 회복!");
-                target.Heal(skill.Power);
-                break;
+                if (target.IsDead)
+                {
+                    Debug.LogWarning($"[Skill] {target.UnitName}은(는) 사망 상태이므로 힐 불가!");
+                    return false;
+                }
+                if ((skill.TargetType == SkillTargetType.AllySingle || skill.TargetType == SkillTargetType.AllyAll) &&
+                    actor.Team == target.Team && actor != null && target != null)
+                {
+                    target.Heal(skill.Power);
+                    return true;
+                }
+                else if (skill.TargetType == SkillTargetType.Self && actor == target)
+                {
+                    target.Heal(skill.Power);
+                    return true;
+                }
+                else
+                {
+                    Debug.LogWarning($"[Skill] 잘못된 대상에게 회복 스킬 적용 시도!");
+                    return false;
+                }
             case SkillEffectType.Buff:
-                Debug.Log($"[Skill] {actor.UnitName}이(가) {skill.Name} (버프:{skill.BuffValue})로 자신의 공격력을 {skill.BuffValue} 증가!");
+                if (actor.IsDead)
+                {
+                    Debug.LogWarning($"[Skill] {actor.UnitName}은(는) 사망 상태이므로 버프 불가!");
+                    return false;
+                }
                 actor.ATK += skill.BuffValue;
-                break;
+                return true;
             default:
-                Debug.Log($"[Skill] {actor.UnitName}이(가) {skill.Name} 사용! (타입:{skill.EffectType})");
-                break;
+                return false;
         }
     }
 

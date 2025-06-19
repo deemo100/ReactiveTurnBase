@@ -73,10 +73,15 @@ public class UIManager : MonoBehaviour
         SetAttackIcon(unit.WeaponIcon);
         SetSkillIcon(unit.SkillIcon);
 
-        // [중요] 버튼에 SkillData 동적 할당!
+        // 스킬 버튼 클릭 시, 해당 유닛의 SkillData로 동작!
+        skill1Button.onClick.RemoveAllListeners();
+        skill1Button.onClick.AddListener(() =>
+            InputServiceNew.Instance.EnterSkillMode(unit.SkillData));
+
+        // 툴팁 등 추가
         var tooltip = skill1Button.GetComponent<SkillButtonTooltip>();
         if (tooltip != null)
-            tooltip.SetSkill(unit.SkillData);  // 유닛이 가진 SkillData로 설명 동적 생성
+            tooltip.SetSkill(unit.SkillData);
     }
 
     public void HideActionButtons()

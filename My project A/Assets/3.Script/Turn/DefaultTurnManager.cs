@@ -144,16 +144,26 @@ public class DefaultTurnManager : MonoBehaviour
                             break;
                         }
                         int cost = unit.SkillData.Cost;
-                        if (costManager.Use(cost))
+                        if (costManager.CanUse(cost))
                         {
-                            await _executor.ExecuteSkill(
+                            // 먼저 코스트를 소모하지 말고
+                            bool skillSuccess = await _executor.ExecuteSkill(
                                 unit,
                                 action.Target,
                                 unit.SkillData,
                                 players,
                                 enemies
                             );
-                            unit.MarkActed();
+                            if (skillSuccess)
+                            {
+                                costManager.Use(cost); // 성공시에만 코스트 차감!
+                                unit.MarkActed();      // 성공시에만 턴 소모!
+                            }
+                            else
+                            {
+                                Debug.LogWarning("[Turn] 스킬 사용 실패! 코스트/턴 소모 없음, 재입력 대기");
+                                continue; // 다시 행동 선택
+                            }
                         }
                         else
                         {
@@ -179,7 +189,13 @@ public class DefaultTurnManager : MonoBehaviour
                 Debug.Log($"[적 {e.UnitName}] 사망 상태로 건너뜀");
                 continue;
             }
-            var target = players[UnityEngine.Random.Range(0, players.Count)];
+            var alivePlayers = players.Where(p => !p.IsDead).ToList();
+            if (alivePlayers.Count == 0)
+            {
+                Debug.LogWarning("[적 AI] 공격할 수 있는 플레이어가 없습니다.");
+                break;
+            }
+            var target = alivePlayers[UnityEngine.Random.Range(0, alivePlayers.Count)];
             Debug.Log($"[적 {e.UnitName}] → [플레이어 {target.UnitName}] 공격");
             await _executor.ExecuteEnemyAction(e, target);
         }

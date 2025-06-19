@@ -7,8 +7,6 @@ public class CostManager : MonoBehaviour
 
     private int _currentCost;
     private int _maxCost = 8;
-
-    
     public int CurrentCost => _currentCost;
     public int MaxCost => _maxCost;
     
@@ -21,6 +19,8 @@ public class CostManager : MonoBehaviour
         OnCostChanged?.Invoke(_currentCost, _maxCost);
     }
 
+    public bool CanUse(int amount) => _currentCost >= amount; // ✅ 추가!
+    
     /// <summary>
     /// 코스트 사용 시 호출. 사용 가능하면 true, 아니면 false를 반환.
     /// </summary>

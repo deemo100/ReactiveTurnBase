@@ -1,8 +1,16 @@
 using Game.Input;
 using UnityEngine;
 
+public enum TeamType
+{
+    Player,
+    Enemy
+}
+
 public class Unit : MonoBehaviour
 {
+    public TeamType Team { get; set; } // 추가
+ 
     public int Id { get; protected set; }
     public string UnitName { get; protected set; }
     public string ClassName { get; protected set; }
@@ -19,7 +27,7 @@ public class Unit : MonoBehaviour
     public HealthBar healthBar;
     public HealthBarFollower healthBarFollower;
     
-    public virtual void Init(UnitStat stat)
+    public virtual void Init(UnitStat stat, TeamType team)
     {
         Id = stat.Id;
         UnitName = stat.Name;
@@ -30,7 +38,9 @@ public class Unit : MonoBehaviour
         DEF = stat.Defense;
         MaxGroggy = stat.MaxGroggy;
         Groggy = stat.MaxGroggy;
+        Team = team; // 팀 할당!
     }
+    
     public SkillData SkillData { get; protected set; }
 
     public virtual void TakeDamage(int amount)

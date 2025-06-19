@@ -29,9 +29,10 @@ public class PlayerUnit : Unit
         IsSelected = selected;
         Debug.Log($"[PlayerUnit] SetSelected 호출: {UnitName} 지정 상태 → {IsSelected}");
     }
-    public override void Init(UnitStat stat)
+    public override void Init(UnitStat stat, TeamType team)
     {
-        base.Init(stat);
+        base.Init(stat, team);
+
         if (DataManager.Instance.SkillTable.TryGetValue(stat.SkillId, out var skill))
         {
             SkillData = skill;
