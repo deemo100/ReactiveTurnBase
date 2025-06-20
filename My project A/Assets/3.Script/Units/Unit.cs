@@ -45,15 +45,21 @@ public class Unit : MonoBehaviour
 
     public virtual void TakeDamage(int amount)
     {
+        Debug.Log($"[Unit] TakeDamage 호출됨, {UnitName}, 타입: {this.GetType()}");
         HP = Mathf.Max(0, HP - amount);
         Debug.Log($"[Unit.TakeDamage] {UnitName}, HP: {HP}/{MaxHP}");
+
         if (healthBarFollower != null)
             healthBarFollower.SetHealth(HP / (float)MaxHP);
 
-        // 1. HP가 0이 되면 승리/패배 즉시 체크 (중요!)
-        if (HP == 0)
+        // 아래를 추가 (Animator 있으면)
+        var animator = GetComponent<Animator>();
+        if (animator != null)
         {
-            DefaultTurnManager.Instance?.CheckVictory();
+            if (HP > 0)
+                animator.SetTrigger("Damaged");
+            else
+                animator.SetTrigger("Death");
         }
     }
     

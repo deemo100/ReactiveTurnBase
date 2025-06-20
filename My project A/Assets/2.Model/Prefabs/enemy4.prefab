@@ -4742,6 +4742,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123bade5fd7e2c4386160271cf28b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  healthBarFollower: {fileID: 0}
 --- !u!136 &2617347267904094601
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6189,7 +6191,7 @@ Animator:
   m_GameObject: {fileID: 6173805759214244286}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9358c226bb09e24da9c5f7064768810, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7022e008e53e5804980e1ac9ea192fb4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

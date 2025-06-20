@@ -588,7 +588,7 @@ Animator:
   m_GameObject: {fileID: 1188347025658767518}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9358c226bb09e24da9c5f7064768810, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7022e008e53e5804980e1ac9ea192fb4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1614,8 +1614,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4920978002915611633}
   - component: {fileID: 5922098030239405467}
-  - component: {fileID: 4302778594745057929}
-  - component: {fileID: 1749887429882810055}
+  - component: {fileID: 3887370275864804170}
+  - component: {fileID: 1419617602234059740}
   m_Layer: 3
   m_Name: enemy1
   m_TagString: Untagged
@@ -4634,7 +4634,7 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 4c70df3312bb83346a1bf065b30d3467, type: 2}
   - {fileID: 7400000, guid: 1ef525d53ae254f7d82ef364ced85490, type: 2}
   - {fileID: 7400000, guid: fabe4f140fdb9cb448bc941c7c93e8b6, type: 2}
---- !u!114 &4302778594745057929
+--- !u!114 &3887370275864804170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4646,7 +4646,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0123bade5fd7e2c4386160271cf28b3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &1749887429882810055
+  healthBar: {fileID: 0}
+  healthBarFollower: {fileID: 0}
+--- !u!136 &1419617602234059740
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
