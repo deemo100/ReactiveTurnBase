@@ -11,15 +11,16 @@ using UnityEngine;
 [RequireComponent(typeof(InputServiceNew))]
 public class DefaultTurnManager : MonoBehaviour
 {
+    public static DefaultTurnManager Instance { get; private set; } // ⭐싱글톤 추가
     [Header("Cost & UI")]
     [SerializeField] private CostManager costManager;
     [SerializeField] private CostBar     costBar;
 
     private int turnCount = 0;
-    private bool battleOver = false;
-
     private List<PlayerUnit>     players;
     private List<EnemyUnit>      enemies;
+    private bool battleOver = false;
+    
     private InputServiceNew      _inputSvc;
     private SimpleCombatExecutor _executor;
     private UnitFactory          _factory;
@@ -27,6 +28,7 @@ public class DefaultTurnManager : MonoBehaviour
 
     void Awake()
     {
+        Instance = this; // ⭐싱글톤 할당
         _inputSvc = GetComponent<InputServiceNew>();
         _executor = GetComponent<SimpleCombatExecutor>();
         _factory  = GetComponent<UnitFactory>();
@@ -95,15 +97,17 @@ public class DefaultTurnManager : MonoBehaviour
         Debug.Log("==== 전투 종료 ====");
         PrintAllUnitsState();
     }
-    private void CheckVictory()
+    public void CheckVictory()
     {
-        if (enemies.All(e => e.IsDead))
+        if (battleOver) return; // 여러 번 호출 방지
+
+        if (enemies != null && enemies.All(e => e.IsDead))
         {
             battleOver = true;
             Debug.Log("모든 적이 사망했습니다. 승리!");
             UIManager.Instance.ShowVictory();
         }
-        else if (players.All(p => p.IsDead))
+        else if (players != null && players.All(p => p.IsDead))
         {
             battleOver = true;
             Debug.Log("모든 플레이어가 사망했습니다. 패배...");

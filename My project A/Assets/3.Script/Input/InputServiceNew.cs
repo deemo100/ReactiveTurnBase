@@ -50,7 +50,9 @@ public class InputServiceNew : MonoBehaviour
                 if (_awaitTarget)
                 {
                     // 1. 공격 모드 - EnemyUnit만 허용
-                    if (_currentMode == ActionMode.Attack && hit.collider.TryGetComponent<EnemyUnit>(out var enemy))
+                    if (_currentMode == ActionMode.Attack 
+                        && hit.collider.TryGetComponent<EnemyUnit>(out var enemy)
+                        && !enemy.IsDead) // 죽은 적이면 무시!
                     {
                         Debug.Log($"{_selectedUnit.UnitName}이 {enemy.UnitName}을 공격!");
                         TryCompletePlayerAction(new PlayerAction
@@ -179,14 +181,13 @@ public class InputServiceNew : MonoBehaviour
         switch (_selectedSkill.TargetType)
         {
             case SkillTargetType.EnemySingle:
-                return target.Team != _selectedUnit.Team;
-
+                return target.Team != _selectedUnit.Team && !target.IsDead;
             case SkillTargetType.AllySingle:
-                return target.Team == _selectedUnit.Team; // ← 자기 자신도 OK
-
+                // HP 가득 찬 아군은 선택 불가
+                return target.Team == _selectedUnit.Team && target != _selectedUnit && !target.IsDead && target.HP < target.MaxHP;
             case SkillTargetType.Self:
-                return target == _selectedUnit;
-
+                // 자기 자신이면서 HP가 가득이 아니어야 함
+                return target == _selectedUnit && target.HP < target.MaxHP;
             default:
                 return false;
         }

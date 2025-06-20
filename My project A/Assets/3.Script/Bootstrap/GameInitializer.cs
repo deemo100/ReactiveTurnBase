@@ -16,6 +16,8 @@ public class GameInitializer : MonoBehaviour
     [SerializeField] private HealthBarFollower  healthBarPrefab;
     [SerializeField] private Canvas             uiCanvas;
 
+    
+    
     void Awake()
     {
         var players = new List<PlayerUnit>();
@@ -52,7 +54,7 @@ public class GameInitializer : MonoBehaviour
             enemy.healthBar = hb.GetComponent<HealthBar>();
             enemy.healthBarFollower.SetHealth(enemy.HP / (float)enemy.MaxHP);
         }
-
         _turnManager.InitializeUnits(players, enemies);
+        
     }
 }

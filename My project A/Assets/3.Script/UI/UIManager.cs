@@ -66,6 +66,19 @@ public class UIManager : MonoBehaviour
 
     public void ShowActionButtons(PlayerUnit unit)
     {
+        // 1. 툴팁 먼저 세팅
+        var attackTooltip = attackButton.GetComponent<SkillButtonTooltip>();
+        if (attackTooltip != null)
+        {
+            string desc = $"<b>일반 공격</b>\n<size=90%>자신의 공격력 100% 피해를 적 1명에게 가합니다.";
+            attackTooltip.SetManualTooltip(desc);
+            Debug.Log("[ShowActionButtons] SetManualTooltip: " + desc);
+        }
+        
+        var skillTooltip = skill1Button.GetComponent<SkillButtonTooltip>();
+        if (skillTooltip != null)
+            skillTooltip.SetSkill(unit.SkillData);
+        
         actionButtonPanel.SetActive(true);
         attackButton.interactable = !unit.HasActedThisTurn;
         skill1Button.interactable = !unit.HasActedThisTurn;
@@ -73,6 +86,13 @@ public class UIManager : MonoBehaviour
         SetAttackIcon(unit.WeaponIcon);
         SetSkillIcon(unit.SkillIcon);
 
+        attackButton.onClick.RemoveAllListeners();
+        attackButton.onClick.AddListener(() =>
+        {
+            InputServiceNew.Instance.EnterAttackMode();
+            UIManager.Instance.HideTooltip(); // 설명창 숨기기
+        });
+        
         // 기존 리스너 모두 제거 후 새로 추가
         skill1Button.onClick.RemoveAllListeners();
         skill1Button.onClick.AddListener(() =>
@@ -80,10 +100,7 @@ public class UIManager : MonoBehaviour
             InputServiceNew.Instance.EnterSkillMode(unit.SkillData);
             UIManager.Instance.HideTooltip(); // ← 버튼 누르면 설명 패널도 즉시 숨김
         });
-
-        var tooltip = skill1Button.GetComponent<SkillButtonTooltip>();
-        if (tooltip != null)
-            tooltip.SetSkill(unit.SkillData);
+        
     }
 
     public void HideActionButtons()

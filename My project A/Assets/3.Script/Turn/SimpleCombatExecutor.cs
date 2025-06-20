@@ -9,14 +9,20 @@ public class SimpleCombatExecutor : MonoBehaviour
     
     public async UniTask ExecuteBasicAttack(Unit attacker, Unit target)
     {
+        // ⭐ 죽은 대상은 공격 불가!
+        if (target == null || target.IsDead)
+        {
+            Debug.LogWarning($"[Combat] {attacker.UnitName}이(가) 죽은 유닛 {target?.UnitName}을 공격하려 했으나 무시됨!");
+            return;
+        }
+
         Debug.Log($"[Combat] {attacker.UnitName} BasicAttack → {target.UnitName}");
         await UniTask.Delay(500);
 
-        // 데미지 공식 예시 (공격력 - 방어력, 0 이하 방지)
         int damage = Mathf.Max(0, attacker.ATK - target.DEF);
         target.TakeDamage(damage);
     }
-
+    
     public async UniTask<bool> ExecuteSkill(
         PlayerUnit actor,
         Unit target,
@@ -85,8 +91,15 @@ public class SimpleCombatExecutor : MonoBehaviour
             case SkillEffectType.Heal:
                 if (actor.Team == target.Team)
                 {
-                    target.Heal(skill.Power);
-                    return true;
+                    if (target.HP < target.MaxHP)
+                    {
+                        target.Heal(skill.Power);
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[Skill] {target.UnitName}은(는) 이미 체력이 가득 참! 힐 무시됨.");
+                    }
                 }
                 break;
             case SkillEffectType.Buff:

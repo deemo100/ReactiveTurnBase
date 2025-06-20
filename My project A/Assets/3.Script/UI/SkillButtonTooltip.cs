@@ -6,33 +6,32 @@ public class SkillButtonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerE
 {
     [Header("수동 입력 설명(없어도 됨)")]
     [TextArea]
-    public string tooltipText;  // Inspector 수동 입력 (없으면 skillData로 자동 생성)
+    public string tooltipText;
 
     [Header("SkillData 연결")]
-    public SkillData skillData; // Inspector에서 할당하거나 코드에서 동적 할당
+    public SkillData skillData;
 
-    private string cachedTooltip; // 실제로 쓸 설명(최종)
+    private string cachedTooltip;
 
-    void Start()
+    // Start/OnEnable 모두 필요 없음
+
+    public void SetManualTooltip(string text)
     {
-        UpdateTooltipText();
+        skillData = null;
+        cachedTooltip = text;
     }
 
-    // 코드에서 SkillData를 변경하고 싶을 때 호출
     public void SetSkill(SkillData data)
     {
         skillData = data;
-        UpdateTooltipText();
-    }
-
-    private void UpdateTooltipText()
-    {
         if (skillData != null)
         {
-            cachedTooltip = 
-                $"{skillData.Name}\n" +
-                $"코스트: {skillData.Cost}\n" +
-                $"효과: {skillData.Description}";
+            cachedTooltip =
+                $"<b>{skillData.Name}</b>\n" +
+                $"<size=90%>코스트: {skillData.Cost}\n" +
+                $"타겟: {skillData.TargetType}\n" +
+                $"효과: {skillData.Description}\n" +
+                $"공격력/회복량: {skillData.Power}</size>";
         }
         else if (!string.IsNullOrEmpty(tooltipText))
         {
@@ -44,10 +43,15 @@ public class SkillButtonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerE
         }
     }
 
+    public string GetTooltip()
+    {
+        return cachedTooltip;
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // 원하는 위치로 고정(예: 좌측 하단)
-        Vector2 fixedPos = new Vector2(30, -30); // 화면 고정 위치
+        Debug.Log($"[Tooltip] OnPointerEnter: cachedTooltip={cachedTooltip}");
+        Vector2 fixedPos = new Vector2(30, -30);
         UIManager.Instance.ShowTooltip(cachedTooltip, fixedPos);
     }
 
