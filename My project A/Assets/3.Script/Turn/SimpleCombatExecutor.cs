@@ -24,6 +24,7 @@ public class SimpleCombatExecutor : MonoBehaviour
         List<PlayerUnit> allPlayers,
         List<EnemyUnit> allEnemies)
     {
+        bool result = false;
         switch (skill.TargetType)
         {
             case SkillTargetType.EnemySingle:
@@ -32,14 +33,28 @@ public class SimpleCombatExecutor : MonoBehaviour
                 break;
             case SkillTargetType.EnemyAll:
                 foreach (var enemy in allEnemies)
-                    if (!enemy.IsDead) ApplySkillEffect(actor, enemy, skill);
+                {
+                    Debug.Log($"[디버그] 대상: {enemy.UnitName}, Dead: {enemy.IsDead}");
+                    if (!enemy.IsDead)
+                    {
+                        bool eff = ApplySkillEffect(actor, enemy, skill);
+                        Debug.Log($"[디버그] {enemy.UnitName} 효과 적용됨: {eff}");
+                        if (eff) result = true;
+                    }
+                }
                 break;
             case SkillTargetType.AllyAll:
                 foreach (var player in allPlayers)
-                    if (!player.IsDead) ApplySkillEffect(actor, player, skill);
+                {
+                    if (!player.IsDead)
+                    {
+                        if (ApplySkillEffect(actor, player, skill)) result = true;
+                    }
+                }
                 break;
+            
             case SkillTargetType.Self:
-                ApplySkillEffect(actor, actor, skill);
+                result = ApplySkillEffect(actor, actor, skill);
                 break;
         }
         if (!result)
@@ -53,52 +68,32 @@ public class SimpleCombatExecutor : MonoBehaviour
 
     private bool ApplySkillEffect(PlayerUnit actor, Unit target, SkillData skill)
     {
+        if (target == null) return false;      // ⭐ null 체크 선행!
+        if (target.IsDead) return false;       // 죽은 대상은 패스
+        
         switch (skill.EffectType)
         {
             case SkillEffectType.Damage:
-                if (actor.Team != target.Team && !target.IsDead)
+                Debug.Log($"[디버그] {actor.UnitName}→{target.UnitName}, 팀: {actor.Team} vs {target.Team}");
+                if (actor.Team != target.Team)
                 {
+                    Debug.Log($"[디버그] {target.UnitName}에게 {skill.Power} 데미지!");
                     target.TakeDamage(skill.Power);
                     return true;
                 }
-                else
-                {
-                    Debug.LogWarning($"[Skill] 잘못된 대상에게 데미지 스킬 적용 시도!");
-                    return false;
-                }
+                break;
             case SkillEffectType.Heal:
-                if (target.IsDead)
-                {
-                    Debug.LogWarning($"[Skill] {target.UnitName}은(는) 사망 상태이므로 힐 불가!");
-                    return false;
-                }
-                if ((skill.TargetType == SkillTargetType.AllySingle || skill.TargetType == SkillTargetType.AllyAll) &&
-                    actor.Team == target.Team && actor != null && target != null)
+                if (actor.Team == target.Team)
                 {
                     target.Heal(skill.Power);
                     return true;
                 }
-                else if (skill.TargetType == SkillTargetType.Self && actor == target)
-                {
-                    target.Heal(skill.Power);
-                    return true;
-                }
-                else
-                {
-                    Debug.LogWarning($"[Skill] 잘못된 대상에게 회복 스킬 적용 시도!");
-                    return false;
-                }
+                break;
             case SkillEffectType.Buff:
-                if (actor.IsDead)
-                {
-                    Debug.LogWarning($"[Skill] {actor.UnitName}은(는) 사망 상태이므로 버프 불가!");
-                    return false;
-                }
-                actor.ATK += skill.BuffValue;
+                // ... 버프 로직
                 return true;
-            default:
-                return false;
         }
+        return false;
     }
 
     public async UniTask ExecuteEnemyAction(Unit attacker, Unit target)

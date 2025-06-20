@@ -138,18 +138,19 @@ public class InputServiceNew : MonoBehaviour
         _selectedSkill = skill;
         _currentMode = ActionMode.Skill;
         _awaitTarget = true;
-        UIManager.Instance.SetAttackHighlight(false); // ⛔️ 공격 하이라이트 꺼두기(겹침 방지)
-        UIManager.Instance.SetSkillHighlight(true);   // ✅ 스킬 진입시
+        UIManager.Instance.SetAttackHighlight(false);
+        UIManager.Instance.SetSkillHighlight(true);
+
+        UIManager.Instance.HideTooltip(); // ← 추가!
 
         if (skill.TargetType == SkillTargetType.EnemyAll ||
             skill.TargetType == SkillTargetType.AllyAll)
         {
-            // 전체형이면 타겟 입력 없이 바로 Action 생성/완료
             TryCompletePlayerAction(new PlayerAction
             {
                 Type = PlayerActionType.Skill,
                 Actor = _selectedUnit,
-                Target = null, // 후처리에서 전체 리스트 참조
+                Target = null,
                 SkillData = skill
             });
         }

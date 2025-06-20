@@ -73,12 +73,14 @@ public class UIManager : MonoBehaviour
         SetAttackIcon(unit.WeaponIcon);
         SetSkillIcon(unit.SkillIcon);
 
-        // 스킬 버튼 클릭 시, 해당 유닛의 SkillData로 동작!
+        // 기존 리스너 모두 제거 후 새로 추가
         skill1Button.onClick.RemoveAllListeners();
         skill1Button.onClick.AddListener(() =>
-            InputServiceNew.Instance.EnterSkillMode(unit.SkillData));
+        {
+            InputServiceNew.Instance.EnterSkillMode(unit.SkillData);
+            UIManager.Instance.HideTooltip(); // ← 버튼 누르면 설명 패널도 즉시 숨김
+        });
 
-        // 툴팁 등 추가
         var tooltip = skill1Button.GetComponent<SkillButtonTooltip>();
         if (tooltip != null)
             tooltip.SetSkill(unit.SkillData);

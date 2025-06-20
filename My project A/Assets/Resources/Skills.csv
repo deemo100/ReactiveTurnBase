@@ -1,5 +1,5 @@
 Id,Name,Cost,Icon,TargetType,EffectType,Power,BuffValue,Description
-1,Slash,2,Weapon_01,EnemySingle,Damage,30,0,적 1명에게 검으로 피해를 줍니다.
+1,천둥강타,2,Weapon_01,EnemySingle,Damage,30,0,적 1명에게 천둥같은 강타를 날립니다.
 2,Heal,2,Heal_Icon,AllySingle,Heal,40,0,아군 1명의 체력을 회복합니다.
 3,Fireball,4,Weapon_02,EnemyAll,Damage,18,0,적 전체를 마법으로 피해를 줍니다.
 4,AllHeal,4,Heal_Icon,AllyAll,Heal,20,0,모든 아군을 치유합니다.

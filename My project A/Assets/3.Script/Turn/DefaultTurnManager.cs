@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Game.Input;
 using UnityEngine;
 
 [RequireComponent(typeof(UnitFactory))]
@@ -124,12 +125,19 @@ public class DefaultTurnManager : MonoBehaviour
                 var action = await _inputSvc.WaitForPlayerAction(unit);
 
                 // 💡 null 체크 추가!
-                if (action == null || action.Target == null)
+                bool needTarget =
+                    action != null &&
+                    action.Type == PlayerActionType.Skill &&
+                    (action.SkillData.TargetType == SkillTargetType.EnemySingle ||
+                     action.SkillData.TargetType == SkillTargetType.AllySingle ||
+                     action.SkillData.TargetType == SkillTargetType.Self);
+
+                if (action == null || (needTarget && action.Target == null))
                 {
                     Debug.LogWarning($"[플레이어 {unit.UnitName}] 행동 취소됨 또는 타겟 없음 (다시 선택 가능)");
                     break;
                 }
-
+                
                 switch (action.Type)
                 {
                     case PlayerActionType.BasicAttack:
