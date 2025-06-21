@@ -527,8 +527,6 @@ GameObject:
   m_Component:
   - component: {fileID: 967976701221022905}
   - component: {fileID: 1949456419243337866}
-  - component: {fileID: 2631176846933649067}
-  - component: {fileID: 2534417911653187006}
   m_Layer: 3
   m_Name: player3
   m_TagString: Untagged
@@ -3567,43 +3565,6 @@ MonoBehaviour:
   - {fileID: 7400000, guid: 4c70df3312bb83346a1bf065b30d3467, type: 2}
   - {fileID: 7400000, guid: 1ef525d53ae254f7d82ef364ced85490, type: 2}
   - {fileID: 7400000, guid: fabe4f140fdb9cb448bc941c7c93e8b6, type: 2}
---- !u!114 &2631176846933649067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760645709211538694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d823fd31c6bfde469968da3e1d85c86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WeaponIcon: {fileID: 21300000, guid: b11f9c52da2945740b5078d84177a9ab, type: 3}
-  SkillIcon: {fileID: 21300000, guid: c46d83f2b73aaa141bd5015819342d81, type: 3}
---- !u!136 &2534417911653187006
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 760645709211538694}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1 &788777575427368792
 GameObject:
   m_ObjectHideFlags: 0
@@ -3795,6 +3756,8 @@ GameObject:
   - component: {fileID: 3801010536797055381}
   - component: {fileID: 1856609476829177751}
   - component: {fileID: 5387731394500201316}
+  - component: {fileID: 2233394948250363003}
+  - component: {fileID: 6059036809147548806}
   m_Layer: 3
   m_Name: UnitRoot
   m_TagString: Untagged
@@ -3841,7 +3804,7 @@ Animator:
   m_GameObject: {fileID: 1354247815138508538}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9358c226bb09e24da9c5f7064768810, type: 2}
+  m_Controller: {fileID: 9100000, guid: cd5f05d87bf19144394f56b65c6f3c61, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3852,6 +3815,45 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2233394948250363003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354247815138508538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d823fd31c6bfde469968da3e1d85c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  healthBarFollower: {fileID: 0}
+  WeaponIcon: {fileID: 21300000, guid: b11f9c52da2945740b5078d84177a9ab, type: 3}
+  SkillIcon: {fileID: 21300000, guid: c46d83f2b73aaa141bd5015819342d81, type: 3}
+--- !u!136 &6059036809147548806
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354247815138508538}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1 &1743662929445741406
 GameObject:
   m_ObjectHideFlags: 0

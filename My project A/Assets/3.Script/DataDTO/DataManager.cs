@@ -13,7 +13,6 @@ public class DataManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("DataManager Awake 실행됨");
         if (Instance == null)
         {
             Instance = this;
@@ -22,11 +21,9 @@ public class DataManager : MonoBehaviour
             UnitStatTable = new Dictionary<int, UnitStat>();
             LoadSkills();
             LoadUnitStats();
-            Debug.Log("DataManager 싱글턴 할당됨");
         }
         else
         {
-            Debug.LogWarning("중복 DataManager 파괴");
             Destroy(gameObject);
         }
     }

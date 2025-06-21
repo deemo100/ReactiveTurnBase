@@ -35,15 +35,13 @@ public class DefaultTurnManager : MonoBehaviour
 
         costBar.Initialize(costManager);      // 1. 먼저 구독!
         costManager.Init(startCost: 4);       // 2. 
-
-        Debug.Log("DefaultTurnManager 초기화 완료");
+        
     }
 
     public void InitializeUnits(List<PlayerUnit> playerList, List<EnemyUnit> enemyList)
     {
         players = playerList;
         enemies = enemyList;
-        Debug.Log($"유닛 초기화: 플레이어 {players.Count}명, 적 {enemies.Count}명");
         PrintAllUnitsState();
     }
 
@@ -99,7 +97,8 @@ public class DefaultTurnManager : MonoBehaviour
     }
     public void CheckVictory()
     {
-        if (battleOver) return; // 여러 번 호출 방지
+        if (battleOver) return;
+        Debug.Log($"CheckVictory() 호출! 적 중 살아있는 유닛 수: {enemies.Count(e => !e.IsDead)}");
 
         if (enemies != null && enemies.All(e => e.IsDead))
         {

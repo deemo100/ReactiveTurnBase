@@ -7,27 +7,15 @@ public class EnemyUnit : Unit
     void Awake()
     {
         Team = TeamType.Enemy;
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     public override void TakeDamage(int amount)
     {
-        Debug.Log($"[EnemyUnit] TakeDamage 호출됨, {UnitName}");
-        base.TakeDamage(amount);
+        base.TakeDamage(amount); // 부모에서 승리 판정, HP 등 관리
 
-        if (_animator != null)
-        {
-            if (HP > 0)
-            {
-                Debug.Log("[EnemyUnit] Damaged 트리거 실행!");
-                _animator.SetTrigger("Damaged");
-            }
-            else
-            {
-                Debug.Log("[EnemyUnit] Death 트리거 실행!");
-                _animator.SetTrigger("Death");
-            }
-        }
+        // 필요하면 별도 추가 애니메이션 등만 여기에!
+        // ex: 사운드, 특수 이펙트 등
     }
 
     public void PlayAttackAnim()
@@ -35,7 +23,7 @@ public class EnemyUnit : Unit
         if (_animator != null)
         {
             Debug.Log("[EnemyUnit] Attack 트리거 실행!");
-            _animator.SetTrigger("Attack");
+            _animator.SetTrigger("2_Attack");
         }
     }
 }

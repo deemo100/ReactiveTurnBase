@@ -6,27 +6,28 @@ public enum TeamType
     Player,
     Enemy
 }
-
 public class Unit : MonoBehaviour
 {
-    public TeamType Team { get; set; } // 추가
- 
+    public TeamType Team { get; set; }
+
     public int Id { get; protected set; }
     public string UnitName { get; protected set; }
     public string ClassName { get; protected set; }
     public int MaxHP { get; protected set; }
     public int HP { get; protected set; }
-    public int ATK { get; set; }  
+    public int ATK { get; set; }
     public int DEF { get; protected set; }
     public int MaxGroggy { get; protected set; }
     public int Groggy { get; protected set; }
 
     public bool IsDead => HP <= 0;
     public bool IsGroggy => Groggy <= 0;
+
     
     public HealthBar healthBar;
     public HealthBarFollower healthBarFollower;
-    
+    public SkillData SkillData { get; protected set; }
+
     public virtual void Init(UnitStat stat, TeamType team)
     {
         Id = stat.Id;
@@ -38,10 +39,8 @@ public class Unit : MonoBehaviour
         DEF = stat.Defense;
         MaxGroggy = stat.MaxGroggy;
         Groggy = stat.MaxGroggy;
-        Team = team; // 팀 할당!
+        Team = team;
     }
-    
-    public SkillData SkillData { get; protected set; }
 
     public virtual void TakeDamage(int amount)
     {
@@ -52,15 +51,37 @@ public class Unit : MonoBehaviour
         if (healthBarFollower != null)
             healthBarFollower.SetHealth(HP / (float)MaxHP);
 
-        // 아래를 추가 (Animator 있으면)
-        var animator = GetComponent<Animator>();
+        // ★ 반드시 CheckVictory를 공통으로 호출
+        if (HP <= 0)
+        {
+            DefaultTurnManager.Instance?.CheckVictory();
+        }
+
+        // 기본 애니메이션 트리거 처리 (자식에서 오버라이드 가능)
+        var animator = GetComponentInChildren<Animator>();
         if (animator != null)
         {
             if (HP > 0)
-                animator.SetTrigger("Damaged");
+                animator.SetTrigger("3_Damaged");
             else
-                animator.SetTrigger("Death");
+                animator.SetTrigger("4_Death");
         }
+    }
+
+    public virtual void PlayAttackAnim()
+    {
+        var animator = GetComponentInChildren<Animator>();
+        if (animator != null)
+        {
+            animator.SetTrigger("2_Attack");
+        }
+    }
+
+    public virtual void PlaySkillAnim()
+    {
+        var animator = GetComponentInChildren<Animator>();
+        if (animator != null)
+            animator.SetTrigger("7_Skill"); // 스킬
     }
     
     public virtual void Heal(int amount)
@@ -68,7 +89,6 @@ public class Unit : MonoBehaviour
         HP = Mathf.Min(MaxHP, HP + amount);
         if (healthBarFollower != null)
         {
-            Debug.Log($"[Unit] Heal: {UnitName}, HP: {HP}/{MaxHP}");
             healthBarFollower.SetHealth(HP / (float)MaxHP);
         }
     }

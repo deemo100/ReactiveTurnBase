@@ -22,7 +22,7 @@ public class UnitFactory : MonoBehaviour
 
         var go = Instantiate(prefab, position, rotation);
 
-        var unit = go.GetComponent<Unit>();
+        var unit = go.GetComponentInChildren<Unit>();
         if (unit == null)
         {
             Debug.LogError($"{prefab.name}에 Unit 컴포넌트가 없습니다.");

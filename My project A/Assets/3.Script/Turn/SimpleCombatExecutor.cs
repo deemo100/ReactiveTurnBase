@@ -6,10 +6,9 @@ using System.Collections.Generic;
 public class SimpleCombatExecutor : MonoBehaviour
 {
     bool result = false;
-    
+
     public async UniTask ExecuteBasicAttack(Unit attacker, Unit target)
     {
-        // ⭐ 죽은 대상은 공격 불가!
         if (target == null || target.IsDead)
         {
             Debug.LogWarning($"[Combat] {attacker.UnitName}이(가) 죽은 유닛 {target?.UnitName}을 공격하려 했으나 무시됨!");
@@ -17,12 +16,16 @@ public class SimpleCombatExecutor : MonoBehaviour
         }
 
         Debug.Log($"[Combat] {attacker.UnitName} BasicAttack → {target.UnitName}");
+
+        // ★ 평타(일반 공격) 애니메이션 실행!
+        attacker.PlayAttackAnim();
+
         await UniTask.Delay(500);
 
         int damage = Mathf.Max(0, attacker.ATK - target.DEF);
         target.TakeDamage(damage);
     }
-    
+
     public async UniTask<bool> ExecuteSkill(
         PlayerUnit actor,
         Unit target,
@@ -58,7 +61,6 @@ public class SimpleCombatExecutor : MonoBehaviour
                     }
                 }
                 break;
-            
             case SkillTargetType.Self:
                 result = ApplySkillEffect(actor, actor, skill);
                 break;
@@ -74,9 +76,9 @@ public class SimpleCombatExecutor : MonoBehaviour
 
     private bool ApplySkillEffect(PlayerUnit actor, Unit target, SkillData skill)
     {
-        if (target == null) return false;      // ⭐ null 체크 선행!
-        if (target.IsDead) return false;       // 죽은 대상은 패스
-        
+        if (target == null) return false;
+        if (target.IsDead) return false;
+
         switch (skill.EffectType)
         {
             case SkillEffectType.Damage:
@@ -84,6 +86,8 @@ public class SimpleCombatExecutor : MonoBehaviour
                 if (actor.Team != target.Team)
                 {
                     Debug.Log($"[디버그] {target.UnitName}에게 {skill.Power} 데미지!");
+                    // ★ 스킬 데미지 애니메이션 실행!
+                    actor.PlaySkillAnim();
                     target.TakeDamage(skill.Power);
                     return true;
                 }
@@ -93,6 +97,7 @@ public class SimpleCombatExecutor : MonoBehaviour
                 {
                     if (target.HP < target.MaxHP)
                     {
+                        // 필요하다면 여기서도 actor.PlaySkillAnim() 가능
                         target.Heal(skill.Power);
                         return true;
                     }
@@ -103,7 +108,7 @@ public class SimpleCombatExecutor : MonoBehaviour
                 }
                 break;
             case SkillEffectType.Buff:
-                // ... 버프 로직
+                // ... 버프 로직, 필요하다면 PlaySkillAnim() 호출
                 return true;
         }
         return false;
@@ -112,6 +117,10 @@ public class SimpleCombatExecutor : MonoBehaviour
     public async UniTask ExecuteEnemyAction(Unit attacker, Unit target)
     {
         Debug.Log($"[Combat] {attacker.UnitName} AI → {target.UnitName}");
+
+        // ★ 평타(일반 공격) 애니메이션 실행!
+        attacker.PlayAttackAnim();
+
         await UniTask.Delay(500);
 
         int damage = Mathf.Max(0, attacker.ATK - target.DEF);

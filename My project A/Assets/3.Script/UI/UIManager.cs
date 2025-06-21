@@ -72,7 +72,6 @@ public class UIManager : MonoBehaviour
         {
             string desc = $"<b>일반 공격</b>\n<size=90%>자신의 공격력 100% 피해를 적 1명에게 가합니다.";
             attackTooltip.SetManualTooltip(desc);
-            Debug.Log("[ShowActionButtons] SetManualTooltip: " + desc);
         }
         
         var skillTooltip = skill1Button.GetComponent<SkillButtonTooltip>();

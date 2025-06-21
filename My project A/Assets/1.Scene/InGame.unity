@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a6f78b3a684064688a49788d21ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6598790196251174704, guid: a7ae97fccec4a2e4fbdc1566521b760b, type: 3}
+  prefab: {fileID: 3343399670260396336, guid: a7ae97fccec4a2e4fbdc1566521b760b, type: 3}
   statId: 2
   healthBarPrefab: {fileID: 5807458806609154886, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
   canvasTransform: {fileID: 1787023277}
