@@ -9,21 +9,47 @@ public class SimpleCombatExecutor : MonoBehaviour
 
     public async UniTask ExecuteBasicAttack(Unit attacker, Unit target)
     {
-        if (target == null || target.IsDead)
+        if (target == null || target.IsDead) return;
+        Debug.Log($"[Combat] {attacker.UnitName} BasicAttack → {target.UnitName}");
+
+        // 원거리면 이동 없음 (플래그가 있다면)
+        if (attacker.AttackType == AttackRangeType.Ranged)
         {
-            Debug.LogWarning($"[Combat] {attacker.UnitName}이(가) 죽은 유닛 {target?.UnitName}을 공격하려 했으나 무시됨!");
+            attacker.LookAt(target.transform.position);
+            attacker.PlayAttackAnim();
+
+            float animTime = attacker.GetCurrentAttackAnimLength();
+            await UniTask.Delay((int)(animTime * 1000));
+            await UniTask.Delay(500);
+
+            int damage = Mathf.Max(0, attacker.ATK - target.DEF);
+            target.TakeDamage(damage);
             return;
         }
 
-        Debug.Log($"[Combat] {attacker.UnitName} BasicAttack → {target.UnitName}");
+        // 근접은 이동 → 공격 → 복귀
+        float moveSpeed = attacker.MoveSpeed;
+        float approachDistance = 2f;
+        Vector3 attackPos = target.transform.position + new Vector3(
+            attacker.Team == TeamType.Player ? -approachDistance : approachDistance,
+            0, 0
+        );
 
-        // ★ 평타(일반 공격) 애니메이션 실행!
+        attacker.LookAt(attackPos);
+        await attacker.MoveTo(attackPos, moveSpeed);
+
         attacker.PlayAttackAnim();
 
+        float animTime2 = attacker.GetCurrentAttackAnimLength();
+        await UniTask.Delay((int)(animTime2 * 1000));
         await UniTask.Delay(500);
 
-        int damage = Mathf.Max(0, attacker.ATK - target.DEF);
-        target.TakeDamage(damage);
+        int damage2 = Mathf.Max(0, attacker.ATK - target.DEF);
+        target.TakeDamage(damage2);
+
+        attacker.LookAt(attacker.SpawnPosition);
+        await attacker.MoveTo(attacker.SpawnPosition, moveSpeed);
+        attacker.ResetRotation();
     }
 
     public async UniTask<bool> ExecuteSkill(
@@ -116,14 +142,6 @@ public class SimpleCombatExecutor : MonoBehaviour
 
     public async UniTask ExecuteEnemyAction(Unit attacker, Unit target)
     {
-        Debug.Log($"[Combat] {attacker.UnitName} AI → {target.UnitName}");
-
-        // ★ 평타(일반 공격) 애니메이션 실행!
-        attacker.PlayAttackAnim();
-
-        await UniTask.Delay(500);
-
-        int damage = Mathf.Max(0, attacker.ATK - target.DEF);
-        target.TakeDamage(damage);
+        await ExecuteBasicAttack(attacker, target);
     }
 }
