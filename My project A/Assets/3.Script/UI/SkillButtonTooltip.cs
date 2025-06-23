@@ -31,7 +31,7 @@ public class SkillButtonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerE
                 $"<size=90%>코스트: {skillData.Cost}\n" +
                 $"타겟: {skillData.TargetType}\n" +
                 $"효과: {skillData.Description}\n" +
-                $"공격력/회복량: {skillData.Power}</size>";
+                $"위력: {skillData.Power}</size>";
         }
         else if (!string.IsNullOrEmpty(tooltipText))
         {

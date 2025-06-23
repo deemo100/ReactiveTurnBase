@@ -192,12 +192,12 @@ public class DefaultTurnManager : MonoBehaviour
     private async UniTask EnemyPhase(CancellationToken token)
     {
         Debug.Log("적 턴 시작");
-        foreach (var e in enemies)
+        foreach (var enemy in enemies)
         {
             if (token.IsCancellationRequested) break;
-            if (e.IsDead)
+            if (enemy.IsDead)
             {
-                Debug.Log($"[적 {e.UnitName}] 사망 상태로 건너뜀");
+                Debug.Log($"[적 {enemy.UnitName}] 사망 상태로 건너뜀");
                 continue;
             }
             var alivePlayers = players.Where(p => !p.IsDead).ToList();
@@ -207,8 +207,8 @@ public class DefaultTurnManager : MonoBehaviour
                 break;
             }
             var target = alivePlayers[UnityEngine.Random.Range(0, alivePlayers.Count)];
-            Debug.Log($"[적 {e.UnitName}] → [플레이어 {target.UnitName}] 공격");
-            await _executor.ExecuteEnemyAction(e, target);
+            Debug.Log($"[적 {enemy.UnitName}] → [플레이어 {target.UnitName}] 공격");
+            await _executor.ExecuteEnemyAction(enemy, target);
         }
     }
 

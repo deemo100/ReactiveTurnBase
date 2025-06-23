@@ -10,46 +10,44 @@ public class SimpleCombatExecutor : MonoBehaviour
     public async UniTask ExecuteBasicAttack(Unit attacker, Unit target)
     {
         if (target == null || target.IsDead) return;
-        Debug.Log($"[Combat] {attacker.UnitName} BasicAttack → {target.UnitName}");
 
-        // 원거리면 이동 없음 (플래그가 있다면)
-        if (attacker.AttackType == AttackRangeType.Ranged)
+        bool needMove = attacker.AttackType == AttackRangeType.Melee;
+
+        float moveSpeed = attacker.MoveSpeed;
+        float attackOffset = 2f;  // ← 원하는 거리로 직접 조정
+        Vector3 attackPos = target.transform.position +
+                            new Vector3(attacker.Team == TeamType.Player ? -attackOffset : attackOffset, 0, 0);
+
+        attacker.SetAttackTarget(target);
+
+        if (needMove)
+        {
+            attacker.LookAt(attackPos);
+            await attacker.MoveTo(attackPos, moveSpeed);
+        }
+        else
         {
             attacker.LookAt(target.transform.position);
-            attacker.PlayAttackAnim();
-
-            float animTime = attacker.GetCurrentAttackAnimLength();
-            await UniTask.Delay((int)(animTime * 1000));
-            await UniTask.Delay(500);
-
-            int damage = Mathf.Max(0, attacker.ATK - target.DEF);
-            target.TakeDamage(damage);
-            return;
         }
-
-        // 근접은 이동 → 공격 → 복귀
-        float moveSpeed = attacker.MoveSpeed;
-        float approachDistance = 2f;
-        Vector3 attackPos = target.transform.position + new Vector3(
-            attacker.Team == TeamType.Player ? -approachDistance : approachDistance,
-            0, 0
-        );
-
-        attacker.LookAt(attackPos);
-        await attacker.MoveTo(attackPos, moveSpeed);
 
         attacker.PlayAttackAnim();
 
-        float animTime2 = attacker.GetCurrentAttackAnimLength();
-        await UniTask.Delay((int)(animTime2 * 1000));
-        await UniTask.Delay(500);
-
-        int damage2 = Mathf.Max(0, attacker.ATK - target.DEF);
-        target.TakeDamage(damage2);
-
-        attacker.LookAt(attacker.SpawnPosition);
-        await attacker.MoveTo(attacker.SpawnPosition, moveSpeed);
-        attacker.ResetRotation();
+        // 애니메이션 길이 만큼 대기 (임팩트 이벤트에서 데미지)
+        float animLen = attacker.GetCurrentAttackAnimLength();
+        await UniTask.Delay((int)(animLen * 1000));
+        await UniTask.Delay(350);
+        
+        // (여기서 SetAttackTarget(null) 하지 말 것!)
+        if (needMove)
+        {
+            attacker.LookAt(attacker.SpawnPosition);
+            await attacker.MoveToSpawn(moveSpeed);
+            attacker.ResetRotation();
+        }
+        else
+        {
+            attacker.ResetRotation();
+        }
     }
 
     public async UniTask<bool> ExecuteSkill(
