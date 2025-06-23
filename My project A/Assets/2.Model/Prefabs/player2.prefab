@@ -5325,6 +5325,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackType: 1
+  arrowPrefab: {fileID: 106992344914452563, guid: d748cbc56e8be1349992d61dd0610a3d, type: 3}
+  firePoint: {fileID: 1060417746913509834}
+  arrowForce: 10
   MoveSpeed: 5
   healthBar: {fileID: 0}
   healthBarFollower: {fileID: 0}

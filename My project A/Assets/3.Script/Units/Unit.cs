@@ -10,6 +10,10 @@ public class Unit : MonoBehaviour
     public TeamType Team { get; set; }
     public AttackRangeType AttackType = AttackRangeType.Melee;
 
+    [Header("원거리 유닛만 설정")]
+    public GameObject arrowPrefab;
+    public Transform firePoint;
+
     public Vector3 SpawnPosition { get; private set; }
     public float MoveSpeed = 10f;
     public int Id { get; protected set; }
@@ -68,6 +72,21 @@ public class Unit : MonoBehaviour
         {
             Debug.LogWarning("[이벤트] OnAttackImpact: _currentTarget이 null입니다!");
         }
+    }
+
+    // 애니메이션에서 호출하는 화살 발사 함수
+    public void FireArrowFX()
+    {
+        if (AttackType != AttackRangeType.Ranged) return;
+        if (arrowPrefab == null || firePoint == null || _currentTarget == null) return;
+
+        // === 여기서 애니메이션에서 두 이벤트 사이 시간만큼 비행하게 설정 ===
+        float arrowFlyTime = 0.33f; // 실제 이벤트(프레임) 간 시간(초 단위)로 설정!
+
+        GameObject arrowObj = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
+        Arrow arrowScript = arrowObj.GetComponent<Arrow>();
+        if (arrowScript != null)
+            arrowScript.SetTarget(_currentTarget.SpawnPosition, arrowFlyTime);
     }
 
     // 공격/스킬/피격 등 애니메이션
@@ -158,7 +177,7 @@ public class Unit : MonoBehaviour
             }
         }
     }
-    
+
     public virtual void Heal(int amount)
     {
         HP = Mathf.Min(MaxHP, HP + amount);
