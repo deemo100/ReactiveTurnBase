@@ -1282,6 +1282,7 @@ MonoBehaviour:
   fireballPrefab: {fileID: 1239899375105309878, guid: 7ae1fde053cd207418e6fa5763d32b46, type: 3}
   firePoint: {fileID: 0}
   firePointfireball: {fileID: 526252529095492455}
+  aoeImpactPrefab: {fileID: 6350431215725871162, guid: 9e20e8633470b2742b8d944169fdba31, type: 3}
   MoveSpeed: 8
   healthBar: {fileID: 0}
   healthBarFollower: {fileID: 0}

@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638852003999746449
-    m_Hash: 1653699248
+      ticks: 638863611311085359
+    m_Hash: 3864565558
   m_LockFileStatus:
     m_FilePath: C:/Users/asdf/Desktop/unity/ReactiveTurnBase/My project A/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638852004000398537
-    m_Hash: 4040782049
+      ticks: 638863611311095363
+    m_Hash: 3565755355
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -956,12 +956,14 @@ m_ResolvedPackages:
     - 1.9.5
     - 1.9.6
     - 1.9.7
+    - 1.9.8
     compatible:
     - 1.9.4
     - 1.9.5
     - 1.9.6
     - 1.9.7
-    recommended: 1.9.7
+    - 1.9.8
+    recommended: 1.9.8
     deprecated:
     - 1.8.0-pre.1
   dependencies:

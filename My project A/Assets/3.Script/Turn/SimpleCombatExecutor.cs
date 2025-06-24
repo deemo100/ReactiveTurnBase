@@ -1,22 +1,20 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Game.Input;
 using System.Collections.Generic;
+using System.Linq;
+using Game.Input;
 
 public class SimpleCombatExecutor : MonoBehaviour
 {
-    bool result = false;
-
     public async UniTask ExecuteBasicAttack(Unit attacker, Unit target)
     {
         if (target == null || target.IsDead) return;
 
         bool needMove = attacker.AttackType == AttackRangeType.Melee;
-
         float moveSpeed = attacker.MoveSpeed;
-        float attackOffset = 2f;  // ← 원하는 거리로 직접 조정
+        float attackOffset = 2f;
         Vector3 attackPos = target.transform.position +
-                            new Vector3(attacker.Team == TeamType.Player ? -attackOffset : attackOffset, 0, 0);
+            new Vector3(attacker.Team == TeamType.Player ? -attackOffset : attackOffset, 0, 0);
 
         attacker.SetAttackTarget(target);
 
@@ -32,12 +30,10 @@ public class SimpleCombatExecutor : MonoBehaviour
 
         attacker.PlayAttackAnim();
 
-        // 애니메이션 길이 만큼 대기 (임팩트 이벤트에서 데미지)
         float animLen = attacker.GetCurrentAttackAnimLength();
         await UniTask.Delay((int)(animLen * 1000));
         await UniTask.Delay(350);
-        
-        // (여기서 SetAttackTarget(null) 하지 말 것!)
+
         if (needMove)
         {
             attacker.LookAt(attacker.SpawnPosition);
@@ -57,85 +53,56 @@ public class SimpleCombatExecutor : MonoBehaviour
         List<PlayerUnit> allPlayers,
         List<EnemyUnit> allEnemies)
     {
-        bool result = false;
+        float moveSpeed = actor.MoveSpeed;
+        float skillOffset = 2f;
+
+        // 타겟 분기(전체/단일)
         switch (skill.TargetType)
         {
-            case SkillTargetType.EnemySingle:
-            case SkillTargetType.AllySingle:
-                result = ApplySkillEffect(actor, target, skill);
-                break;
             case SkillTargetType.EnemyAll:
-                foreach (var enemy in allEnemies)
-                {
-                    Debug.Log($"[디버그] 대상: {enemy.UnitName}, Dead: {enemy.IsDead}");
-                    if (!enemy.IsDead)
-                    {
-                        bool eff = ApplySkillEffect(actor, enemy, skill);
-                        Debug.Log($"[디버그] {enemy.UnitName} 효과 적용됨: {eff}");
-                        if (eff) result = true;
-                    }
-                }
+                actor.SetAttackTargets(allEnemies.Cast<Unit>().ToList());
                 break;
             case SkillTargetType.AllyAll:
-                foreach (var player in allPlayers)
-                {
-                    if (!player.IsDead)
-                    {
-                        if (ApplySkillEffect(actor, player, skill)) result = true;
-                    }
-                }
+                actor.SetAttackTargets(allPlayers.Cast<Unit>().ToList());
                 break;
+            case SkillTargetType.EnemySingle:
+            case SkillTargetType.AllySingle:
             case SkillTargetType.Self:
-                result = ApplySkillEffect(actor, actor, skill);
+                actor.SetAttackTarget(target);
                 break;
         }
-        if (!result)
-        {
-            Debug.LogWarning("[Skill] 실패! 턴/코스트를 소모하지 않습니다.");
-            return false; // 실패!
-        }
-        await UniTask.Delay(300);
-        return true; // 성공!
-    }
 
-    private bool ApplySkillEffect(PlayerUnit actor, Unit target, SkillData skill)
-    {
-        if (target == null) return false;
-        if (target.IsDead) return false;
-
-        switch (skill.EffectType)
+        bool isMelee = skill.CastType == SkillCastType.Melee;
+        if (isMelee && target != null)
         {
-            case SkillEffectType.Damage:
-                Debug.Log($"[디버그] {actor.UnitName}→{target.UnitName}, 팀: {actor.Team} vs {target.Team}");
-                if (actor.Team != target.Team)
-                {
-                    Debug.Log($"[디버그] {target.UnitName}에게 {skill.Power} 데미지!");
-                    // ★ 스킬 데미지 애니메이션 실행!
-                    actor.PlaySkillAnim();
-                    target.TakeDamage(skill.Power);
-                    return true;
-                }
-                break;
-            case SkillEffectType.Heal:
-                if (actor.Team == target.Team)
-                {
-                    if (target.HP < target.MaxHP)
-                    {
-                        // 필요하다면 여기서도 actor.PlaySkillAnim() 가능
-                        target.Heal(skill.Power);
-                        return true;
-                    }
-                    else
-                    {
-                        Debug.LogWarning($"[Skill] {target.UnitName}은(는) 이미 체력이 가득 참! 힐 무시됨.");
-                    }
-                }
-                break;
-            case SkillEffectType.Buff:
-                // ... 버프 로직, 필요하다면 PlaySkillAnim() 호출
-                return true;
+            Vector3 skillAttackPos = target.transform.position +
+                new Vector3(actor.Team == TeamType.Player ? -skillOffset : skillOffset, 0, 0);
+            actor.LookAt(skillAttackPos);
+            await actor.MoveTo(skillAttackPos, moveSpeed);
         }
-        return false;
+        else if (target != null)
+        {
+            actor.LookAt(target.transform.position);
+        }
+
+        actor.PlaySkillAnim();
+
+        float animLen = actor.GetCurrentAttackAnimLength();
+        await UniTask.Delay((int)(animLen * 1000));
+        await UniTask.Delay(350);
+
+        if (isMelee && target != null)
+        {
+            actor.LookAt(actor.SpawnPosition);
+            await actor.MoveToSpawn(moveSpeed);
+            actor.ResetRotation();
+        }
+        else
+        {
+            actor.ResetRotation();
+        }
+
+        return true;
     }
 
     public async UniTask ExecuteEnemyAction(Unit attacker, Unit target)

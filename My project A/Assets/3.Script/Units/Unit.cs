@@ -1,5 +1,7 @@
-using Game.Input;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Game.Input;
 using Cysharp.Threading.Tasks;
 
 public enum TeamType { Player, Enemy }
@@ -7,6 +9,8 @@ public enum AttackRangeType { Melee, Ranged }
 
 public class Unit : MonoBehaviour
 {
+    protected List<Unit> _currentTargets = new List<Unit>();
+
     public TeamType Team { get; set; }
     public AttackRangeType AttackType = AttackRangeType.Melee;
 
@@ -15,6 +19,10 @@ public class Unit : MonoBehaviour
     public GameObject fireballPrefab;
     public Transform firePoint;
     public Transform firePointfireball;
+
+    [Header("임펙트 이펙트(예: 불기둥)")]
+    public GameObject aoeImpactPrefab;
+
     public Vector3 SpawnPosition { get; private set; }
     public float MoveSpeed = 10f;
     public int Id { get; protected set; }
@@ -29,7 +37,6 @@ public class Unit : MonoBehaviour
     public HealthBarFollower healthBarFollower;
     public SkillData SkillData { get; protected set; }
 
-    protected Unit _currentTarget; // 애니메이션 이벤트용(현재 공격 타겟)
     Quaternion _initialRotation;
 
     protected virtual void Start()
@@ -49,62 +56,108 @@ public class Unit : MonoBehaviour
         Team = team;
     }
 
-    // 타겟 지정/초기화
+    // 타겟 지정
     public void SetAttackTarget(Unit t)
     {
-        Debug.Log($"[SetAttackTarget] {name} | 타겟을 {t?.UnitName}로 세팅");
-        _currentTarget = t;
-        Debug.Log($"[SetAttackTarget] {this.name} | 타겟 오브젝트:{t?.name ?? "null"}, " +
-                  $"타입:{t?.GetType().Name ?? "null"}, 유닛명:{t?.UnitName ?? "null"}");
+        _currentTargets.Clear();
+        if (t != null && !t.IsDead)
+            _currentTargets.Add(t);
     }
-
-    // 애니메이션 이벤트에서 호출!
-    public virtual void OnAttackImpact()
+    public void SetAttackTargets(List<Unit> targets)
     {
-        if (_currentTarget != null)
-        {
-            Debug.Log($"[이벤트] OnAttackImpact! 현재 타겟: {_currentTarget?.UnitName}");
-            _currentTarget.PlayDamagedAnim();
-            int damage = Mathf.Max(0, ATK - _currentTarget.DEF);
-            _currentTarget.TakeDamage(damage);
-            _currentTarget = null; // ← 임팩트 이후 null로 해제!
-        }
-        else
-        {
-            Debug.LogWarning("[이벤트] OnAttackImpact: _currentTarget이 null입니다!");
-        }
+        _currentTargets = targets.Where(x => x != null && !x.IsDead).ToList();
     }
 
-    // 애니메이션에서 호출하는 화살 발사 함수
+    // 일반 공격 임팩트(애니메이션 이벤트)
+    public void OnAttackImpact()
+    {
+        if (_currentTargets == null || _currentTargets.Count == 0) return;
+        foreach (var unit in _currentTargets)
+        {
+            if (unit == null || unit.IsDead) continue;
+            int damage = Mathf.Max(0, ATK - unit.DEF);
+            unit.TakeDamage(damage);
+        }
+        _currentTargets.Clear();
+    }
+
+    // 스킬 임팩트(단일/전체)
+    public void OnSkillImpact()
+    {
+        if (_currentTargets == null || _currentTargets.Count == 0 || SkillData == null) return;
+
+        foreach (var unit in _currentTargets)
+        {
+            if (unit == null || unit.IsDead) continue;
+            switch (SkillData.EffectType)
+            {
+                case SkillEffectType.Damage:
+                    unit.TakeDamage(SkillData.Power);
+                    break;
+                case SkillEffectType.Heal:
+                    unit.Heal(SkillData.Power);
+                    break;
+            }
+        }
+        _currentTargets.Clear();
+    }
+
+    // 힐 전용 이벤트(필요시)
+    public void OnHealImpact()
+    {
+        if (_currentTargets == null || _currentTargets.Count == 0 || SkillData == null) return;
+        foreach (var unit in _currentTargets)
+        {
+            if (unit == null || unit.IsDead) continue;
+            if (unit.HP < unit.MaxHP)
+                unit.Heal(SkillData.Power);
+        }
+        _currentTargets.Clear();
+    }
+
+    // 광역 임펙트(불기둥 등) - EnemyAll 스킬에서 애니메이션 이벤트로 호출
+    public void OnAOEImpact()
+    {
+        var enemies = FindObjectsOfType<EnemyUnit>().Where(e => !e.IsDead).ToList();
+        if (enemies.Count == 0 || aoeImpactPrefab == null) return;
+        Vector3 center = Vector3.zero;
+        foreach (var e in enemies)
+            center += e.transform.position;
+        center /= enemies.Count;
+        center.y += 2.5f; // Y 오프셋
+        Instantiate(aoeImpactPrefab, center, Quaternion.identity);
+    }
+
+    // 화살/파이어볼 발사 (투사체 애니메이션 이벤트)
     public void FireArrowFX()
     {
         if (AttackType != AttackRangeType.Ranged) return;
-        if (arrowPrefab == null || firePoint == null || _currentTarget == null) return;
+        if (arrowPrefab == null || firePoint == null) return;
+        if (_currentTargets == null || _currentTargets.Count == 0) return;
 
-        // === 여기서 애니메이션에서 두 이벤트 사이 시간만큼 비행하게 설정 ===
-        float arrowFlyTime = 0.33f; // 실제 이벤트(프레임) 간 시간(초 단위)로 설정!
-
+        float arrowFlyTime = 0.33f;
+        var targetUnit = _currentTargets[0];
         GameObject arrowObj = Instantiate(arrowPrefab, firePoint.position, Quaternion.identity);
         Arrow arrowScript = arrowObj.GetComponent<Arrow>();
         if (arrowScript != null)
-            arrowScript.SetTarget(_currentTarget.SpawnPosition, arrowFlyTime);
+            arrowScript.SetTarget(targetUnit.SpawnPosition, arrowFlyTime);
     }
-    
+
     public void FireFireballFX()
     {
         if (AttackType != AttackRangeType.Ranged) return;
-        if (fireballPrefab == null || firePointfireball == null || _currentTarget == null) return;
-        
-        // "애니메이션 두 이벤트 사이 시간"에 맞춰 flyTime을 세팅!
-        float fireballFlyTime = 0.33f; // 실제 프레임간 시간(초)로 맞추기
-        
+        if (fireballPrefab == null || firePointfireball == null) return;
+        if (_currentTargets == null || _currentTargets.Count == 0) return;
+
+        float fireballFlyTime = 0.33f;
+        var targetUnit = _currentTargets[0];
         GameObject fireballObj = Instantiate(fireballPrefab, firePointfireball.position, Quaternion.identity);
         Fireball fireballScript = fireballObj.GetComponent<Fireball>();
         if (fireballScript != null)
-            fireballScript.SetTarget(_currentTarget.SpawnPosition, fireballFlyTime);
+            fireballScript.SetTarget(targetUnit.SpawnPosition, fireballFlyTime);
     }
 
-    // 공격/스킬/피격 등 애니메이션
+    // 애니메이션 재생 함수
     public virtual void PlayAttackAnim()
     {
         var animator = GetComponentInChildren<Animator>();
@@ -119,6 +172,7 @@ public class Unit : MonoBehaviour
     }
     public virtual void PlayDamagedAnim()
     {
+        if (IsDead) return;
         var animator = GetComponentInChildren<Animator>();
         if (animator != null)
             animator.SetTrigger("3_Damaged");
@@ -132,7 +186,7 @@ public class Unit : MonoBehaviour
     }
     public void ResetRotation() => transform.rotation = _initialRotation;
 
-    // 이동 (부드럽게)
+    // 이동
     public async UniTask MoveTo(Vector3 targetPos, float speed = 5f)
     {
         Vector3 start = transform.position;
@@ -155,24 +209,24 @@ public class Unit : MonoBehaviour
     }
     public async UniTask MoveToSpawn(float speed = 5f) => await MoveTo(SpawnPosition, speed);
 
-    // 애니메이션 길이 얻기
+    // 애니메이션 길이
     public float GetCurrentAttackAnimLength()
     {
         var animator = GetComponentInChildren<Animator>();
-        if (animator == null) return 0.7f;
+        if (animator == null) return 0.3f;
         foreach (var clip in animator.runtimeAnimatorController.animationClips)
         {
             if (clip.name.ToLower().Contains("attack"))
                 return clip.length;
         }
-        return 0.7f;
+        return 0.3f;
     }
 
-    // HP/Heal/기타
+    // 데미지/회복 처리
     public virtual void TakeDamage(int amount)
     {
+        if (IsDead) return;
         HP = Mathf.Max(0, HP - amount);
-
         if (healthBarFollower != null)
             healthBarFollower.SetHealth(HP / (float)MaxHP);
 
@@ -180,19 +234,15 @@ public class Unit : MonoBehaviour
         if (animator != null)
         {
             if (HP > 0)
-            {
                 animator.SetTrigger("3_Damaged");
-            }
             else
             {
                 animator.ResetTrigger("3_Damaged");
                 animator.SetTrigger("4_Death");
-                // 사망 처리 후 승리 판정 호출!
                 DefaultTurnManager.Instance?.CheckVictory();
             }
         }
     }
-
     public virtual void Heal(int amount)
     {
         HP = Mathf.Min(MaxHP, HP + amount);

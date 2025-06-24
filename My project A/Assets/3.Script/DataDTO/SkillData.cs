@@ -7,6 +7,7 @@ namespace Game.Input
         AllySingle,     // 아군 1명
         AllyAll,        // 아군 전체
         Self,           // 자기 자신
+        // 필요시 추가
     }
 
     public enum SkillEffectType
@@ -18,6 +19,14 @@ namespace Game.Input
         // 필요시 추가
     }
 
+    public enum SkillCastType
+    {
+        Melee,      // 근접
+        Ranged,     // 원거리/투사체/광역
+        // 필요시 Magic, Support 등 세분화 가능
+    }
+
+    [System.Serializable]
     public class SkillData
     {
         public int Id;
@@ -26,8 +35,19 @@ namespace Game.Input
         public string IconName;
         public SkillTargetType TargetType;
         public SkillEffectType EffectType;
-        public int Power;      // 공격력/회복력 등
-        public int BuffValue;  // 버프/디버프용
-        public string Description;  // <-- CSV의 Description 열에 들어간 값
+        public SkillCastType CastType;       // 추가! (근접/원거리)
+        public int Power;                    // 공격력/회복력/버프수치 등
+        public int BuffValue;                // 버프/디버프 값
+        public float Duration;               // 지속시간(버프/디버프)
+        public string Description;           // 설명(CSV에서 불러오기)
+        // 필요하다면 AnimationClipName, 이펙트 프리팹 등 추가 가능
+
+        // --- 생성자 및 유틸 함수도 필요하다면 추가 ---
+        public SkillData() { }
+        public SkillData(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
     }
 }

@@ -982,6 +982,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipText: 
+  skillData:
+    Id: 0
+    Name: 
+    Cost: 0
+    IconName: 
+    TargetType: 0
+    EffectType: 0
+    CastType: 0
+    Power: 0
+    BuffValue: 0
+    Duration: 0
+    Description: 
 --- !u!1 &476151676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,6 +1357,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipText: 
+  skillData:
+    Id: 0
+    Name: 
+    Cost: 0
+    IconName: 
+    TargetType: 0
+    EffectType: 0
+    CastType: 0
+    Power: 0
+    BuffValue: 0
+    Duration: 0
+    Description: 
 --- !u!1 &593701754
 GameObject:
   m_ObjectHideFlags: 0
