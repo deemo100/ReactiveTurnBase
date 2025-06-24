@@ -12,8 +12,9 @@ public class Unit : MonoBehaviour
 
     [Header("원거리 유닛만 설정")]
     public GameObject arrowPrefab;
+    public GameObject fireballPrefab;
     public Transform firePoint;
-
+    public Transform firePointfireball;
     public Vector3 SpawnPosition { get; private set; }
     public float MoveSpeed = 10f;
     public int Id { get; protected set; }
@@ -88,6 +89,20 @@ public class Unit : MonoBehaviour
         if (arrowScript != null)
             arrowScript.SetTarget(_currentTarget.SpawnPosition, arrowFlyTime);
     }
+    
+    public void FireFireballFX()
+    {
+        if (AttackType != AttackRangeType.Ranged) return;
+        if (fireballPrefab == null || firePointfireball == null || _currentTarget == null) return;
+        
+        // "애니메이션 두 이벤트 사이 시간"에 맞춰 flyTime을 세팅!
+        float fireballFlyTime = 0.33f; // 실제 프레임간 시간(초)로 맞추기
+        
+        GameObject fireballObj = Instantiate(fireballPrefab, firePointfireball.position, Quaternion.identity);
+        Fireball fireballScript = fireballObj.GetComponent<Fireball>();
+        if (fireballScript != null)
+            fireballScript.SetTarget(_currentTarget.SpawnPosition, fireballFlyTime);
+    }
 
     // 공격/스킬/피격 등 애니메이션
     public virtual void PlayAttackAnim()
@@ -161,8 +176,6 @@ public class Unit : MonoBehaviour
         if (healthBarFollower != null)
             healthBarFollower.SetHealth(HP / (float)MaxHP);
 
-        // CheckVictory 호출 등 생략
-
         var animator = GetComponentInChildren<Animator>();
         if (animator != null)
         {
@@ -174,6 +187,8 @@ public class Unit : MonoBehaviour
             {
                 animator.ResetTrigger("3_Damaged");
                 animator.SetTrigger("4_Death");
+                // 사망 처리 후 승리 판정 호출!
+                DefaultTurnManager.Instance?.CheckVictory();
             }
         }
     }

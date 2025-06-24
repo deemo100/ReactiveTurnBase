@@ -3827,6 +3827,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d823fd31c6bfde469968da3e1d85c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackType: 0
+  arrowPrefab: {fileID: 0}
+  fireballPrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  firePointfireball: {fileID: 0}
+  MoveSpeed: 8
   healthBar: {fileID: 0}
   healthBarFollower: {fileID: 0}
   WeaponIcon: {fileID: 21300000, guid: b11f9c52da2945740b5078d84177a9ab, type: 3}

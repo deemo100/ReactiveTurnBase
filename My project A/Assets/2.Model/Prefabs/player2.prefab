@@ -5326,9 +5326,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackType: 1
   arrowPrefab: {fileID: 106992344914452563, guid: d748cbc56e8be1349992d61dd0610a3d, type: 3}
+  fireballPrefab: {fileID: 0}
   firePoint: {fileID: 1060417746913509834}
-  arrowForce: 10
-  MoveSpeed: 5
+  firePointfireball: {fileID: 0}
+  MoveSpeed: 8
   healthBar: {fileID: 0}
   healthBarFollower: {fileID: 0}
   WeaponIcon: {fileID: 21300000, guid: 530bcabb1501d8148a19a77465ecac03, type: 3}
