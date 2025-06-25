@@ -1,0 +1,412 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.62f1 (4af31df58517) revision 4911901'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'ko' Physical Memory: 15761 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.62f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/asdf/Desktop/unity/ReactiveTurnBase/My project A
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+64081
+Successfully changed project path to: C:/Users/asdf/Desktop/unity/ReactiveTurnBase/My project A
+C:/Users/asdf/Desktop/unity/ReactiveTurnBase/My project A
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [15012]  Target information:
+
+Player connection [15012]  * "[IP] 172.30.1.88 [Port] 0 [Flags] 2 [Guid] 4216102448 [EditorId] 4216102448 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-FAF2NFQ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [15012] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [15012] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+Refreshing native plugins compatible for Editor in 11.33 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.62f1 (4af31df58517)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/asdf/Desktop/unity/ReactiveTurnBase/My project A/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon(TM) Graphics (ID=0x1638)
+    Vendor:   ATI
+    VRAM:     7880 MB
+    Driver:   31.0.21921.1000
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56484
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.008218 seconds.
+- Loaded All Assemblies, in  0.326 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 218 ms
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.541 seconds
+Domain Reload Profiling: 865ms
+	BeginReloadAssembly (97ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (31ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (55ms)
+	LoadAllAssembliesAndSetupDomain (133ms)
+		LoadAssemblies (95ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (130ms)
+			TypeCache.Refresh (129ms)
+				TypeCache.ScanAssembly (117ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (541ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (492ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (292ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (133ms)
+			ProcessInitializeOnLoadMethodAttributes (60ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file data-0000026BD734C010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Assembly-CSharp.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BD734C010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Assembly-CSharp-Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BD779EE70 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF92CBA30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9098020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF92CBA30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF92CBA30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.DOTween.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF92CBA30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Addressables.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9A779E0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9314020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF96D4010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF92CBA30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9098020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9038010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Linq.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9314020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9CAD420 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF97066C0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF8E60080 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF92CDA40 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9072A20 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9077430 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9486020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF97066C0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9077430 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF94C2A40 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF94CDE50 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Settings.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9362040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BD753E020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9763D80 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9763D80 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF9B0DC30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026BF97066C0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.691 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.706 seconds
+Domain Reload Profiling: 1394ms
+	BeginReloadAssembly (142ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (24ms)
+	RebuildCommonClasses (36ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (40ms)
+	LoadAllAssembliesAndSetupDomain (461ms)
+		LoadAssemblies (337ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (204ms)
+			TypeCache.Refresh (177ms)
+				TypeCache.ScanAssembly (161ms)
+			ScanForSourceGeneratedMonoScriptInfo (19ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (706ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (558ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (19ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (92ms)
+			ProcessInitializeOnLoadAttributes (409ms)
+			ProcessInitializeOnLoadMethodAttributes (27ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 3.99 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3846 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 29 unused Assets / (58.9 KB). Loaded Objects now: 4328.
+Memory consumption went from 149.7 MB to 149.6 MB.
+Total: 4.004000 ms (FindLiveObjects: 0.283000 ms CreateObjectMapping: 0.228000 ms MarkObjects: 3.363200 ms  DeleteObjects: 0.128900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1131951.265387 seconds.
+  path: Assets/Pixel 3D Grassland Package/Scenes/Demo_Scene.unity
+  artifactKey: Guid(35fc587bd8bbe9247891689ffe14fd49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Scenes/Demo_Scene.unity using Guid(35fc587bd8bbe9247891689ffe14fd49) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '16fe6908918eaf077e2ce612c7cfcbff') in 0.001945 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 7.630373 seconds.
+  path: Assets/Pixel 3D Grassland Package/Structures/OBJ
+  artifactKey: Guid(53bff963b5dafb349a3623a53b7532eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Structures/OBJ using Guid(53bff963b5dafb349a3623a53b7532eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b665e02d29fa4d3d3ae75f362a5be31a') in 0.000434 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 2.256294 seconds.
+  path: Assets/Pixel 3D Grassland Package/TileSheet/Grassland_Tileatlas_01.psd
+  artifactKey: Guid(65a011e8edd744945a62e2d953707b94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/TileSheet/Grassland_Tileatlas_01.psd using Guid(65a011e8edd744945a62e2d953707b94) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '3ac56bf4e3dca559c1ccd3a9bcbe5f74') in 0.048973 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.245390 seconds.
+  path: Assets/Pixel 3D Grassland Package/TileSheet/Grassland_Tileatlas_01.png
+  artifactKey: Guid(72ba61e2563673d4491fdbfd656a8a48) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/TileSheet/Grassland_Tileatlas_01.png using Guid(72ba61e2563673d4491fdbfd656a8a48) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '3fdf80d5a5b85ac695100c277d5ff287') in 0.005028 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 35.556052 seconds.
+  path: Assets/1.Scene/InGame.unity
+  artifactKey: Guid(da707de1a86501f459837f3611232b59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1.Scene/InGame.unity using Guid(da707de1a86501f459837f3611232b59) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '098d09917c14cd85da7ad65d5881af13') in 0.000524 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 29.152057 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Grasslands_Landmass_01.obj
+  artifactKey: Guid(0dd69aa4a307ff94787c765f046dc37d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Grasslands_Landmass_01.obj using Guid(0dd69aa4a307ff94787c765f046dc37d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '376af40d85d26e9ac019416b39021868') in 0.099323 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 1.223043 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Grasslands_Landmass_02.obj
+  artifactKey: Guid(0e3de12b1b49a0846a47697fc13168db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Grasslands_Landmass_02.obj using Guid(0e3de12b1b49a0846a47697fc13168db) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '31c51c4509e37d9e43e2792042f3c53f') in 0.025781 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 40.655874 seconds.
+  path: Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Dirt_Tile_02.png
+  artifactKey: Guid(671b39cb983182d4b916517b490f6dd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Dirt_Tile_02.png using Guid(671b39cb983182d4b916517b490f6dd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '229fcee7e907d5c7248293340a7b41c3') in 0.004240 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.418420 seconds.
+  path: Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Dirt_Tile_01.png
+  artifactKey: Guid(7ec26c16b6a1e034989f78eae38d4d62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Dirt_Tile_01.png using Guid(7ec26c16b6a1e034989f78eae38d4d62) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'fb7c9d014fa6e917b22ffc7f50dc8013') in 0.005315 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 36.730038 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Grasslands_Landmass_04.obj
+  artifactKey: Guid(e964aa8fe295867459e660102334ed02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Grasslands_Landmass_04.obj using Guid(e964aa8fe295867459e660102334ed02) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '0c1db835be79ef9898ce2c90ff214176') in 0.021191 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 1.642215 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Prefabs/Grasslands_Landmass_01_PF.prefab
+  artifactKey: Guid(a4f581f861f8e9b45a32aa6e5f9bb658) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Prefabs/Grasslands_Landmass_01_PF.prefab using Guid(a4f581f861f8e9b45a32aa6e5f9bb658) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '8d75495182fd2c14fded0f60807fe530') in 0.005897 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 0.567201 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Prefabs/Grasslands_Landmass_03_PF.prefab
+  artifactKey: Guid(53755c2da3d9d6e4da22814ccc629605) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Prefabs/Grasslands_Landmass_03_PF.prefab using Guid(53755c2da3d9d6e4da22814ccc629605) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '40f40197f50fbd91c196bdac6ddffe75') in 0.006237 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 17.904294 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Dirt_Tile_01.obj
+  artifactKey: Guid(43c72002abf221441a017b4e2d087f29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Dirt_Tile_01.obj using Guid(43c72002abf221441a017b4e2d087f29) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '982a909aae4e4e26460f43a9892b5e95') in 0.020875 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 1.186316 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_03.obj
+  artifactKey: Guid(fddfc14eb552c874082a45496f7c9285) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_03.obj using Guid(fddfc14eb552c874082a45496f7c9285) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'a154cd6bad7f3bac872e979a82925f72') in 0.026768 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.484749 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_01.obj
+  artifactKey: Guid(81956569c768fed4794a40258d6c86de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_01.obj using Guid(81956569c768fed4794a40258d6c86de) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '539f24da4e5dc8aef4b6e2f4ee702a2e') in 0.024296 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
