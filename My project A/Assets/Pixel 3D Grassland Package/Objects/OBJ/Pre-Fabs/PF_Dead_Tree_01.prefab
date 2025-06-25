@@ -23,6 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2280962118588057868}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -30,13 +31,13 @@ Transform:
   m_Children:
   - {fileID: 5625706250158343909}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5303058355619586318
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2499427574434576532}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5f4de79e42168c3429f8e46bc8902edc, type: 3}
@@ -57,19 +58,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f4de79e42168c3429f8e46bc8902edc, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7020289
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f4de79e42168c3429f8e46bc8902edc, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f4de79e42168c3429f8e46bc8902edc, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.7121485
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f4de79e42168c3429f8e46bc8902edc, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f4de79e42168c3429f8e46bc8902edc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -77,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f4de79e42168c3429f8e46bc8902edc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -90.82
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f4de79e42168c3429f8e46bc8902edc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -88,6 +89,9 @@ PrefabInstance:
       value: Dead_Tree_01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f4de79e42168c3429f8e46bc8902edc, type: 3}
 --- !u!4 &5625706250158343909 stripped
 Transform:
