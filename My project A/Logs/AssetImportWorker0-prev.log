@@ -1,0 +1,1354 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.62f1 (4af31df58517) revision 4911901'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Professional' Language: 'ko' Physical Memory: 15761 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.62f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/asdf/Desktop/unity/ReactiveTurnBase/My project A
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+64689
+Successfully changed project path to: C:/Users/asdf/Desktop/unity/ReactiveTurnBase/My project A
+C:/Users/asdf/Desktop/unity/ReactiveTurnBase/My project A
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [19344]  Target information:
+
+Player connection [19344]  * "[IP] 172.30.1.88 [Port] 0 [Flags] 2 [Guid] 1814961373 [EditorId] 1814961373 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-FAF2NFQ) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [19344] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [19344] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+Refreshing native plugins compatible for Editor in 10.20 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.62f1 (4af31df58517)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/asdf/Desktop/unity/ReactiveTurnBase/My project A/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon(TM) Graphics (ID=0x1638)
+    Vendor:   ATI
+    VRAM:     7880 MB
+    Driver:   31.0.21921.1000
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56520
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.62f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.008089 seconds.
+- Loaded All Assemblies, in  0.309 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Android Extension - Scanning For ADB Devices 192 ms
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.470 seconds
+Domain Reload Profiling: 777ms
+	BeginReloadAssembly (95ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (51ms)
+	LoadAllAssembliesAndSetupDomain (126ms)
+		LoadAssemblies (93ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (124ms)
+			TypeCache.Refresh (123ms)
+				TypeCache.ScanAssembly (112ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (470ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (429ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (261ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (117ms)
+			ProcessInitializeOnLoadMethodAttributes (45ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file data-0000026264B60C50 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264BDD360 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628697C020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026287094C20 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026287094C20 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.DOTween.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026287094C20 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Addressables.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026287094C20 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262883BFBB0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CEF6E0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628709C8D0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262866A0080 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CEF6E0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Linq.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262883DDE50 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262883DDE50 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288405860 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264D91010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264D36C00 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264D36C00 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628709C8D0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026263AB1170 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286DA3030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262869E5230 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262871E4020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262869E5230 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Settings.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286DB3040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286EF2020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286F2DE30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286F2DE30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264E6D230 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264E6D230 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.596 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.659 seconds
+Domain Reload Profiling: 1252ms
+	BeginReloadAssembly (123ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (22ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (35ms)
+	LoadAllAssembliesAndSetupDomain (400ms)
+		LoadAssemblies (283ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (185ms)
+			TypeCache.Refresh (161ms)
+				TypeCache.ScanAssembly (149ms)
+			ScanForSourceGeneratedMonoScriptInfo (16ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (659ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (529ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (88ms)
+			ProcessInitializeOnLoadAttributes (380ms)
+			ProcessInitializeOnLoadMethodAttributes (34ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 3.91 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3953 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 33 unused Assets / (59.2 KB). Loaded Objects now: 4439.
+Memory consumption went from 152.0 MB to 151.9 MB.
+Total: 3.030100 ms (FindLiveObjects: 0.243900 ms CreateObjectMapping: 0.095000 ms MarkObjects: 2.573800 ms  DeleteObjects: 0.116700 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1132553.140259 seconds.
+  path: Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Dirt_Tile_N_01.png
+  artifactKey: Guid(f696e8e879eeab142954ddfbc3cf8d13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Dirt_Tile_N_01.png using Guid(f696e8e879eeab142954ddfbc3cf8d13) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '844ee34575e3aa2fc6707baf26f54e30') in 0.051576 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 5.472103 seconds.
+  path: Assets/Pixel 3D Grassland Package/Structures
+  artifactKey: Guid(5b3c2e5fe71ff2c47a7ed26691ef7ef9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Structures using Guid(5b3c2e5fe71ff2c47a7ed26691ef7ef9) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '973d3f3d47118665becb5fbdd67da924') in 0.000478 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.070885 seconds.
+  path: Assets/Pixel 3D Grassland Package/Scenes
+  artifactKey: Guid(6ea315d0fd7389c41b19996891e99ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Scenes using Guid(6ea315d0fd7389c41b19996891e99ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '4cce0bfd25d7a33cb617eec571bb0595') in 0.000384 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 45.673249 seconds.
+  path: Assets/Pixel 3D Grassland Package/Landscape Material Tiles/New Palette.prefab
+  artifactKey: Guid(e07c57b9098c4c54390514874e27dc99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Landscape Material Tiles/New Palette.prefab using Guid(e07c57b9098c4c54390514874e27dc99) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '067d70902884ef81bc4806a6c890e76a') in 0.049712 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 4.515144 seconds.
+  path: Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Mountain_Tile_02.png
+  artifactKey: Guid(8259aad3272b19b44914e235d5ba00b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Mountain_Tile_02.png using Guid(8259aad3272b19b44914e235d5ba00b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c3d101547e92d5d5d1123d8cab1593bd') in 0.004767 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 18.590383 seconds.
+  path: Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Grass_Tile.png
+  artifactKey: Guid(0ea641f7c9e15a641977c091259d6c6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Grass_Tile.png using Guid(0ea641f7c9e15a641977c091259d6c6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd29e32d0705796c40577e1aeaa53561e') in 0.005020 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 8.692797 seconds.
+  path: Assets/1.Scene/InGame.unity
+  artifactKey: Guid(da707de1a86501f459837f3611232b59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/1.Scene/InGame.unity using Guid(da707de1a86501f459837f3611232b59) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '260c3bc8b33a89d552696a5498d4cd4a') in 0.000509 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 15.327224 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Prefabs/Grasslands_Landmass_04_PF.prefab
+  artifactKey: Guid(27cc90761af49cf44954304b34f2579e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Prefabs/Grasslands_Landmass_04_PF.prefab using Guid(27cc90761af49cf44954304b34f2579e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'f7f4c2873cd8a41d9626a1e05dc18651') in 0.021006 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 20
+========================================================================
+Received Import Request.
+  Time since last request: 3.566075 seconds.
+  path: Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Mountain_Tile_01.png
+  artifactKey: Guid(e3e9bc803fd4b2b4a9af562a184c139f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Landscape Material Tiles/Grassland_Mountain_Tile_01.png using Guid(e3e9bc803fd4b2b4a9af562a184c139f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '09ec1056e52dd55edfab2c538fb656f4') in 0.003889 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 7.495820 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ
+  artifactKey: Guid(fb3852c184e84254ca38c6b69db036d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ using Guid(fb3852c184e84254ca38c6b69db036d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'cd5fe0df8f62f51e39da50019dea1b0f') in 0.000495 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.447746 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Prefabs
+  artifactKey: Guid(46f584fabaf2a544ea7c86e3e0706e72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Prefabs using Guid(46f584fabaf2a544ea7c86e3e0706e72) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'd8b8cd1ea4720a66cfefc6f15b0ed6c3') in 0.000395 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 1.318681 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_02.obj
+  artifactKey: Guid(15528eb5ae33de44b86abbb93df101bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_02.obj using Guid(15528eb5ae33de44b86abbb93df101bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '42177df575df4fa72b970ad47ed7efd1') in 0.051610 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 54.796323 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_08.obj
+  artifactKey: Guid(3268252e0e768544ab825f5d614adf10) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_08.obj using Guid(3268252e0e768544ab825f5d614adf10) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '481bf66d1fcc9108c4b1236aa114b0db') in 0.023360 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 6.496246 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_06.obj
+  artifactKey: Guid(cabad969d04c65e478d76fa6d963db6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_06.obj using Guid(cabad969d04c65e478d76fa6d963db6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '93dba453ce57b03206d0a4c1d8543c96') in 0.020366 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 98.489129 seconds.
+  path: Assets/Pixel 3D Grassland Package/Mountains
+  artifactKey: Guid(50fe8b801aa68244cbd2d6d5db6ec60c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Mountains using Guid(50fe8b801aa68244cbd2d6d5db6ec60c) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '716cd1a0216762c88e99385d8a85c992') in 0.000460 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 0.575260 seconds.
+  path: Assets/Pixel 3D Grassland Package/Objects
+  artifactKey: Guid(927de51e2aae5cd4f9c17d3ba5ce990f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Objects using Guid(927de51e2aae5cd4f9c17d3ba5ce990f) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5fa6019aa7a2cabb43215b932c7a12fd') in 0.000431 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 4.114237 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models
+  artifactKey: Guid(e86c667b97d075b4b930c7c941d5f659) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models using Guid(e86c667b97d075b4b930c7c941d5f659) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c7f566f3fdd3ca49316d00c642171ec2') in 0.000379 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file data-000002629046A010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628697C020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.DOTween.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Addressables.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002629413A010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290BC4030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293BB2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290576010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262866A0080 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291EE6040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Linq.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262917BD060 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264B5D040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262873BF020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286FD2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293A5EC40 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293BB2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262908DA030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002629141AA90 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002629413A010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CB70A0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Settings.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264B84A50 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262917BD060 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002629361FC60 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286ABE020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.495 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.952 seconds
+Domain Reload Profiling: 1445ms
+	BeginReloadAssembly (149ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (42ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (28ms)
+	LoadAllAssembliesAndSetupDomain (279ms)
+		LoadAssemblies (323ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (28ms)
+			TypeCache.Refresh (9ms)
+				TypeCache.ScanAssembly (2ms)
+			ScanForSourceGeneratedMonoScriptInfo (11ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (953ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (516ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (16ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (89ms)
+			ProcessInitializeOnLoadAttributes (361ms)
+			ProcessInitializeOnLoadMethodAttributes (37ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 4.04 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3934 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (32.7 KB). Loaded Objects now: 4490.
+Memory consumption went from 152.8 MB to 152.8 MB.
+Total: 3.153700 ms (FindLiveObjects: 0.302600 ms CreateObjectMapping: 0.229900 ms MarkObjects: 2.567400 ms  DeleteObjects: 0.052900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/Simple_Door_Interaction.cs: 70131225a8cdc3af5d752201148361a3 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: e4ea06b186ea85a4216e91eb8e08cf61 -> da73f53be35b3d5f7b1bf25e2f9e5b67
+  custom:scripting/monoscript/fileName/Simple_Char_Move.cs: cf97b832f31a301b32caee19475e110b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 66.003143 seconds.
+  path: Assets/GoldenSkullStudios
+  artifactKey: Guid(a39781d5afc83ba44a981aa432ebde65) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios using Guid(a39781d5afc83ba44a981aa432ebde65) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'c4ad4d36b00b7f9429c04c5889612114') in 0.001525 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 11.053604 seconds.
+  path: Assets/GoldenSkullStudios/2D
+  artifactKey: Guid(d1935690a46bcae4aa37077e23fa3ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios/2D using Guid(d1935690a46bcae4aa37077e23fa3ba2) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '2e862b8f606098832de056c29430e77a') in 0.000491 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 4.615968 seconds.
+  path: Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab
+  artifactKey: Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab using Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'decb117e4282bd2f7843fce6a19363b0') in 0.391665 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 604
+========================================================================
+Received Import Request.
+  Time since last request: 28.080057 seconds.
+  path: Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab
+  artifactKey: Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab using Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '25f17781dd67fe29aa7bd02f12b4710e') in 0.284964 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 604
+========================================================================
+Received Import Request.
+  Time since last request: 1.818100 seconds.
+  path: Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab
+  artifactKey: Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab using Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '86781773fc0bc91d4a0a278e6311d213') in 0.281398 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 604
+========================================================================
+Received Import Request.
+  Time since last request: 11.345323 seconds.
+  path: Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab
+  artifactKey: Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab using Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '70a1001d233f802ebfe1dc8bac2cec76') in 0.277278 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 604
+========================================================================
+Received Import Request.
+  Time since last request: 41.741064 seconds.
+  path: Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab
+  artifactKey: Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/TilePalette/Isometric_Starter_Pack.prefab using Guid(d6cf0bc464b1e274581812502d86d1fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9e36c5493af4bf40f5b0f60ac795a949') in 0.278501 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 604
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file data-0000026288C17060 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628697C020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.DOTween.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Addressables.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290BD6010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262883BFBB0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293BB2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288704040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262866A0080 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626514C040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Linq.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CEF6E0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291F3F020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262651A1A20 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286FD2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286C91A20 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264E94010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291865020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290BD6010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CB70A0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Settings.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291207A30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CEF6E0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293A44030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026294023010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  2.497 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.489 seconds
+Domain Reload Profiling: 3985ms
+	BeginReloadAssembly (133ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (26ms)
+	LoadAllAssembliesAndSetupDomain (2299ms)
+		LoadAssemblies (2346ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (20ms)
+			TypeCache.Refresh (8ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (1490ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (654ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (23ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (121ms)
+			ProcessInitializeOnLoadAttributes (459ms)
+			ProcessInitializeOnLoadMethodAttributes (37ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Refreshing native plugins compatible for Editor in 5.33 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3934 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (32.6 KB). Loaded Objects now: 4493.
+Memory consumption went from 153.0 MB to 152.9 MB.
+Total: 6.586300 ms (FindLiveObjects: 0.478700 ms CreateObjectMapping: 0.770500 ms MarkObjects: 5.250000 ms  DeleteObjects: 0.066900 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/Simple_Door_Interaction.cs: 70131225a8cdc3af5d752201148361a3 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: e4ea06b186ea85a4216e91eb8e08cf61 -> da73f53be35b3d5f7b1bf25e2f9e5b67
+  custom:scripting/monoscript/fileName/Simple_Char_Move.cs: cf97b832f31a301b32caee19475e110b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 583.660207 seconds.
+  path: Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/Sprites/Brick
+  artifactKey: Guid(b0a490d9819983d4f916ccdf046e98cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/Sprites/Brick using Guid(b0a490d9819983d4f916ccdf046e98cd) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9e8081e9794051e1723b888c836ab1ee') in 0.002456 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time since last request: 4.220908 seconds.
+  path: Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/Sprites/Brick/ISO_Tile_Brick_Brick_01.png
+  artifactKey: Guid(6dacdbed3a6b7514399df3d1f7af634a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/Sprites/Brick/ISO_Tile_Brick_Brick_01.png using Guid(6dacdbed3a6b7514399df3d1f7af634a) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1c2ccbcd4c41e1bcd257eafffd317cb1') in 0.051535 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file data-0000026290576010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002629128C010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291DCB010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002629128C010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286B1DA50 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.DOTween.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286B1DA50 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Addressables.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002629041A010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262883BFBB0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264ED9010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628834B020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262866A0080 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626514C040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Linq.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291A17040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262904C2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628672A9E0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286FD2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286B1DA50 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264BAF060 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291865020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262648BC010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CB70A0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Settings.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262634DA510 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CEF6E0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628719A020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293F19ED0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.421 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.070 seconds
+Domain Reload Profiling: 1488ms
+	BeginReloadAssembly (129ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (26ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (30ms)
+	LoadAllAssembliesAndSetupDomain (225ms)
+		LoadAssemblies (278ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (13ms)
+			TypeCache.Refresh (5ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1070ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (585ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (101ms)
+			ProcessInitializeOnLoadAttributes (417ms)
+			ProcessInitializeOnLoadMethodAttributes (37ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (8ms)
+Refreshing native plugins compatible for Editor in 4.68 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3934 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (32.6 KB). Loaded Objects now: 4498.
+Memory consumption went from 153.0 MB to 152.9 MB.
+Total: 3.321200 ms (FindLiveObjects: 0.270300 ms CreateObjectMapping: 0.251200 ms MarkObjects: 2.752700 ms  DeleteObjects: 0.046500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/Simple_Door_Interaction.cs: 70131225a8cdc3af5d752201148361a3 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: e4ea06b186ea85a4216e91eb8e08cf61 -> da73f53be35b3d5f7b1bf25e2f9e5b67
+  custom:scripting/monoscript/fileName/Simple_Char_Move.cs: cf97b832f31a301b32caee19475e110b -> 
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file data-0000026288C17060 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CB70A0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291DCB010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CB70A0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CB70A0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.DOTween.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CB70A0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Addressables.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628765D070 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262883BFBB0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264ED9010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262917F6380 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290590010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293F19ED0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Linq.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262913E0080 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262904C2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262921B2020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286FD2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286C91A20 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262917BD060 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262908DA030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628765D070 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291D87030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Settings.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262913E0080 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026287FDEF60 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626514C040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.422 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.046 seconds
+Domain Reload Profiling: 1465ms
+	BeginReloadAssembly (131ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (30ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (26ms)
+	LoadAllAssembliesAndSetupDomain (229ms)
+		LoadAssemblies (282ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (13ms)
+			TypeCache.Refresh (5ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1046ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (574ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (16ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (99ms)
+			ProcessInitializeOnLoadAttributes (408ms)
+			ProcessInitializeOnLoadMethodAttributes (38ms)
+			AfterProcessingInitializeOnLoad (9ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 5.03 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3935 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (32.6 KB). Loaded Objects now: 4501.
+Memory consumption went from 153.2 MB to 153.2 MB.
+Total: 5.316400 ms (FindLiveObjects: 0.644100 ms CreateObjectMapping: 0.452200 ms MarkObjects: 4.170100 ms  DeleteObjects: 0.048600 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/Simple_Door_Interaction.cs: 70131225a8cdc3af5d752201148361a3 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: e4ea06b186ea85a4216e91eb8e08cf61 -> da73f53be35b3d5f7b1bf25e2f9e5b67
+  custom:scripting/monoscript/fileName/Simple_Char_Move.cs: cf97b832f31a301b32caee19475e110b -> 
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file data-0000026290576010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291DCB010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.DOTween.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626460E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Addressables.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290BD6010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262883BFBB0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264ED9010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290CAA020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290590010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293F19ED0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Linq.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262907DC010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262904C2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002629361FC60 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286FD2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262873D9C30 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290CAA020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290CAA020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291A17040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262908DA030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290BD6010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264CB70A0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Settings.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286C91A20 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262907DC010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002629359A020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026290E0C020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.433 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.040 seconds
+Domain Reload Profiling: 1471ms
+	BeginReloadAssembly (131ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (6ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (12ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (229ms)
+		LoadAssemblies (283ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (13ms)
+			TypeCache.Refresh (5ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1041ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (573ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (17ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (96ms)
+			ProcessInitializeOnLoadAttributes (406ms)
+			ProcessInitializeOnLoadMethodAttributes (42ms)
+			AfterProcessingInitializeOnLoad (7ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 4.57 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3935 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (32.6 KB). Loaded Objects now: 4504.
+Memory consumption went from 153.2 MB to 153.2 MB.
+Total: 3.639000 ms (FindLiveObjects: 0.261000 ms CreateObjectMapping: 0.199900 ms MarkObjects: 3.078200 ms  DeleteObjects: 0.099100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/Simple_Door_Interaction.cs: 70131225a8cdc3af5d752201148361a3 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: e4ea06b186ea85a4216e91eb8e08cf61 -> da73f53be35b3d5f7b1bf25e2f9e5b67
+  custom:scripting/monoscript/fileName/Simple_Char_Move.cs: cf97b832f31a301b32caee19475e110b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 672.456783 seconds.
+  path: Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Drop Shadow.mat
+  artifactKey: Guid(749b9069dc4742c5bfa5c74644049926) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Anton SDF - Drop Shadow.mat using Guid(749b9069dc4742c5bfa5c74644049926) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '9743fe6ac18fcbbf58ed00786f642493') in 0.077491 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat
+  artifactKey: Guid(79459efec17a4d00a321bdcc27bbc385) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat using Guid(79459efec17a4d00a321bdcc27bbc385) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'b75e6fd311c187be13aa5eb481846419') in 0.112993 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/Extras/Materials/Mat_Additive.mat
+  artifactKey: Guid(b1e0ee2243c3b964e9db463d13d514de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/Extras/Materials/Mat_Additive.mat using Guid(b1e0ee2243c3b964e9db463d13d514de) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '91526fa8a86fb99aefafe40b6ea26086') in 3.748459 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Prepare
+Caller must complete domain reload
+Begin MonoManager ReloadAssembly
+Symbol file data-0000026286B1A020 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.EditorCoroutines.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262938BD040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291DCB010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262917F6380 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262938C0850 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.DOTween.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262938C0850 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Addressables.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264D2F720 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEditor.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262883BFBB0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264ED9010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UnityEngine.UI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262880E9EA0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262866A0080 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293F19ED0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.Linq.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286C57010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264E94010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026291949010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Timeline.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286FD2010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262938C0850 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.InputSystem.ForUI.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Mono.Reflection.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026288419FC0 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262634C0B00 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Performance.Profile-Analyzer.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026263B6E010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TestTools.CodeCoverage.Editor.OpenCover.Model.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026264D2F720 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002628765D070 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.Settings.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026293A5DA40 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.CollabProxy.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-0000026286C57010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626509B010 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-000002626514C040 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\UniTask.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VisualScripting.State.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+Symbol file data-00000262872A7030 doesn't match image C:\Users\asdf\Desktop\unity\ReactiveTurnBase\My project A\Library\ScriptAssemblies\Unity.VSCode.Editor.dll
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.477 seconds
+Native extension for WindowsStandalone target not found
+Native extension for Android target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.162 seconds
+Domain Reload Profiling: 1637ms
+	BeginReloadAssembly (137ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (35ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (275ms)
+		LoadAssemblies (331ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (12ms)
+			TypeCache.Refresh (4ms)
+				TypeCache.ScanAssembly (0ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1162ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (630ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (21ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (120ms)
+			ProcessInitializeOnLoadAttributes (439ms)
+			ProcessInitializeOnLoadMethodAttributes (35ms)
+			AfterProcessingInitializeOnLoad (8ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 4.63 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3934 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 22 unused Assets / (32.6 KB). Loaded Objects now: 4508.
+Memory consumption went from 225.3 MB to 225.3 MB.
+Total: 4.841600 ms (FindLiveObjects: 0.775200 ms CreateObjectMapping: 0.419500 ms MarkObjects: 3.584800 ms  DeleteObjects: 0.060500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 9a22284fe3817be447336de3de66b15e -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:scripting/monoscript/fileName/Simple_Door_Interaction.cs: 70131225a8cdc3af5d752201148361a3 -> 
+  custom:scripting/precompiled-assembly-types:Assembly-CSharp: e4ea06b186ea85a4216e91eb8e08cf61 -> da73f53be35b3d5f7b1bf25e2f9e5b67
+  custom:scripting/monoscript/fileName/Simple_Char_Move.cs: cf97b832f31a301b32caee19475e110b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 3672.787713 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Tile_01.obj
+  artifactKey: Guid(138ec7b7d31bbef41b9dd9e7ce0d3eb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Tile_01.obj using Guid(138ec7b7d31bbef41b9dd9e7ce0d3eb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '5463a2df201d13640f5135527358258c') in 0.129187 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Grasslands_Landmass_07.obj
+  artifactKey: Guid(dbca9b09275560748af13ff5cd543553) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Landmass/OBJ/Grasslands_Landmass_07.obj using Guid(dbca9b09275560748af13ff5cd543553) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '1611b73da490a475312713e620227979') in 0.020738 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_11.obj
+  artifactKey: Guid(a6aa8dfef91085b4b9de22c0596f189e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Grass_Dirt_Tile_11.obj using Guid(a6aa8dfef91085b4b9de22c0596f189e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '501f937aa1725b136d7f285eccde3caf') in 0.015713 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Mountain_Tile_02.obj
+  artifactKey: Guid(39f7c1f3884e777468fdb6edd83032fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/Modular Tile Models/OBJ/Mountain_Tile_02.obj using Guid(39f7c1f3884e777468fdb6edd83032fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: '36c00c5d2780ec093eecfb505867d0de') in 0.020691 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000013 seconds.
+  path: Assets/Pixel 3D Grassland Package/TileSheet/Updated_Sheets/Grasslands_NEW_MAT.mat
+  artifactKey: Guid(ace83e14b794cbe4c99324cb3564df0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pixel 3D Grassland Package/TileSheet/Updated_Sheets/Grasslands_NEW_MAT.mat using Guid(ace83e14b794cbe4c99324cb3564df0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 12 workers.
+ -> (artifact id: 'efa7973cb3ca7d249451bf9171d5b27a') in 0.328296 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: 스레드 종료 또는 응용 프로그램 요청 때문에 I/O 작업이 취소되었습니다.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

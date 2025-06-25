@@ -404,6 +404,8 @@
 "Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/Extras/Scripts/Simple_Char_Move.cs"
 "Assets/GoldenSkullStudios/2D/2D_Iso_Tile_Pack_Starter/Extras/Scripts/Simple_Door_Interaction.cs"
 "Assets/SPUM/Basic_Resources/Package/Script/SPUM_PresetData.cs"
+"Assets/SPUM/Retro UI Set/2_ExtraScript/IconLayout.cs"
+"Assets/SPUM/Retro UI Set/2_ExtraScript/PageLayout.cs"
 "Assets/SPUM/Sample/Script/PlayerManager.cs"
 "Assets/SPUM/Sample/Script/PlayerObj.cs"
 "Assets/SPUM/Script/Data/PreviewMatchingElement.cs"
