@@ -157,18 +157,17 @@ public class DefaultTurnManager : MonoBehaviour
                         int cost = unit.SkillData.Cost;
                         if (costManager.CanUse(cost))
                         {
-                            // 먼저 코스트를 소모하지 말고
                             bool skillSuccess = await _executor.ExecuteSkill(
                                 unit,
-                                action.Target,
+                                action.Target,         // 단일 대상
                                 unit.SkillData,
                                 players,
                                 enemies
                             );
                             if (skillSuccess)
                             {
-                                costManager.Use(cost); // 성공시에만 코스트 차감!
-                                unit.MarkActed();      // 성공시에만 턴 소모!
+                                costManager.Use(cost); // 코스트 차감
+                                unit.MarkActed();
                             }
                             else
                             {
@@ -178,13 +177,20 @@ public class DefaultTurnManager : MonoBehaviour
                         }
                         else
                         {
-                            Debug.LogWarning($"[플레이어 {unit.UnitName}] 코스트 부족!");
-                            continue;
+                            if (!costManager.CanUse(cost))
+                            {
+                                Debug.LogWarning("코스트 부족!");
+                                UIManager.Instance.ShowCostWarning("코스트가 부족합니다!", 3f, 0.3f);
+                                continue;
+                            }
                         }
                         break;
                 }
                 break;
             }
+            // ★★★ 턴 종료 후 "잠깐 대기 + 사망 체크"
+            await UniTask.Delay(400); // 애니메이션/사망처리 기다림
+            CheckVictory();
         }
     }
     
@@ -192,24 +198,20 @@ public class DefaultTurnManager : MonoBehaviour
     private async UniTask EnemyPhase(CancellationToken token)
     {
         Debug.Log("적 턴 시작");
-        foreach (var enemy in enemies)
+        foreach (var enemy in enemies.Where(e => !e.IsDead).ToList())
         {
             if (token.IsCancellationRequested) break;
-            if (enemy.IsDead)
-            {
-                Debug.Log($"[적 {enemy.UnitName}] 사망 상태로 건너뜀");
-                continue;
-            }
+            if (enemy.IsDead) continue; // 혹시나 중복방지
+
             var alivePlayers = players.Where(p => !p.IsDead).ToList();
-            if (alivePlayers.Count == 0)
-            {
-                Debug.LogWarning("[적 AI] 공격할 수 있는 플레이어가 없습니다.");
-                break;
-            }
+            if (alivePlayers.Count == 0) break;
+
             var target = alivePlayers[UnityEngine.Random.Range(0, alivePlayers.Count)];
-            Debug.Log($"[적 {enemy.UnitName}] → [플레이어 {target.UnitName}] 공격");
             await _executor.ExecuteEnemyAction(enemy, target);
         }
+        // ★★★ 적 턴 종료 후도 체크
+        await UniTask.Delay(400);
+        CheckVictory();
     }
 
     void OnDestroy()

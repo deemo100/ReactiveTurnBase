@@ -2,6 +2,7 @@ using Game.Input;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 
 public class UIManager : MonoBehaviour
@@ -27,12 +28,19 @@ public class UIManager : MonoBehaviour
     private GameObject tooltipPanel;
     [SerializeField] private TMP_Text tooltipText;
 
+    [Header("코스트 부족 알림")]
+    [SerializeField] private TMP_Text costWarningText; // CostText 오브젝트 연결
+   
+    private Coroutine warningCoroutine;
+    
     void Awake()
     {
         Instance = this;
         if (actionButtonPanel != null)
             actionButtonPanel.SetActive(false);
-
+        if (costWarningText != null)
+            costWarningText.gameObject.SetActive(false); // 시작 시 숨김
+        
         attackButton.onClick.AddListener(() =>
             InputServiceNew.Instance.EnterAttackMode());
 
@@ -102,6 +110,42 @@ public class UIManager : MonoBehaviour
         
     }
 
+    // ==== 코스트 부족 알림 ==== //
+    public void ShowCostWarning(string message = "코스트가 부족합니다!", float duration = 3f, float blinkSpeed = 0.3f)
+    {
+        Debug.Log($"[ShowCostWarning 호출!] message={message}, costWarningText={costWarningText}");
+        if (costWarningText == null)
+        {
+            Debug.LogError("[ShowCostWarning] costWarningText가 null입니다! Inspector에서 연결하세요.");
+            return;
+        }
+        if (warningCoroutine != null)
+            StopCoroutine(warningCoroutine);
+
+        warningCoroutine = StartCoroutine(BlinkCostWarning(message, duration, blinkSpeed));
+    }
+
+    private IEnumerator BlinkCostWarning(string text, float duration, float blinkSpeed)
+    {
+        costWarningText.text = text;
+        costWarningText.gameObject.SetActive(true);
+
+        float timer = 0;
+        bool visible = true;
+
+        while (timer < duration)
+        {
+            costWarningText.alpha = visible ? 1f : 0.2f;
+            visible = !visible;
+            yield return new WaitForSeconds(blinkSpeed);
+            timer += blinkSpeed;
+        }
+
+        costWarningText.alpha = 1f;
+        costWarningText.gameObject.SetActive(false);
+        warningCoroutine = null;
+    }
+    
     public void HideActionButtons()
     {
         actionButtonPanel.SetActive(false);
