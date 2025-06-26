@@ -153,7 +153,6 @@ public class UIManager : MonoBehaviour
         SetSkillHighlight(false);
     }
 
-    // ⭐ SkillData용 툴팁 표시
     public void ShowSkillTooltip(SkillData skill)
     {
         if (skill == null)
@@ -161,21 +160,26 @@ public class UIManager : MonoBehaviour
             HideTooltip();
             return;
         }
+        string powerDesc = "";
+        if (skill.EffectType == SkillEffectType.Damage)
+            powerDesc = $"공격력의 <b>{skill.Power}%</b> 피해";
+        else if (skill.EffectType == SkillEffectType.Heal)
+            powerDesc = $"{skill.Power} 회복";
+        else if (skill.EffectType == SkillEffectType.Buff)
+            powerDesc = $"버프 ({skill.BuffValue})";
 
         string desc =
             $"<b>{skill.Name}</b>\n" +
             $"<size=90%>코스트: {skill.Cost}\n" +
             $"타겟: {skill.TargetType}\n" +
             $"효과: {skill.Description}\n" +
-            $"공격력/회복량: {skill.Power}</size>";
+            $"위력: {powerDesc}</size>";
 
         tooltipText.text = desc;
         tooltipPanel.SetActive(true);
-
-        // 원하는 위치에 표시 (예시: 고정 좌측 하단)
         tooltipPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(30, -30);
     }
-
+    
     public void HideTooltip()
     {
         tooltipPanel.SetActive(false);

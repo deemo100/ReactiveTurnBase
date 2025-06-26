@@ -1,6 +1,6 @@
 Id,Name,Cost,Icon,TargetType,EffectType,Power,BuffValue,Description
-1,강타,2,Weapon_01,EnemySingle,Damage,30,0,적 1명에게 데미지를 줍니다.
-2,응급처치,2,Heal_Icon,AllySingle,Heal,20,0,아군 1명을 회복시킵니다.
-3,파이어볼,4,Weapon_02,EnemyAll,Damage,28,0,적 전체에게 데미지를 줍니다.
-4,축복,4,Heal_Icon,AllyAll,Heal,20,0,아군 전체를 회복시킵니다.
-5,PowerUp,3,Buff_Icon,Self,Buff,0,0,蹂몄씤 怨듦꺽?μ쓣 ?щ┰?덈떎.
+1,강타,2,Weapon_01,EnemySingle,Damage,140,0,적 1명에게 자신의 위력 120% 피해
+2,응급치료,1,Heal_Icon,AllySingle,Heal,70,0,아군 1명에게 자신의 위력 70% 회복
+3,분화,4,Weapon_02,EnemyAll,Damage,130,0,적 전체에게 자신의 위력 130% 피해
+4,축복,3,Heal_Icon,AllyAll,Heal,60,0,아군 전체에게 자신의 위력 60% 회복
+5,PowerUp,3,Buff_Icon,Self,Buff,0,0,적 1명에게 자신의 위력 120% 피해

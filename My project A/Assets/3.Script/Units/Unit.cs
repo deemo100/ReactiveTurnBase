@@ -43,6 +43,8 @@ public class Unit : MonoBehaviour
     
     Quaternion _initialRotation;
 
+    public int NormalAttackPercent = 100; // 인스펙터에서 기본값 100
+    
     protected virtual void Start()
     {
         SpawnPosition = transform.position;
@@ -73,35 +75,37 @@ public class Unit : MonoBehaviour
     }
 
     // 일반 공격 임팩트(애니메이션 이벤트)
-    public void OnAttackImpact()
+    public virtual void OnAttackImpact()
     {
         if (_currentTargets == null || _currentTargets.Count == 0) return;
         foreach (var unit in _currentTargets)
         {
             if (unit == null || unit.IsDead) continue;
-            int damage = Mathf.Max(0, ATK - unit.DEF);
+            // 공격력 x 계수 (%) - 방어력
+            int damage = Mathf.Max(0, Mathf.RoundToInt(ATK * (NormalAttackPercent / 100f)) - unit.DEF);
             unit.TakeDamage(damage);
         }
         _currentTargets.Clear();
     }
 
-    // 스킬 임팩트(단일/전체)
-    public void OnSkillImpact()
+    // --- 스킬 공격 (공격력 x 계수) ---
+    public virtual void OnSkillImpact()
     {
         if (_currentTargets == null || _currentTargets.Count == 0 || SkillData == null) return;
-
         foreach (var unit in _currentTargets)
         {
             if (unit == null || unit.IsDead) continue;
-            switch (SkillData.EffectType)
+            if (SkillData.EffectType == SkillEffectType.Damage)
             {
-                case SkillEffectType.Damage:
-                    unit.TakeDamage(SkillData.Power);
-                    break;
-                case SkillEffectType.Heal:
-                    unit.Heal(SkillData.Power);
-                    break;
+                // 공격력 x 스킬 계수 (%) - 방어력
+                int damage = Mathf.Max(0, Mathf.RoundToInt(ATK * (SkillData.Power / 100f)) - unit.DEF);
+                unit.TakeDamage(damage);
             }
+            else if (SkillData.EffectType == SkillEffectType.Heal)
+            {
+                unit.Heal(SkillData.Power);
+            }
+            // 버프/디버프 등 기타 효과 필요시 분기 추가
         }
         _currentTargets.Clear();
     }

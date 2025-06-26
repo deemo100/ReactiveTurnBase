@@ -26,12 +26,20 @@ public class SkillButtonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerE
         skillData = data;
         if (skillData != null)
         {
+            string powerDesc = "";
+            if (skillData.EffectType == SkillEffectType.Damage)
+                powerDesc = $"공격력의 <b>{skillData.Power}%</b> 피해";
+            else if (skillData.EffectType == SkillEffectType.Heal)
+                powerDesc = $"{skillData.Power} 회복";
+            else if (skillData.EffectType == SkillEffectType.Buff)
+                powerDesc = $"버프 ({skillData.BuffValue})";
+
             cachedTooltip =
                 $"<b>{skillData.Name}</b>\n" +
                 $"<size=90%>코스트: {skillData.Cost}\n" +
                 $"타겟: {skillData.TargetType}\n" +
                 $"효과: {skillData.Description}\n" +
-                $"위력: {skillData.Power}</size>";
+                $"위력: {powerDesc}</size>";
         }
         else if (!string.IsNullOrEmpty(tooltipText))
         {
