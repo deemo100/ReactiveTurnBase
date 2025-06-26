@@ -37,6 +37,10 @@ public class Unit : MonoBehaviour
     public HealthBarFollower healthBarFollower;
     public SkillData SkillData { get; protected set; }
 
+    
+    public bool IsBusy { get; private set; } = false; // ★추가
+    public void SetBusy(bool busy) => IsBusy = busy; // ★추가
+    
     Quaternion _initialRotation;
 
     protected virtual void Start()

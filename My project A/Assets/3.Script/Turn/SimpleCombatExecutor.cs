@@ -8,6 +8,7 @@ public class SimpleCombatExecutor : MonoBehaviour
 {
     public async UniTask ExecuteBasicAttack(Unit attacker, Unit target)
     {
+        if (attacker is PlayerUnit pu) pu.SetBusy(true);
         if (target == null || target.IsDead) return;
 
         bool needMove = attacker.AttackType == AttackRangeType.Melee;
@@ -44,6 +45,7 @@ public class SimpleCombatExecutor : MonoBehaviour
         {
             attacker.ResetRotation();
         }
+        if (attacker is PlayerUnit pu2) pu2.SetBusy(false); // ★추가
     }
 
     public async UniTask<bool> ExecuteSkill(
@@ -53,6 +55,7 @@ public class SimpleCombatExecutor : MonoBehaviour
         List<PlayerUnit> allPlayers,
         List<EnemyUnit> allEnemies)
     {
+        actor.SetBusy(true); // ★추가
         float moveSpeed = actor.MoveSpeed;
         float skillOffset = 2f;
 
@@ -101,7 +104,7 @@ public class SimpleCombatExecutor : MonoBehaviour
         {
             actor.ResetRotation();
         }
-
+        actor.SetBusy(false); // ★추가
         return true;
     }
 

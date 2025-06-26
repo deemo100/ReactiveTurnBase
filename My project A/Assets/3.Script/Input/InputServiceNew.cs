@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cysharp.Threading.Tasks;
 using Game.Input;
+using System.Linq;
 
 public enum ActionMode { None, Attack, Skill }
 
@@ -36,6 +37,10 @@ public class InputServiceNew : MonoBehaviour
     
    void Update()
 {
+    // 전체 PlayerUnit 중 하나라도 busy면 차단
+    if (DefaultTurnManager.Instance != null && DefaultTurnManager.Instance.players.Any(p => p.IsBusy))
+        return;
+    
     if (Mouse.current == null) return;
     if (Mouse.current.leftButton.wasPressedThisFrame)
     {

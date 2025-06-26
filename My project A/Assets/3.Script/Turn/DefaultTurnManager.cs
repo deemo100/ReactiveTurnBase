@@ -17,7 +17,7 @@ public class DefaultTurnManager : MonoBehaviour
     [SerializeField] private CostBar     costBar;
 
     private int turnCount = 0;
-    private List<PlayerUnit>     players;
+    public List<PlayerUnit>     players;
     private List<EnemyUnit>      enemies;
     private bool battleOver = false;
     
