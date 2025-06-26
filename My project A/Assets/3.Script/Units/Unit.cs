@@ -31,10 +31,15 @@ public class Unit : MonoBehaviour
     public int HP { get; protected set; }
     public int ATK { get; set; }
     public int DEF { get; protected set; }
-
+    public int MaxGroggy { get; protected set; }
+    public int Groggy { get; protected set; }
+    public bool IsStunned { get; protected set; } = false;
+    protected int stunTurn = 0;
+    
     public bool IsDead => HP <= 0;
     public HealthBar healthBar;
     public HealthBarFollower healthBarFollower;
+    
     public SkillData SkillData { get; protected set; }
 
     
@@ -44,6 +49,7 @@ public class Unit : MonoBehaviour
     Quaternion _initialRotation;
 
     public int NormalAttackPercent = 100; // 인스펙터에서 기본값 100
+    public int NormalAttackGroggyDamage = 50;
     
     protected virtual void Start()
     {
@@ -60,6 +66,11 @@ public class Unit : MonoBehaviour
         ATK = stat.Attack;
         DEF = stat.Defense;
         Team = team;
+        
+        // 🟢 Groggy 값 1 이상 보장
+        MaxGroggy = Mathf.Max(1, stat.MaxGroggy); // stat.MaxGroggy가 0이면 1로
+        Groggy = MaxGroggy;
+        
     }
 
     // 타겟 지정
@@ -81,9 +92,10 @@ public class Unit : MonoBehaviour
         foreach (var unit in _currentTargets)
         {
             if (unit == null || unit.IsDead) continue;
-            // 공격력 x 계수 (%) - 방어력
             int damage = Mathf.Max(0, Mathf.RoundToInt(ATK * (NormalAttackPercent / 100f)) - unit.DEF);
-            unit.TakeDamage(damage);
+            int groggy = NormalAttackGroggyDamage;
+            Debug.Log($"[공격] GroggyDamage: {groggy} (ATK:{ATK}, Percent:{NormalAttackPercent})");
+            unit.TakeDamage(damage, groggy);
         }
         _currentTargets.Clear();
     }
@@ -231,12 +243,16 @@ public class Unit : MonoBehaviour
     }
 
     // 데미지/회복 처리
-    public virtual void TakeDamage(int amount)
+    public virtual void TakeDamage(int amount, int groggy = 0)
     {
         if (IsDead) return;
         HP = Mathf.Max(0, HP - amount);
         if (healthBarFollower != null)
             healthBarFollower.SetHealth(HP / (float)MaxHP);
+
+        // 그로기 적용
+        if (this is EnemyUnit enemy && groggy > 0)
+            enemy.TakeGroggy(groggy);
 
         var animator = GetComponentInChildren<Animator>();
         if (animator != null)
@@ -251,6 +267,7 @@ public class Unit : MonoBehaviour
             }
         }
     }
+    
     public virtual void Heal(int amount)
     {
         HP = Mathf.Min(MaxHP, HP + amount);

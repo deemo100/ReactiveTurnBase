@@ -38,6 +38,7 @@ namespace Game.Input
         public SkillCastType CastType;       // 추가! (근접/원거리)
         public int Power;                    // 공격력/회복력/버프수치 등
         public int BuffValue;                // 버프/디버프 값
+        public int GroggyDamage; // ← 추가(스킬이 가하는 그로기 피해량)
         public float Duration;               // 지속시간(버프/디버프)
         public string Description;           // 설명(CSV에서 불러오기)
         // 필요하다면 AnimationClipName, 이펙트 프리팹 등 추가 가능

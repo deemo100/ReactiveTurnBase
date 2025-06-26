@@ -392,6 +392,8 @@
 "Assets/3.Script/TileGridSpawnerEditor.cs"
 "Assets/3.Script/Turn/DefaultTurnManager.cs"
 "Assets/3.Script/Turn/SimpleCombatExecutor.cs"
+"Assets/3.Script/UI/GroggyBar.cs"
+"Assets/3.Script/UI/GroggyBarFollower.cs"
 "Assets/3.Script/UI/HealthBar.cs"
 "Assets/3.Script/UI/HealthBarFollower.cs"
 "Assets/3.Script/UI/SkillButtonTooltip.cs"

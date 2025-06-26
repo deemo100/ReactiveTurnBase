@@ -56,7 +56,8 @@ public class DataManager : MonoBehaviour
                 EffectType  = Enum.Parse<SkillEffectType>(cols[5].Trim(), true),
                 Power       = int.Parse(cols[6].Trim()),
                 BuffValue   = int.Parse(cols[7].Trim()),
-                Description = cols[8].Trim()         // <-- 여기!
+                GroggyDamage= int.Parse(cols[8].Trim()), // 추가된 필드
+                Description = cols[9].Trim()             // 인덱스도 바뀜!
             };
             SkillTable[sd.Id] = sd;
         }
@@ -64,7 +65,7 @@ public class DataManager : MonoBehaviour
 
     private void LoadUnitStats()
     {
-        var ta = Resources.Load<TextAsset>("UnitStats");
+        var ta = Resources.Load<TextAsset>("UnitStats"); // 파일명: "UnitStats.csv"
         if (ta == null)
         {
             Debug.LogError("Failed to load UnitStats.csv");
@@ -81,9 +82,8 @@ public class DataManager : MonoBehaviour
                 header = false;
                 continue;
             }
-
             var cols = line.Split(',');
-            if (cols.Length < 8) continue; // SkillId 포함 8컬럼 이상
+            if (cols.Length < 8) continue;
 
             var us = new UnitStat
             {
@@ -93,8 +93,8 @@ public class DataManager : MonoBehaviour
                 MaxHP = int.Parse(cols[3].Trim()),
                 Attack = int.Parse(cols[4].Trim()),
                 Defense = int.Parse(cols[5].Trim()),
-                MaxGroggy = int.Parse(cols[6].Trim()),
-                SkillId = int.Parse(cols[7].Trim()) // ← SkillId
+                MaxGroggy = int.Parse(cols[6].Trim()),   // ← groggy 컬럼
+                SkillId = int.Parse(cols[7].Trim())      // ← SkillId 컬럼
             };
             UnitStatTable[us.Id] = us;
         }

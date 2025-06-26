@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2891180561804584713}
   - component: {fileID: 8589267641934054314}
   - component: {fileID: 4772818055354424282}
+  - component: {fileID: 5233604761353399498}
+  - component: {fileID: 8722603612422546766}
   m_Layer: 5
   m_Name: Grogbar
   m_TagString: Untagged
@@ -35,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2605.3225, y: -1733.6431}
+  m_AnchoredPosition: {x: -1645.323, y: -1193.643}
   m_SizeDelta: {x: 180, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8589267641934054314
@@ -66,8 +68,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 82306ec1555e74d41b5fc97d5e09f8e2, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7d37754838fc449fbbaaa8a63abeea14, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
@@ -76,6 +78,32 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5233604761353399498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075475164077612771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f96174fc620254eab2b99685564b85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillImage: {fileID: 6489145286958392005}
+--- !u!114 &8722603612422546766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075475164077612771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49c13c7e8d67d2340bbb4c3fddfa4fe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fillImage: {fileID: 6489145286958392005}
 --- !u!1 &3462816290444247401
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,7 +139,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 180, y: 25}
+  m_SizeDelta: {x: 172, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4196238981891133944
 CanvasRenderer:
@@ -134,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.86969554, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.8532487, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

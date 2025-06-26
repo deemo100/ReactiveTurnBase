@@ -21,7 +21,9 @@ public class HealthBar : MonoBehaviour
     // 🔽 새로 추가
     public void SetHealth(float normalized)
     {
-        Debug.Log($"[HealthBarFollower] SetHealth: {normalized}");
-        fillImage.fillAmount = Mathf.Clamp01(normalized);
+        // 0~1로 clamp + NaN 방지
+        normalized = Mathf.Clamp01(normalized);
+        fillImage.fillAmount = float.IsNaN(normalized) ? 1 : normalized;
     }
+
 }

@@ -168,8 +168,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3343399670260396336, guid: a7ae97fccec4a2e4fbdc1566521b760b, type: 3}
   statId: 2
-  healthBarPrefab: {fileID: 5807458806609154886, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
-  canvasTransform: {fileID: 1787023277}
+  healthBarPrefab: {fileID: 0}
+  groggyBarPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
 --- !u!1 &172921987
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,8 +367,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 760645709211538694, guid: df43f28f25041544594ee37f1769e1e6, type: 3}
   statId: 3
-  healthBarPrefab: {fileID: 5807458806609154886, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
-  canvasTransform: {fileID: 1787023277}
+  healthBarPrefab: {fileID: 0}
+  groggyBarPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
 --- !u!1 &403518505
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +877,7 @@ MonoBehaviour:
     CastType: 0
     Power: 0
     BuffValue: 0
+    GroggyDamage: 0
     Duration: 0
     Description: 
 --- !u!1 &476151676
@@ -1250,6 +1253,7 @@ MonoBehaviour:
     CastType: 0
     Power: 0
     BuffValue: 0
+    GroggyDamage: 0
     Duration: 0
     Description: 
 --- !u!1 &593701754
@@ -1373,8 +1377,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 7849917676297529022, guid: 8f10eb2fb462f234581eb15a6dc9238d, type: 3}
   statId: 6
-  healthBarPrefab: {fileID: 5807458806609154886, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
-  canvasTransform: {fileID: 1787023277}
+  healthBarPrefab: {fileID: 0}
+  groggyBarPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
 --- !u!1 &661037581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,8 +2272,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 8172164756678295550, guid: 3e95b49165f9ae640bc4d9619235bf8a, type: 3}
   statId: 1
-  healthBarPrefab: {fileID: 5807458806609154886, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
-  canvasTransform: {fileID: 1787023277}
+  healthBarPrefab: {fileID: 0}
+  groggyBarPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
 --- !u!1 &1300983479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2438,8 +2444,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4188649555016391640, guid: 537749e1c47b2da41b7c1d1ae7c92ba5, type: 3}
   statId: 5
-  healthBarPrefab: {fileID: 5807458806609154886, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
-  canvasTransform: {fileID: 1787023277}
+  healthBarPrefab: {fileID: 0}
+  groggyBarPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
 --- !u!1 &1446691194
 GameObject:
   m_ObjectHideFlags: 0
@@ -2569,6 +2576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   costManager: {fileID: 1787023278}
   costBar: {fileID: 1568449272}
+  players: []
 --- !u!114 &1486511038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2622,6 +2630,7 @@ MonoBehaviour:
   playerSpawnRoot: {fileID: 661037582}
   enemySpawnRoot: {fileID: 1655648911}
   healthBarPrefab: {fileID: -5948607396414319314, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
+  groggyBarPrefab: {fileID: 8722603612422546766, guid: 7f5e70fe0f1889b4d8fa43e022ebad62, type: 3}
   uiCanvas: {fileID: 1787023276}
 --- !u!1 &1519685224
 GameObject:
@@ -2912,8 +2921,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4188649555016391640, guid: 537749e1c47b2da41b7c1d1ae7c92ba5, type: 3}
   statId: 5
-  healthBarPrefab: {fileID: 5807458806609154886, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
-  canvasTransform: {fileID: 1787023277}
+  healthBarPrefab: {fileID: 0}
+  groggyBarPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
 --- !u!1 &1542164364
 GameObject:
   m_ObjectHideFlags: 0
@@ -3344,8 +3354,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 4188649555016391640, guid: 537749e1c47b2da41b7c1d1ae7c92ba5, type: 3}
   statId: 5
-  healthBarPrefab: {fileID: 5807458806609154886, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
-  canvasTransform: {fileID: 1787023277}
+  healthBarPrefab: {fileID: 0}
+  groggyBarPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
 --- !u!1 &1655648910
 GameObject:
   m_ObjectHideFlags: 0
@@ -3625,8 +3636,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 9014028785209784985, guid: 27ac04c6955b072419d385f8a84dc902, type: 3}
   statId: 4
-  healthBarPrefab: {fileID: 5807458806609154886, guid: c536210fe7e9dbd4f9efa92643b9ae13, type: 3}
-  canvasTransform: {fileID: 1787023277}
+  healthBarPrefab: {fileID: 0}
+  groggyBarPrefab: {fileID: 0}
+  canvasTransform: {fileID: 0}
 --- !u!1 &2015402827
 GameObject:
   m_ObjectHideFlags: 0

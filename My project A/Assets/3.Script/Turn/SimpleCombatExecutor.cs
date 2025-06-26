@@ -6,6 +6,7 @@ using Game.Input;
 
 public class SimpleCombatExecutor : MonoBehaviour
 {
+    
     public async UniTask ExecuteBasicAttack(Unit attacker, Unit target)
     {
         if (attacker is PlayerUnit pu) pu.SetBusy(true);
