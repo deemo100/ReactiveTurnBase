@@ -103,21 +103,24 @@ public class Unit : MonoBehaviour
     public virtual void OnSkillImpact()
     {
         if (_currentTargets == null || _currentTargets.Count == 0 || SkillData == null) return;
+
         foreach (var unit in _currentTargets)
         {
             if (unit == null || unit.IsDead) continue;
+
             if (SkillData.EffectType == SkillEffectType.Damage)
             {
-                // 공격력 x 스킬 계수 (%) - 방어력
                 int damage = Mathf.Max(0, Mathf.RoundToInt(ATK * (SkillData.Power / 100f)) - unit.DEF);
-                unit.TakeDamage(damage);
+                int groggy = SkillData.GroggyDamage;
+                Debug.Log($"[스킬] GroggyDamage: {groggy} (Power:{SkillData.Power})");
+                unit.TakeDamage(damage, groggy); // 🔹 수정된 부분
             }
             else if (SkillData.EffectType == SkillEffectType.Heal)
             {
                 unit.Heal(SkillData.Power);
             }
-            // 버프/디버프 등 기타 효과 필요시 분기 추가
         }
+
         _currentTargets.Clear();
     }
 

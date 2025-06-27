@@ -1929,9 +1929,15 @@ MonoBehaviour:
   fireballPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   firePointfireball: {fileID: 0}
+  aoeImpactPrefab: {fileID: 0}
   MoveSpeed: 8
   healthBar: {fileID: 0}
   healthBarFollower: {fileID: 0}
+  groggyBar: {fileID: 0}
+  groggyBarFollower: {fileID: 0}
+  NormalAttackPercent: 100
+  NormalAttackGroggy: 0
+  statusIconStun: {fileID: 1075475164077612771, guid: 7f5e70fe0f1889b4d8fa43e022ebad62, type: 3}
 --- !u!1 &4188649555016391640
 GameObject:
   m_ObjectHideFlags: 0

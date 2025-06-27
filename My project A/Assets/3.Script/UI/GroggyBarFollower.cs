@@ -4,22 +4,34 @@ using UnityEngine.UI;
 public class GroggyBarFollower : MonoBehaviour
 {
     [SerializeField] private Image fillImage;
-
     private Transform _target;
     private Vector3 _worldOffset;
     private RectTransform _rectTransform;
     private Camera _mainCam;
 
-    // 🔽 애니메이션용 변수
-    private float targetFill = 1f;
-    private float animTime = 0.5f;
-    private float elapsed = 0f;
-    private bool isAnimating = false;
+    // 🔽 상태 이상 스턴 아이콘
+    [SerializeField] private GameObject stunIcon;
 
     void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
         _mainCam = Camera.main;
+
+        // 자동 연결 시도 (한 번만)
+        if (stunIcon == null)
+        {
+            Transform t = transform.Find("stun");
+            if (t != null)
+                stunIcon = t.gameObject;
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (_target == null || _mainCam == null) return;
+
+        Vector3 screenPos = _mainCam.WorldToScreenPoint(_target.position + _worldOffset);
+        _rectTransform.position = screenPos;
     }
 
     public void Initialize(Transform target, Vector3 offset)
@@ -28,36 +40,13 @@ public class GroggyBarFollower : MonoBehaviour
         _worldOffset = offset;
     }
 
-    void LateUpdate()
-    {
-        if (_target == null) return;
-        Vector3 screenPos = _mainCam.WorldToScreenPoint(_target.position + _worldOffset);
-        _rectTransform.position = screenPos;
-
-        // 🔽 바 애니메이션 처리
-        if (isAnimating && fillImage != null)
-        {
-            elapsed += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsed / animTime);
-            fillImage.fillAmount = Mathf.Lerp(fillImage.fillAmount, targetFill, t);
-
-            if (t >= 1f)
-            {
-                fillImage.fillAmount = targetFill;
-                isAnimating = false;
-            }
-        }
-    }
-    
-    
     public void SetGroggy(float normalized)
     {
-        Debug.Log($"[GroggyBarFollower] fillImage 존재 여부: {fillImage != null}");
-        if (fillImage == null) return;
-        
-        normalized = float.IsNaN(normalized) ? 0f : Mathf.Clamp01(normalized);
-        targetFill = normalized;
-        elapsed = 0f;
-        isAnimating = true;
+        normalized = Mathf.Clamp01(normalized);
+        fillImage.fillAmount = float.IsNaN(normalized) ? 1 : normalized;
+
+        // 🟡 스턴 아이콘 처리: Groggy가 0이면 활성화, 아니면 비활성화
+        if (stunIcon != null)
+            stunIcon.SetActive(normalized <= 0f);
     }
 }

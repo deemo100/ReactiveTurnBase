@@ -3,9 +3,8 @@ using UnityEngine;
 public class EnemyUnit : Unit
 {
     private Animator _animator;
-    public GroggyBar groggyBar;
-    public GroggyBarFollower groggyBarFollower;
     private bool needGroggyRecover = false;
+    [SerializeField] private GameObject statusIconStun; // ⭐스턴 상태 아이콘 (Inspector에서 연결)
     
     void Awake()
     {
@@ -63,6 +62,9 @@ public class EnemyUnit : Unit
         if (HP <= 0 || IsDead)
             return;
 
+        if (statusIconStun != null)
+            statusIconStun.SetActive(true); // 스턴 시 보이게
+        
         IsStunned = true;
         stunTurn = turnCount;
 
@@ -89,6 +91,9 @@ public class EnemyUnit : Unit
         if (!IsStunned) return;
         stunTurn--;
 
+        if (statusIconStun != null)
+            statusIconStun.SetActive(false); // 스턴 해제 시 숨김
+        
         // ⭐스턴이 아직 남아 있으면 아무것도 하지 않음(애니메이션 그대로)
         if (stunTurn > 0)
             return;

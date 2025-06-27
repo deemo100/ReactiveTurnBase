@@ -97,102 +97,119 @@ public class DefaultTurnManager : MonoBehaviour
     }
     public void CheckVictory()
     {
+        bool isPlayerWin = FindObjectsOfType<EnemyUnit>().All(e => e.IsDead);
+        bool isEnemyWin = FindObjectsOfType<PlayerUnit>().All(p => p.IsDead);
+
         if (battleOver) return;
         Debug.Log($"CheckVictory() 호출! 적 중 살아있는 유닛 수: {enemies.Count(e => !e.IsDead)}");
 
-        if (enemies != null && enemies.All(e => e.IsDead))
+        if (isPlayerWin)
         {
             battleOver = true;
             Debug.Log("모든 적이 사망했습니다. 승리!");
+            HideAllUnitBars(); // ✅ 추가
             UIManager.Instance.ShowVictory();
         }
-        else if (players != null && players.All(p => p.IsDead))
+        else if (isEnemyWin)
         {
             battleOver = true;
             Debug.Log("모든 플레이어가 사망했습니다. 패배...");
+            HideAllUnitBars(); // ✅ 추가
             UIManager.Instance.ShowDefeat();
         }
     }
-
-    private async UniTask PlayerPhase(CancellationToken token)
+    
+    private void HideAllUnitBars()
     {
-        Debug.Log("플레이어 턴 시작");
-
-        while (players.Any(p => !p.IsDead && !p.HasActedThisTurn))
+        foreach (var unit in FindObjectsOfType<Unit>())
         {
-            var unit = await _inputSvc.WaitForUnitSelect(players.Where(p => !p.IsDead && !p.HasActedThisTurn).ToList());
-            Debug.Log($"[플레이어 {unit.UnitName}] 행동 입력 대기");
-
-            while (true)
-            {
-                var action = await _inputSvc.WaitForPlayerAction(unit);
-
-                // 💡 null 체크 추가!
-                bool needTarget =
-                    action != null &&
-                    action.Type == PlayerActionType.Skill &&
-                    (action.SkillData.TargetType == SkillTargetType.EnemySingle ||
-                     action.SkillData.TargetType == SkillTargetType.AllySingle ||
-                     action.SkillData.TargetType == SkillTargetType.Self);
-
-                if (action == null || (needTarget && action.Target == null))
-                {
-                    Debug.LogWarning($"[플레이어 {unit.UnitName}] 행동 취소됨 또는 타겟 없음 (다시 선택 가능)");
-                    break;
-                }
-                
-                switch (action.Type)
-                {
-                    case PlayerActionType.BasicAttack:
-                        await _executor.ExecuteBasicAttack(unit, action.Target);
-                        unit.MarkActed();
-                        break;
-
-                    case PlayerActionType.Skill:
-                        if (unit.SkillData == null)
-                        {
-                            Debug.LogError($"[플레이어 {unit.UnitName}] SkillData 없음!");
-                            break;
-                        }
-                        int cost = unit.SkillData.Cost;
-                        if (costManager.CanUse(cost))
-                        {
-                            bool skillSuccess = await _executor.ExecuteSkill(
-                                unit,
-                                action.Target,         // 단일 대상
-                                unit.SkillData,
-                                players,
-                                enemies
-                            );
-                            if (skillSuccess)
-                            {
-                                costManager.Use(cost); // 코스트 차감
-                                unit.MarkActed();
-                            }
-                            else
-                            {
-                                Debug.LogWarning("[Turn] 스킬 사용 실패! 코스트/턴 소모 없음, 재입력 대기");
-                                continue; // 다시 행동 선택
-                            }
-                        }
-                        else
-                        {
-                            if (!costManager.CanUse(cost))
-                            {
-                                Debug.LogWarning("코스트 부족!");
-                                UIManager.Instance.ShowCostWarning("코스트가 부족합니다!", 3f, 0.3f);
-                                continue;
-                            }
-                        }
-                        break;
-                }
-                break;
-            }
-            // ★★★ 턴 종료 후 "잠깐 대기 + 사망 체크"
-            await UniTask.Delay(400); // 애니메이션/사망처리 기다림
-            CheckVictory();
+            if (unit.healthBarFollower != null)
+                unit.healthBarFollower.gameObject.SetActive(false);
+        
+            if (unit.groggyBarFollower != null)
+                unit.groggyBarFollower.gameObject.SetActive(false);
         }
     }
+    
+
+   private async UniTask PlayerPhase(CancellationToken token)
+{
+    Debug.Log("플레이어 턴 시작");
+
+    while (players.Any(p => !p.IsDead && !p.HasActedThisTurn))
+    {
+        var selectableUnits = players.Where(p => !p.IsDead && !p.HasActedThisTurn).ToList();
+        var unit = await _inputSvc.WaitForUnitSelect(selectableUnits);
+        Debug.Log($"[플레이어 {unit.UnitName}] 행동 입력 대기");
+
+        while (true)
+        {
+            var action = await _inputSvc.WaitForPlayerAction(unit);
+
+            // null 또는 잘못된 타겟일 경우 무시하고 다시 행동 선택
+            bool needTarget =
+                action != null &&
+                action.Type == PlayerActionType.Skill &&
+                (action.SkillData.TargetType == SkillTargetType.EnemySingle ||
+                 action.SkillData.TargetType == SkillTargetType.AllySingle ||
+                 action.SkillData.TargetType == SkillTargetType.Self);
+
+            if (action == null || (needTarget && action.Target == null))
+            {
+                Debug.LogWarning($"[플레이어 {unit.UnitName}] 행동 취소됨 또는 타겟 없음 (다시 선택 가능)");
+                break;
+            }
+
+            switch (action.Type)
+            {
+                case PlayerActionType.BasicAttack:
+                    await _executor.ExecuteBasicAttack(unit, action.Target);
+                    unit.MarkActed();
+                    break;
+
+                case PlayerActionType.Skill:
+                    if (unit.SkillData == null)
+                    {
+                        Debug.LogError($"[플레이어 {unit.UnitName}] SkillData 없음!");
+                        break;
+                    }
+
+                    int cost = unit.SkillData.Cost;
+
+                    // 코스트 부족 시 경고
+                    if (!costManager.CanUse(cost))
+                    {
+                        Debug.LogWarning("코스트 부족!");
+                        UIManager.Instance.ShowCostWarning("코스트가 부족합니다!", 3f, 0.3f);
+                        break;
+                    }
+
+                    // ✅ 코스트 먼저 차감
+                    costManager.Use(cost);
+
+                    // 스킬 시전
+                    bool skillSuccess = await _executor.ExecuteSkill(
+                        unit,
+                        action.Target,
+                        unit.SkillData,
+                        players,
+                        enemies
+                    );
+
+                    // 성공 여부 관계없이 행동 마침
+                    unit.MarkActed();
+                    break;
+            }
+
+            break; // 행동 종료 시 while(true) 탈출
+        }
+
+        // ★★★ 턴 종료 후 "잠깐 대기 + 사망 체크"
+        await UniTask.Delay(400); // 애니메이션/사망처리 기다림
+        CheckVictory();
+    }
+}
+
     
 
     private async UniTask EnemyPhase(CancellationToken token)
