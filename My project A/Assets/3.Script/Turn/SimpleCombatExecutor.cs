@@ -34,7 +34,7 @@ public class SimpleCombatExecutor : MonoBehaviour
 
         float animLen = attacker.GetCurrentAttackAnimLength();
         await UniTask.Delay((int)(animLen * 1000));
-        await UniTask.Delay(350);
+        await UniTask.Delay(310);
 
         if (needMove)
         {
@@ -93,7 +93,7 @@ public class SimpleCombatExecutor : MonoBehaviour
 
         float animLen = actor.GetCurrentAttackAnimLength();
         await UniTask.Delay((int)(animLen * 1000));
-        await UniTask.Delay(350);
+        await UniTask.Delay(310);
 
         if (isMelee && target != null)
         {

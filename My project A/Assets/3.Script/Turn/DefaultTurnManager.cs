@@ -198,19 +198,29 @@ public class DefaultTurnManager : MonoBehaviour
     private async UniTask EnemyPhase(CancellationToken token)
     {
         Debug.Log("적 턴 시작");
-        foreach (var enemy in enemies.Where(e => !e.IsDead).ToList())
-        {
-            if (token.IsCancellationRequested) break;
-            if (enemy.IsDead) continue; // 혹시나 중복방지
+        enemies = enemies.Where(e => e != null && !e.IsDead).ToList();
 
+        // ⭐⭐⭐ EnemyPhase 시작 직전, 여기서만 스턴/그로기 회복
+        foreach (var enemy in enemies)
+        {
+            enemy.DecreaseStunTurn(); // 여기서만 호출!
+            await UniTask.Delay(400);
+        }
+        
+        foreach (var enemy in enemies)
+        {
+            if (enemy.IsDead) continue;
+            if (enemy.IsStunned)
+            {
+                Debug.Log($"[적] {enemy.UnitName}는 스턴 상태! 턴 패스");
+                continue;
+            }
             var alivePlayers = players.Where(p => !p.IsDead).ToList();
             if (alivePlayers.Count == 0) break;
 
             var target = alivePlayers[UnityEngine.Random.Range(0, alivePlayers.Count)];
             await _executor.ExecuteEnemyAction(enemy, target);
         }
-        // ★★★ 적 턴 종료 후도 체크
-        await UniTask.Delay(400);
         CheckVictory();
     }
 

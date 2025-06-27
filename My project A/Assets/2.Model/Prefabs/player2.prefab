@@ -5329,9 +5329,12 @@ MonoBehaviour:
   fireballPrefab: {fileID: 0}
   firePoint: {fileID: 1060417746913509834}
   firePointfireball: {fileID: 0}
+  aoeImpactPrefab: {fileID: 0}
   MoveSpeed: 8
   healthBar: {fileID: 0}
   healthBarFollower: {fileID: 0}
+  NormalAttackPercent: 100
+  NormalAttackGroggy: 50
   WeaponIcon: {fileID: 21300000, guid: 530bcabb1501d8148a19a77465ecac03, type: 3}
   SkillIcon: {fileID: 21300000, guid: b123bdad4f47a734c80135e456f2d162, type: 3}
 --- !u!136 &6285852044965996089

@@ -39,6 +39,8 @@ public class Unit : MonoBehaviour
     public bool IsDead => HP <= 0;
     public HealthBar healthBar;
     public HealthBarFollower healthBarFollower;
+    public GroggyBar groggyBar;
+    public GroggyBarFollower groggyBarFollower;
     
     public SkillData SkillData { get; protected set; }
 
@@ -49,7 +51,7 @@ public class Unit : MonoBehaviour
     Quaternion _initialRotation;
 
     public int NormalAttackPercent = 100; // 인스펙터에서 기본값 100
-    public int NormalAttackGroggyDamage = 50;
+    public int NormalAttackGroggy;
     
     protected virtual void Start()
     {
@@ -66,11 +68,8 @@ public class Unit : MonoBehaviour
         ATK = stat.Attack;
         DEF = stat.Defense;
         Team = team;
-        
-        // 🟢 Groggy 값 1 이상 보장
-        MaxGroggy = Mathf.Max(1, stat.MaxGroggy); // stat.MaxGroggy가 0이면 1로
-        Groggy = MaxGroggy;
-        
+        MaxGroggy = stat.MaxGroggy;
+        Groggy = stat.MaxGroggy;
     }
 
     // 타겟 지정
@@ -93,7 +92,7 @@ public class Unit : MonoBehaviour
         {
             if (unit == null || unit.IsDead) continue;
             int damage = Mathf.Max(0, Mathf.RoundToInt(ATK * (NormalAttackPercent / 100f)) - unit.DEF);
-            int groggy = NormalAttackGroggyDamage;
+            int groggy = NormalAttackGroggy;
             Debug.Log($"[공격] GroggyDamage: {groggy} (ATK:{ATK}, Percent:{NormalAttackPercent})");
             unit.TakeDamage(damage, groggy);
         }
@@ -193,6 +192,7 @@ public class Unit : MonoBehaviour
     public virtual void PlayDamagedAnim()
     {
         if (IsDead) return;
+        if (IsStunned) return; // 기절 중이면 데미지 애니메이션 생략!
         var animator = GetComponentInChildren<Animator>();
         if (animator != null)
             animator.SetTrigger("3_Damaged");
@@ -209,6 +209,7 @@ public class Unit : MonoBehaviour
     // 이동
     public async UniTask MoveTo(Vector3 targetPos, float speed = 5f)
     {
+        if (this == null) return; // ★추가
         Vector3 start = transform.position;
         float distance = Vector3.Distance(start, targetPos);
         float duration = distance / speed;
@@ -219,6 +220,7 @@ public class Unit : MonoBehaviour
 
         while (elapsed < duration)
         {
+            if (this == null) return; // ★추가
             transform.position = Vector3.Lerp(start, targetPos, elapsed / duration);
             elapsed += Time.deltaTime;
             await UniTask.Yield();
@@ -257,13 +259,37 @@ public class Unit : MonoBehaviour
         var animator = GetComponentInChildren<Animator>();
         if (animator != null)
         {
-            if (HP > 0)
-                animator.SetTrigger("3_Damaged");
+            // 스턴 중엔 데미지 애니메이션 금지!
+            if (!IsStunned)
+            {
+                if (HP > 0)
+                    animator.SetTrigger("3_Damaged");
+                else
+                {
+                    animator.ResetTrigger("3_Damaged");
+                    animator.SetTrigger("4_Death");
+                    DefaultTurnManager.Instance?.CheckVictory();
+                    
+                    if (healthBarFollower != null)
+                        healthBarFollower.gameObject.SetActive(false);
+                    if (groggyBarFollower != null)
+                        groggyBarFollower.gameObject.SetActive(false); // 🟢 추가됨
+                }
+            }
             else
             {
-                animator.ResetTrigger("3_Damaged");
-                animator.SetTrigger("4_Death");
-                DefaultTurnManager.Instance?.CheckVictory();
+                // 스턴 중에도 죽었으면, 데스 애니메이션만 실행
+                if (HP <= 0)
+                {
+                    animator.ResetTrigger("3_Damaged");
+                    animator.SetTrigger("4_Death");
+                    DefaultTurnManager.Instance?.CheckVictory();
+                    
+                    if(healthBarFollower != null)
+                        healthBarFollower.gameObject.SetActive(false);
+                    if(groggyBarFollower != null)
+                        groggyBarFollower.gameObject.SetActive(false);
+                }
             }
         }
     }

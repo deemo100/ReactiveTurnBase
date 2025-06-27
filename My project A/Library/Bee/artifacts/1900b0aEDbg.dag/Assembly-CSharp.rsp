@@ -388,8 +388,6 @@
 "Assets/3.Script/Input/InputServiceNew.cs"
 "Assets/3.Script/Input/PlayerActionType.cs"
 "Assets/3.Script/Input/PlayerControls.cs"
-"Assets/3.Script/TileGridSpawner.cs"
-"Assets/3.Script/TileGridSpawnerEditor.cs"
 "Assets/3.Script/Turn/DefaultTurnManager.cs"
 "Assets/3.Script/Turn/SimpleCombatExecutor.cs"
 "Assets/3.Script/UI/GroggyBar.cs"

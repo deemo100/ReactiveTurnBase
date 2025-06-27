@@ -20,6 +20,7 @@ public class GroggyBar : MonoBehaviour
 
     public void SetGroggy(float normalized)
     {
+        
         normalized = Mathf.Clamp01(normalized);
         fillImage.fillAmount = float.IsNaN(normalized) ? 1 : normalized;
     }
