@@ -51,6 +51,7 @@ public class GameInitializer : MonoBehaviour
 
             // HP Bar 생성
             var hb = Instantiate(healthBarPrefab, uiCanvas.transform, false);
+            hb.gameObject.SetActive(true); // ← 무조건 활성화 (보험)
             hb.Initialize(enemy.transform, new Vector3(0, -0.3f, 0));
             enemy.healthBarFollower = hb;
             enemy.healthBar = hb.GetComponent<HealthBar>();
@@ -62,6 +63,7 @@ public class GameInitializer : MonoBehaviour
 
             // 🟣 Groggy Bar 생성
             var gb = Instantiate(groggyBarPrefab, uiCanvas.transform, false);
+            gb.gameObject.SetActive(true); // ← 무조건 활성화 (보험)
             gb.Initialize(enemy.transform, new Vector3(0, -0.55f, 0)); // HP Bar보다 아래쪽에 붙이기
             enemy.groggyBarFollower = gb;
             enemy.groggyBar = gb.GetComponent<GroggyBar>();

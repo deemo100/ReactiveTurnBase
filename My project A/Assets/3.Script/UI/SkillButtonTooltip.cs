@@ -37,7 +37,7 @@ public class SkillButtonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerE
             cachedTooltip =
                 $"<b>{skillData.Name}</b>\n" +
                 $"<size=90%>코스트: {skillData.Cost}\n" +
-                $"타겟: {skillData.TargetType}\n" +
+                $"타겟: {GetTargetTypeKorean(skillData.TargetType)}\n" +
                 $"효과: {skillData.Description}\n" +
                 $"위력: {powerDesc}</size>";
         }
@@ -48,6 +48,20 @@ public class SkillButtonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerE
         else
         {
             cachedTooltip = "(설명 없음)";
+        }
+    }
+
+// 한글 변환 함수 추가
+    private string GetTargetTypeKorean(SkillTargetType type)
+    {
+        switch (type)
+        {
+            case SkillTargetType.EnemySingle: return "적 1명";
+            case SkillTargetType.EnemyAll:    return "적 전체";
+            case SkillTargetType.AllySingle:  return "아군 1명";
+            case SkillTargetType.AllyAll:     return "아군 전체";
+            case SkillTargetType.Self:        return "자기 자신";
+            default:                          return type.ToString();
         }
     }
 

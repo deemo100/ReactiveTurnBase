@@ -22,9 +22,9 @@ public class DataManager : MonoBehaviour
             LoadSkills();
             LoadUnitStats();
         }
-        else
+        else if (Instance != this)
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // 자신이 두 번째라면 파괴
         }
     }
 

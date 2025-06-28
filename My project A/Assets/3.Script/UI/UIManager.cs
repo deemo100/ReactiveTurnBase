@@ -31,6 +31,9 @@ public class UIManager : MonoBehaviour
     [Header("코스트 부족 알림")]
     [SerializeField] private TMP_Text costWarningText; // CostText 오브젝트 연결
    
+    [Header("승리 별 UI 컨트롤러")]
+    public VictoryStarController victoryStarController;
+    
     private Coroutine warningCoroutine;
     
     void Awake()
@@ -50,6 +53,9 @@ public class UIManager : MonoBehaviour
         if (inputAttack) inputAttack.SetActive(false);
         if (inputSkill) inputSkill.SetActive(false);
         HideTooltip();
+        
+        if (Instance != null && Instance != this) Destroy(this.gameObject);
+        else Instance = this;
     }
 
     public void SetAttackIcon(Sprite icon)
@@ -209,11 +215,14 @@ public class UIManager : MonoBehaviour
             turnNumberText.text = $"TURN {turnNum}";
     }
 
-    public void ShowVictory()
+    public void ShowVictory(bool cond1, bool cond2, bool cond3)
     {
-        if (victoryPanel != null) victoryPanel.SetActive(true);
+        if (victoryStarController != null)
+            victoryStarController.SetStars(cond1, cond2, cond3);
+        if (victoryPanel != null)
+            victoryPanel.SetActive(true);
     }
-
+    
     public void ShowDefeat()
     {
         if (defeatPanel != null) defeatPanel.SetActive(true);

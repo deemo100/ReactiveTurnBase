@@ -57,6 +57,7 @@ public class Unit : MonoBehaviour
     {
         SpawnPosition = transform.position;
         _initialRotation = transform.rotation;
+        
     }
 
     public virtual void Init(UnitStat stat, TeamType team)

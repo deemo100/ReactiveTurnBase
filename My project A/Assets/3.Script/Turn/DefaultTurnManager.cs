@@ -106,16 +106,19 @@ public class DefaultTurnManager : MonoBehaviour
         if (isPlayerWin)
         {
             battleOver = true;
-            Debug.Log("모든 적이 사망했습니다. 승리!");
-            HideAllUnitBars(); // ✅ 추가
-            UIManager.Instance.ShowVictory();
+            HideAllUnitBars();
+
+            bool allAlive = players.All(p => !p.IsDead);
+            bool withinTurn = turnCount <= 5;
+
+            // **이렇게!**
+            UIManager.Instance.ShowVictory(true, allAlive, withinTurn);
         }
         else if (isEnemyWin)
         {
             battleOver = true;
-            Debug.Log("모든 플레이어가 사망했습니다. 패배...");
-            HideAllUnitBars(); // ✅ 추가
-            UIManager.Instance.ShowDefeat();
+            HideAllUnitBars();
+            UIManager.Instance.ShowDefeat(); // 패배는 기존 그대로
         }
     }
     

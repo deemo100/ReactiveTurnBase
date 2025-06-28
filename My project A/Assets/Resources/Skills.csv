@@ -1,6 +1,6 @@
 Id,Name,Cost,Icon,TargetType,EffectType,Power,BuffValue,GroggyDamage,Description
-1,강타,2,Weapon_01,EnemySingle,Damage,140,0,80,적 1명에게 자신의 위력에 120% 피해
-2,응급처치,1,Heal_Icon,AllySingle,Heal,70,0,0,아군 1명에게 자신의 위력에 70% 회복
-3,분화,4,Weapon_02,EnemyAll,Damage,130,0,30,적 전체에게 자신의 위력에 130% 피해
-4,축복,3,Heal_Icon,AllyAll,Heal,60,0,0,아군 전체에게 자신의 위력에 60% 회복
+1,강타,2,Weapon_01,EnemySingle,Damage,120,0,80,도끼로 강력한 공격을 실행합니다.
+2,응급처치,1,Heal_Icon,AllySingle,Heal,70,0,0,아군을 회복시킵니다.
+3,분화,4,Weapon_02,EnemyAll,Damage,130,0,30,적 전체를 불태웁니다.
+4,축복,3,Heal_Icon,AllyAll,Heal,60,0,0,아군 전체를 회복시킵니다.
 5,버프,3,Buff_Icon,Self,Buff,0,0,0,eeee
