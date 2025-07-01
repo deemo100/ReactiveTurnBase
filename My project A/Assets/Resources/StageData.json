@@ -1,0 +1,18 @@
+[
+  {
+    "stageId": "stage_1_1",
+    "stageName": "1-1",
+    "enemyIds": [5, 6, 7],
+    "rewardIds": [1001, 1002],
+    "backgroundImage": "bg_01",
+    "requiredPower": 1000
+  },
+  {
+    "stageId": "stage_1_2",
+    "stageName": "1-2",
+    "enemyIds": [8, 9, 10],
+    "rewardIds": [1002, 1003],
+    "backgroundImage": "bg_02",
+    "requiredPower": 1200
+  }
+]
