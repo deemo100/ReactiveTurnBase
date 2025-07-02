@@ -121,6 +121,9 @@ public class DefaultTurnManager : MonoBehaviour
             if (cond2) starCount++;
             if (cond3) starCount++;
 
+            
+            GameSession.Instance.lastClearStarCount = starCount; // ★ 이 라인 추가
+
             // ⭐⭐ 별 개수 저장
             StageStarSaveUtil.SaveStarCount(stageId, starCount);
 

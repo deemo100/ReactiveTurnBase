@@ -7,17 +7,16 @@ public static class StageStarSaveUtil
     // 별 갯수 저장 (기존 기록보다 높을 때만)
     public static void SaveStarCount(string stageId, int stars)
     {
-        int prev = PlayerPrefs.GetInt($"{stageId}_stars", 0);
-        if (stars > prev)
-        {
-            PlayerPrefs.SetInt($"{stageId}_stars", stars);
-            PlayerPrefs.Save();
-        }
+        Debug.Log($"[SaveStarCount] 저장: {stageId}_stars = {stars}");
+        PlayerPrefs.SetInt($"{stageId}_stars", stars);
+        PlayerPrefs.Save();
     }
 
-    // 별 갯수 불러오기
+
     public static int LoadStarCount(string stageId)
     {
-        return PlayerPrefs.GetInt($"{stageId}_stars", 0);
+        int val = PlayerPrefs.GetInt($"{stageId}_stars", 0);
+        Debug.Log($"[LoadStarCount] 로드: {stageId}_stars = {val}");
+        return val;
     }
 }

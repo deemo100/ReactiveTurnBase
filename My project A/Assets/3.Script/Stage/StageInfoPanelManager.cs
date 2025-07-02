@@ -17,6 +17,10 @@ public class StageInfoPanelManager : MonoBehaviour
     public GameObject enemyIconPrefab;
     public GameObject rewardIconPrefab;
 
+    // ⭐⭐ [추가] 여러 스테이지별 별 그룹 (score1, score2 등)
+    [Header("별 UI 그룹")]
+    public GameObject[] scoreGroups; 
+
     // 스테이지 데이터 참조
     private StageData currentStageData;
 
@@ -32,6 +36,18 @@ public class StageInfoPanelManager : MonoBehaviour
         currentStageData = stage;
         rootPanel.SetActive(true);
 
+        // 1. 모든 그룹 비활성
+        foreach (var group in scoreGroups)
+            group.SetActive(false);
+
+        // 2. stage.stageId에 따라 그룹 활성화
+        if (stage.stageId == "stage_1_1")
+            scoreGroups[0].SetActive(true);
+        else if (stage.stageId == "stage_1_2")
+            scoreGroups[1].SetActive(true);
+        // 필요에 따라 else if 더 추가
+
+        // 나머지 기존 코드 (타이틀, 적, 보상 등)
         titleText.text = $"{stage.stageName}";
         RefreshEnemyList(stage.enemyIds);
         RefreshRewardList(stage.rewardIds);
@@ -39,9 +55,19 @@ public class StageInfoPanelManager : MonoBehaviour
         enterButton.onClick.RemoveAllListeners();
         enterButton.onClick.AddListener(() =>
         {
-            // → 실제 인게임 진입 로직 호출
             StageEnter(stage);
         });
+    }
+
+    // ⭐⭐ 이 함수가 핵심!
+    private void SetScoreGroupActive(string stageId)
+    {
+        foreach (var group in scoreGroups)
+        {
+            // 예시: group의 이름에 stageId가 포함되어 있으면 활성화, 아니면 비활성화
+            bool active = group.name.Contains(stageId);
+            group.SetActive(active);
+        }
     }
 
     private void RefreshEnemyList(List<int> enemyIds)
@@ -50,9 +76,7 @@ public class StageInfoPanelManager : MonoBehaviour
         foreach (var id in enemyIds)
         {
             var go = Instantiate(enemyIconPrefab, enemyListParent);
-            // 아이콘/이름 등 세팅
             go.GetComponentInChildren<TMP_Text>().text = DataManager.Instance.UnitStatTable[id].Name;
-            // 아이콘 이미지 등도 필요시 추가
         }
     }
     private void RefreshRewardList(List<int> rewardIds)
@@ -61,28 +85,24 @@ public class StageInfoPanelManager : MonoBehaviour
         foreach (var id in rewardIds)
         {
             var go = Instantiate(rewardIconPrefab, rewardListParent);
-            // 보상 아이콘/텍스트 등 세팅
             go.GetComponentInChildren<TMP_Text>().text = $"보상{id}";
         }
     }
 
     private void StageEnter(StageData stage)
     {
-        // 인게임 씬 이동, 선택 파티 저장 등
+        GameSession.Instance.currentStageId = stage.stageId;
         Debug.Log($"{stage.stageName} 입장!");
-        // ... 예시: SceneManager.LoadScene("InGame");
+        // SceneManager.LoadScene("InGame");
     }
     
     public void OnStageClear(string stageId, int clearStars)
     {
-        // 별 저장
         StageStarSaveUtil.SaveStarCount(stageId, clearStars);
 
-        // 버튼에 반영(동적이면 Find, 정적이면 이벤트)
         var allButtons = FindObjectsOfType<StageButton>();
         foreach (var btn in allButtons)
             if (btn.stageId == stageId)
                 btn.RefreshStarUI();
     }
-    
 }

@@ -374,8 +374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a6f78b3a684064688a49788d21ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3343399670260396336, guid: a7ae97fccec4a2e4fbdc1566521b760b, type: 3}
-  statId: 2
 --- !u!1 &172921987
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,8 +867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a6f78b3a684064688a49788d21ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 760645709211538694, guid: df43f28f25041544594ee37f1769e1e6, type: 3}
-  statId: 3
 --- !u!1 &403518505
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,8 +1872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a6f78b3a684064688a49788d21ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7849917676297529022, guid: 8f10eb2fb462f234581eb15a6dc9238d, type: 3}
-  statId: 6
 --- !u!1 &629120426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,6 +2405,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c59dd0f92957844197510ae6c1ba09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  retryButton: {fileID: 280400607}
+  exitButton: {fileID: 62038103}
 --- !u!1 &920793916
 GameObject:
   m_ObjectHideFlags: 0
@@ -3609,8 +3605,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a6f78b3a684064688a49788d21ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8172164756678295550, guid: 3e95b49165f9ae640bc4d9619235bf8a, type: 3}
-  statId: 1
 --- !u!1 &1241374636
 GameObject:
   m_ObjectHideFlags: 0
@@ -3912,8 +3906,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a6f78b3a684064688a49788d21ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4188649555016391640, guid: 537749e1c47b2da41b7c1d1ae7c92ba5, type: 3}
-  statId: 5
 --- !u!1 &1446691194
 GameObject:
   m_ObjectHideFlags: 0
@@ -4387,8 +4379,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a6f78b3a684064688a49788d21ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4188649555016391640, guid: 537749e1c47b2da41b7c1d1ae7c92ba5, type: 3}
-  statId: 5
 --- !u!1 &1542164364
 GameObject:
   m_ObjectHideFlags: 0
@@ -4967,8 +4957,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a6f78b3a684064688a49788d21ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4188649555016391640, guid: 537749e1c47b2da41b7c1d1ae7c92ba5, type: 3}
-  statId: 5
 --- !u!1 &1655648910
 GameObject:
   m_ObjectHideFlags: 0
@@ -5672,6 +5660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c59dd0f92957844197510ae6c1ba09e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  retryButton: {fileID: 999058655}
+  exitButton: {fileID: 2083577594}
 --- !u!1 &1870454247
 GameObject:
   m_ObjectHideFlags: 0
@@ -5791,8 +5781,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59a6f78b3a684064688a49788d21ed88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 9014028785209784985, guid: 27ac04c6955b072419d385f8a84dc902, type: 3}
-  statId: 4
 --- !u!1 &2015402827
 GameObject:
   m_ObjectHideFlags: 0

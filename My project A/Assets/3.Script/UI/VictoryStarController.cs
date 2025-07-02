@@ -32,4 +32,10 @@ public class VictoryStarController : MonoBehaviour
         for (int i = 0; i < conditionTexts.Length; i++)
             conditionTexts[i].color = conds[i] ? textActiveColor : textInactiveColor;
     }
+    public void SetStarsByCount(int starCount)
+    {
+        for (int i = 0; i < stars.Length; i++)
+            stars[i].color = (i < starCount) ? starActiveColor : starInactiveColor;
+    }
+    
 }
