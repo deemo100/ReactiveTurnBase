@@ -27,7 +27,7 @@ public class StageInfoPanelManager : MonoBehaviour
     }
 
     // 외부에서 호출 (예: 스테이지 버튼 클릭 시)
-    public void Show(StageData stage)
+    public void Show(StageData stage, StageButton btn)
     {
         currentStageData = stage;
         rootPanel.SetActive(true);
@@ -72,4 +72,17 @@ public class StageInfoPanelManager : MonoBehaviour
         Debug.Log($"{stage.stageName} 입장!");
         // ... 예시: SceneManager.LoadScene("InGame");
     }
+    
+    public void OnStageClear(string stageId, int clearStars)
+    {
+        // 별 저장
+        StageStarSaveUtil.SaveStarCount(stageId, clearStars);
+
+        // 버튼에 반영(동적이면 Find, 정적이면 이벤트)
+        var allButtons = FindObjectsOfType<StageButton>();
+        foreach (var btn in allButtons)
+            if (btn.stageId == stageId)
+                btn.RefreshStarUI();
+    }
+    
 }

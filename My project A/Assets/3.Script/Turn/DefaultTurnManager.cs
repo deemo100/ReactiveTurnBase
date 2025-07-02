@@ -16,6 +16,9 @@ public class DefaultTurnManager : MonoBehaviour
     [SerializeField] private CostManager costManager;
     [SerializeField] private CostBar     costBar;
 
+    [Header("스테이지 식별자")] 
+    [SerializeField] private string stageId;
+    
     private int turnCount = 0;
     public List<PlayerUnit>     players;
     private List<EnemyUnit>      enemies;
@@ -101,24 +104,34 @@ public class DefaultTurnManager : MonoBehaviour
         bool isEnemyWin = FindObjectsOfType<PlayerUnit>().All(p => p.IsDead);
 
         if (battleOver) return;
-        Debug.Log($"CheckVictory() 호출! 적 중 살아있는 유닛 수: {enemies.Count(e => !e.IsDead)}");
 
         if (isPlayerWin)
         {
             battleOver = true;
             HideAllUnitBars();
 
-            bool allAlive = players.All(p => !p.IsDead);
-            bool withinTurn = turnCount <= 5;
+            // ⭐⭐ 별 조건 예시
+            bool cond1 = true;                                // 반드시 승리
+            bool cond2 = players.All(p => !p.IsDead);         // 아군 전원 생존
+            bool cond3 = turnCount <= 5;                      // 5턴 이내 클리어
 
-            // **이렇게!**
-            UIManager.Instance.ShowVictory(true, allAlive, withinTurn);
+            // ⭐⭐ 별 개수 계산
+            int starCount = 0;
+            if (cond1) starCount++;
+            if (cond2) starCount++;
+            if (cond3) starCount++;
+
+            // ⭐⭐ 별 개수 저장
+            StageStarSaveUtil.SaveStarCount(stageId, starCount);
+
+            // ⭐⭐ Victory UI 갱신
+            UIManager.Instance.ShowVictory(cond1, cond2, cond3);
         }
         else if (isEnemyWin)
         {
             battleOver = true;
             HideAllUnitBars();
-            UIManager.Instance.ShowDefeat(); // 패배는 기존 그대로
+            UIManager.Instance.ShowDefeat();
         }
     }
     
@@ -128,7 +141,6 @@ public class DefaultTurnManager : MonoBehaviour
         {
             if (unit.healthBarFollower != null)
                 unit.healthBarFollower.gameObject.SetActive(false);
-        
             if (unit.groggyBarFollower != null)
                 unit.groggyBarFollower.gameObject.SetActive(false);
         }

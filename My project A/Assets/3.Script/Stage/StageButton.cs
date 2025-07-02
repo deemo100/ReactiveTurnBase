@@ -3,26 +3,38 @@ using UnityEngine.UI;
 
 public class StageButton : MonoBehaviour
 {
-    public string stageId; // 인스펙터에서 직접 입력
+    public string stageId;
+    public Image[] starImages; // 0~2, 3개 별
+
     private Button _button;
 
     void Awake()
     {
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnStageButtonClick);
+        RefreshStarUI();
+    }
+
+    void OnEnable()
+    {
+        RefreshStarUI();
+    }
+
+    public void RefreshStarUI()
+    {
+        int starCount = StageStarSaveUtil.LoadStarCount(stageId);
+        for (int i = 0; i < starImages.Length; i++)
+            starImages[i].color = (i < starCount) ? Color.white : Color.black;
     }
 
     public void OnStageButtonClick()
     {
-        // 1. StageDataManager에서 해당 id의 StageData 가져오기
         var stageData = StageDataManager.Instance.StagesFindById(stageId);
         if (stageData == null)
         {
             Debug.LogWarning($"스테이지 {stageId} 데이터 없음");
             return;
         }
-
-        // 2. StageInfoPanelManager로 데이터 전달 & 패널 오픈
-        FindObjectOfType<StageInfoPanelManager>().Show(stageData);
+        FindObjectOfType<StageInfoPanelManager>().Show(stageData, this);
     }
 }
