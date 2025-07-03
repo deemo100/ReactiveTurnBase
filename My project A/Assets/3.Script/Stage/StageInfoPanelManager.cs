@@ -17,6 +17,8 @@ public class StageInfoPanelManager : MonoBehaviour
     public GameObject enemyIconPrefab;
     public GameObject rewardIconPrefab;
 
+    public EnemyIconDatabase enemyIconDB; 
+    
     // ⭐⭐ [추가] 여러 스테이지별 별 그룹 (score1, score2 등)
     [Header("별 UI 그룹")]
     public GameObject[] scoreGroups; 
@@ -76,7 +78,12 @@ public class StageInfoPanelManager : MonoBehaviour
         foreach (var id in enemyIds)
         {
             var go = Instantiate(enemyIconPrefab, enemyListParent);
-            go.GetComponentInChildren<TMP_Text>().text = DataManager.Instance.UnitStatTable[id].Name;
+            // ⬇️ 데이터로부터 이미지 찾아서 할당
+            var icon = enemyIconDB.GetIconById(id);
+            if (icon != null)
+                go.GetComponentInChildren<Image>().sprite = icon;
+
+            go.GetComponentInChildren<TMPro.TMP_Text>().text = DataManager.Instance.UnitStatTable[id].Name;
         }
     }
     private void RefreshRewardList(List<int> rewardIds)

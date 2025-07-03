@@ -2409,7 +2409,7 @@ CapsuleCollider:
   m_Radius: 0.25
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Center: {x: 0, y: -2.8, z: 0}
 --- !u!114 &8436131660600214295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2427,9 +2427,15 @@ MonoBehaviour:
   fireballPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   firePointfireball: {fileID: 0}
+  aoeImpactPrefab: {fileID: 0}
   MoveSpeed: 8
   healthBar: {fileID: 0}
   healthBarFollower: {fileID: 0}
+  groggyBar: {fileID: 0}
+  groggyBarFollower: {fileID: 0}
+  NormalAttackPercent: 100
+  NormalAttackGroggy: 0
+  statusIconStun: {fileID: 0}
 --- !u!1 &4153472025873388091
 GameObject:
   m_ObjectHideFlags: 0

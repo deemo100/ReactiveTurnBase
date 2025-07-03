@@ -2,7 +2,7 @@
   {
     "stageId": "stage_1_1",
     "stageName": "1-1",
-    "enemyIds": [5, 5, 5, 5],
+    "enemyIds": [5],
     "Enemies": [
       { "prefabName": "GoblinEnemy1", "statId": 5 }
     ],

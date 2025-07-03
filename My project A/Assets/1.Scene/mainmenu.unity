@@ -233,8 +233,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -65, y: 25}
-  m_SizeDelta: {x: 240, y: 160}
+  m_AnchoredPosition: {x: -45, y: 15}
+  m_SizeDelta: {x: 255, y: 140}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &126899366
 MonoBehaviour:
@@ -1348,7 +1348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 500, y: -48}
+  m_AnchoredPosition: {x: 500, y: -47}
   m_SizeDelta: {x: 90, y: 90}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &653227015
@@ -2436,6 +2436,7 @@ MonoBehaviour:
   closeButton: {fileID: 889680190}
   enemyIconPrefab: {fileID: 5659820525716286475, guid: 57ab6b6bf14235348990bcb2a1f5fb8e, type: 3}
   rewardIconPrefab: {fileID: 8223143020821049142, guid: b94f34464ffbd3d46ad01aa14d61cb5b, type: 3}
+  enemyIconDB: {fileID: 11400000, guid: f8033e5a0387eae4886bd336c283ff3d, type: 2}
   scoreGroups:
   - {fileID: 1195874576}
   - {fileID: 1094030235}
@@ -4375,7 +4376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -150, y: -380}
+  m_AnchoredPosition: {x: -145, y: -380}
   m_SizeDelta: {x: 520, y: 112.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1801353198

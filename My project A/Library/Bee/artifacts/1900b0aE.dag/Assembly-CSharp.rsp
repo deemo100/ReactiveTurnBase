@@ -381,6 +381,7 @@
 "Assets/3.Script/Cost/CostBar.cs"
 "Assets/3.Script/Cost/CostManager.cs"
 "Assets/3.Script/DataDTO/DataManager.cs"
+"Assets/3.Script/DataDTO/EnemyIconDatabase.cs"
 "Assets/3.Script/DataDTO/PlayerActionType.cs"
 "Assets/3.Script/DataDTO/PlayerUnitSaveData.cs"
 "Assets/3.Script/DataDTO/SkillData.cs"

@@ -3,7 +3,7 @@ id,name,class,hp,attack,defense,groggy,SkillId
 2,player2,b,80,25,10,0,2
 3,player3,c,90,22,16,0,4
 4,player4,d,60,8,10,0,3
-5,goblin1,None,50,50,1,100,5
-6,goblin2,None,50,50,1,100,6
+5,고블린,None,50,50,1,100,5
+6,고블린 전사,None,50,50,1,100,6
 7,goblin3,None,50,30,1,100,7
 8,goblin4,None,50,30,1,100,8
