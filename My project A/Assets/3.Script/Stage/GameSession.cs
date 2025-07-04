@@ -10,6 +10,7 @@ public class GameSession : MonoBehaviour
    
     // 현재 선택된 스테이지 ID (메뉴 등에서 할당)
     public string currentStageId;
+    public StageData currentStageData;   // ⭐ 현재 스테이지 데이터(추가)
     public int lastClearStarCount = 0;
     
     void Awake()

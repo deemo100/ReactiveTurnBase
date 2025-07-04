@@ -5333,6 +5333,8 @@ MonoBehaviour:
   MoveSpeed: 8
   healthBar: {fileID: 0}
   healthBarFollower: {fileID: 0}
+  groggyBar: {fileID: 0}
+  groggyBarFollower: {fileID: 0}
   NormalAttackPercent: 100
   NormalAttackGroggy: 50
   WeaponIcon: {fileID: 21300000, guid: 530bcabb1501d8148a19a77465ecac03, type: 3}
@@ -5359,7 +5361,7 @@ CapsuleCollider:
   m_Radius: 0.25
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1 &5394520352614871048
 GameObject:
   m_ObjectHideFlags: 0

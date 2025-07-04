@@ -6,9 +6,13 @@
     "Enemies": [
       { "prefabName": "GoblinEnemy1", "statId": 5 }
     ],
-    "rewardIds": [1001, 1002],
+    "rewards": [
+      { "type": "gem", "amount": 100 },
+      { "type": "gold", "amount": 1000 }
+    ],
     "backgroundImage": "bg_01",
-    "requiredPower": 1000
+    "requiredPower": 1000,
+    "requiredEnergy": 10
   },
   {
     "stageId": "stage_1_2",
@@ -20,8 +24,12 @@
       { "prefabName": "GoblinEnemy1", "statId": 5 },
       { "prefabName": "GoblinEnemy2", "statId": 6 }
     ],
-    "rewardIds": [1002, 1003],
+    "rewards": [
+      { "type": "gem", "amount": 100 },
+      { "type": "gold", "amount": 3000 }
+    ],
     "backgroundImage": "bg_02",
-    "requiredPower": 1200
+    "requiredPower": 1200,
+    "requiredEnergy": 20
   }
 ]

@@ -16,9 +16,11 @@ public class VictoryPanelManager : MonoBehaviour
     {
         stageId = clearStageId;
         starCount = clearStars;
-
-        // ⭐⭐ 별 UI 갱신 호출!
         victoryStarController.SetStarsByCount(starCount);
+
+        // ⭐⭐⭐ 여기서 한 번만 보상 지급!
+        Debug.Log("보상 지급 시도: " + GameSession.Instance.currentStageData.stageId);
+        RewardManager.Instance.GiveStageReward(GameSession.Instance.currentStageData, starCount);
 
         retryButton.onClick.RemoveAllListeners();
         retryButton.onClick.AddListener(OnRetryClicked);

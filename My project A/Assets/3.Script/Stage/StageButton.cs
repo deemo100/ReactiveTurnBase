@@ -29,15 +29,12 @@ public class StageButton : MonoBehaviour
     public void RefreshStarUI()
     {
         int starCount = StageStarSaveUtil.LoadStarCount(stageId);
-
-        Debug.Log($"[StageButton] {stageId} RefreshStarUI() 호출, starCount={starCount}");
+        
 
         for (int i = 0; i < starImages.Length; i++)
         {
             bool active = i < starCount;
-            Debug.Log($"별[{i}] 활성화? {active}, 원래 색상={starImages[i].color}");
             starImages[i].color = active ? Color.white : Color.black;
-            Debug.Log($"별[{i}] 변경 후 색상={starImages[i].color}");
         }
     }
 

@@ -16,7 +16,6 @@ public static class StageStarSaveUtil
     public static int LoadStarCount(string stageId)
     {
         int val = PlayerPrefs.GetInt($"{stageId}_stars", 0);
-        Debug.Log($"[LoadStarCount] 로드: {stageId}_stars = {val}");
         return val;
     }
 }

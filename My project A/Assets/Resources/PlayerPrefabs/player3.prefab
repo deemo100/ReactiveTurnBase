@@ -3832,9 +3832,14 @@ MonoBehaviour:
   fireballPrefab: {fileID: 0}
   firePoint: {fileID: 0}
   firePointfireball: {fileID: 0}
+  aoeImpactPrefab: {fileID: 0}
   MoveSpeed: 8
   healthBar: {fileID: 0}
   healthBarFollower: {fileID: 0}
+  groggyBar: {fileID: 0}
+  groggyBarFollower: {fileID: 0}
+  NormalAttackPercent: 100
+  NormalAttackGroggy: 0
   WeaponIcon: {fileID: 21300000, guid: b11f9c52da2945740b5078d84177a9ab, type: 3}
   SkillIcon: {fileID: 21300000, guid: c46d83f2b73aaa141bd5015819342d81, type: 3}
 --- !u!136 &6059036809147548806
@@ -3859,7 +3864,7 @@ CapsuleCollider:
   m_Radius: 0.25
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Center: {x: 0, y: 0.4, z: 0}
 --- !u!1 &1743662929445741406
 GameObject:
   m_ObjectHideFlags: 0
