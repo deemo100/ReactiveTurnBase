@@ -1,16 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 public class MoneyManager : MonoBehaviour
 {
     public static MoneyManager Instance { get; private set; }
-    public int Gold { get; private set; }
-    public int Gem { get; private set; }
-    
+
+    private int gold;
+    private int gem;
+
+    public int Gold => gold;
+    public int Gem => gem; // 직접 게터만 사용
+
     public event Action<int> OnGoldChanged;
     public event Action<int> OnGemChanged;
-    
+
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
@@ -18,46 +21,48 @@ public class MoneyManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Load();
     }
-    
+
     public void AddGold(int value)
     {
-        Gold += value;
+        gold += value;
         Save();
-        OnGoldChanged?.Invoke(Gold);
+        OnGoldChanged?.Invoke(gold);
     }
+
     public void AddGem(int value)
     {
-        Gem += value;
+        gem += value;
         Save();
-        OnGemChanged?.Invoke(Gem);
+        OnGemChanged?.Invoke(gem);
     }
-    public bool TrySpendGold(int value)
+
+    public bool TryConsumeGem(int amount)
     {
-        if (Gold < value) return false;
-        Gold -= value;
+        if (gem < amount)
+        {
+            Debug.LogWarning($"[MoneyManager] 보석 부족! 현재: {gem}, 필요: {amount}");
+            return false;
+        }
+        gem -= amount;
         Save();
-        OnGoldChanged?.Invoke(Gold);
+        OnGemChanged?.Invoke(gem);
+        Debug.Log($"[MoneyManager] 보석 차감: {amount}, 남은 보석: {gem}");
         return true;
     }
-    public bool TrySpendGem(int value)
-    {
-        if (Gem < value) return false;
-        Gem -= value;
-        Save();
-        OnGemChanged?.Invoke(Gem);
-        return true;
-    }
+
     private void Save()
     {
-        PlayerPrefs.SetInt("gold", Gold);
-        PlayerPrefs.SetInt("gem", Gem);
+        PlayerPrefs.SetInt("gold", gold);
+        PlayerPrefs.SetInt("gem", gem);
         PlayerPrefs.Save();
     }
+
     private void Load()
     {
-        Gold = PlayerPrefs.GetInt("gold", 0);
-        Gem  = PlayerPrefs.GetInt("gem", 0);
-        OnGoldChanged?.Invoke(Gold);
-        OnGemChanged?.Invoke(Gem);
+        gold = PlayerPrefs.GetInt("gold", 0);
+        gem  = PlayerPrefs.GetInt("gem", 0);
+        OnGoldChanged?.Invoke(gold);
+        OnGemChanged?.Invoke(gem);
+        Debug.Log($"[MoneyManager] Load 완료 - 골드: {gold}, 보석: {gem}");
     }
 }

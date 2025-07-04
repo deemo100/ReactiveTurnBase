@@ -13,20 +13,18 @@ public class PlayerUnit : Unit
     {
         HasActedThisTurn = true;
         SetSelected(false);
-        Debug.Log($"[PlayerUnit] {UnitName} MarkActed 호출, HasActedThisTurn: {HasActedThisTurn}");
+     
     }
 
     public void ResetTurn()
     {
         HasActedThisTurn = false;
         SetSelected(false);
-        Debug.Log($"[PlayerUnit] {UnitName} ResetTurn 호출, HasActedThisTurn: {HasActedThisTurn}");
     }
 
     public void SetSelected(bool selected)
     {
         IsSelected = selected;
-        Debug.Log($"[PlayerUnit] SetSelected 호출: {UnitName} 지정 상태 → {IsSelected}");
     }
 
     public override void Init(UnitStat stat, TeamType team)

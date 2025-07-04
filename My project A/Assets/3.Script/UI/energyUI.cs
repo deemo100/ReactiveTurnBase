@@ -7,18 +7,18 @@ public class energyUI : MonoBehaviour
 
     void Start()
     {
-        energyManager.Instance.OnMeatChanged += UpdateMeatText;
+        energyManager.Instance.OnenergyChanged += UpdateMeatText;
         UpdateMeatText(energyManager.Instance.Currentenergy);
     }
 
     void OnDestroy()
     {
         if (energyManager.Instance != null)
-            energyManager.Instance.OnMeatChanged -= UpdateMeatText;
+            energyManager.Instance.OnenergyChanged -= UpdateMeatText;
     }
 
     void UpdateMeatText(int value)
     {
-        energyText.text = $"{value} / {energyManager.Maxenergy}";
+        energyText.text = $"{value} / {energyManager.MaxEnergy}";
     }
 }

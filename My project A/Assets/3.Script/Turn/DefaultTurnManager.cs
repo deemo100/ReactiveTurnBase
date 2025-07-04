@@ -24,6 +24,9 @@ public class DefaultTurnManager : MonoBehaviour
     private List<EnemyUnit>      enemies;
     private bool battleOver = false;
     
+    [SerializeField] private VictoryPanelManager victoryPanelManager;
+    [SerializeField] private GameObject victoryPanelObject; // Victory 패널 UI 오브젝트
+    
     private InputServiceNew      _inputSvc;
     private SimpleCombatExecutor _executor;
     private UnitFactory          _factory;
@@ -111,24 +114,24 @@ public class DefaultTurnManager : MonoBehaviour
             HideAllUnitBars();
 
             // ⭐⭐ 별 조건 예시
-            bool cond1 = true;                                // 반드시 승리
-            bool cond2 = players.All(p => !p.IsDead);         // 아군 전원 생존
-            bool cond3 = turnCount <= 5;                      // 5턴 이내 클리어
+            bool cond1 = true;
+            bool cond2 = players.All(p => !p.IsDead);
+            bool cond3 = turnCount <= 5;
 
-            // ⭐⭐ 별 개수 계산
             int starCount = 0;
             if (cond1) starCount++;
             if (cond2) starCount++;
             if (cond3) starCount++;
 
-            
-            GameSession.Instance.lastClearStarCount = starCount; // ★ 이 라인 추가
-
-            // ⭐⭐ 별 개수 저장
+            GameSession.Instance.lastClearStarCount = starCount;
             StageStarSaveUtil.SaveStarCount(stageId, starCount);
 
-            // ⭐⭐ Victory UI 갱신
-            UIManager.Instance.ShowVictory(cond1, cond2, cond3);
+            // [중요] VictoryPanelManager Setup 호출!
+            victoryPanelObject.SetActive(true); // UI 띄우기
+            victoryPanelManager.Setup(stageId, starCount); // 보상 지급, 별 UI 등 처리
+
+            // 기존 코드: ShowVictory 대신 주석처리 or 필요하면 내부 호출
+            // UIManager.Instance.ShowVictory(cond1, cond2, cond3);
         }
         else if (isEnemyWin)
         {

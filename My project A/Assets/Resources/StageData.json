@@ -12,7 +12,7 @@
     ],
     "backgroundImage": "bg_01",
     "requiredPower": 1000,
-    "requiredEnergy": 10
+    "requiredEnergy": 60
   },
   {
     "stageId": "stage_1_2",
@@ -30,6 +30,24 @@
     ],
     "backgroundImage": "bg_02",
     "requiredPower": 1200,
-    "requiredEnergy": 20
+    "requiredEnergy": 30
+  },
+  {
+    "stageId": "stage_1_3",
+    "stageName": "1-3",
+    "enemyIds": [5, 6, 6, 6],
+    "Enemies": [
+      { "prefabName": "GoblinEnemy1", "statId": 5 },
+      { "prefabName": "GoblinEnemy1", "statId": 6 },
+      { "prefabName": "GoblinEnemy1", "statId": 6 },
+      { "prefabName": "GoblinEnemy2", "statId": 6 }
+    ],
+    "rewards": [
+      { "type": "gem", "amount": 100 },
+      { "type": "gold", "amount": 5000 }
+    ],
+    "backgroundImage": "bg_03",
+    "requiredPower": 1200,
+    "requiredEnergy": 40
   }
 ]

@@ -20,22 +20,28 @@ public class RewardManager : MonoBehaviour
 
     public void GiveStageReward(StageData stage, int starCount)
     {
+        if (stage == null)
+        {
+            Debug.LogError("GiveStageReward: stage 데이터가 null!");
+            return;
+        }
+
         foreach (var reward in stage.rewards)
         {
             switch (reward.type)
             {
                 case "gold":
-                    Debug.Log($"골드 획득: {reward.amount}");
                     MoneyManager.Instance.AddGold(reward.amount);
+                    Debug.Log($"[Reward] gold: {reward.amount}");
                     break;
                 case "gem":
                     string key = $"gemReward_{stage.stageId}";
                     if (reward.amount > 0 && starCount == 3 && PlayerPrefs.GetInt(key, 0) == 0)
                     {
-                        Debug.Log($"보석 최초 3성 획득: {reward.amount}");
                         MoneyManager.Instance.AddGem(reward.amount);
                         PlayerPrefs.SetInt(key, 1);
                         PlayerPrefs.Save();
+                        Debug.Log($"[Reward] gem: {reward.amount}");
                     }
                     break;
             }

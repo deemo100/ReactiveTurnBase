@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class StageInfoPanelManager : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class StageInfoPanelManager : MonoBehaviour
     private StageData currentStageData;
     public TMP_Text costText;
     
+    public GameObject energyPopup;
+    
+    
+    
     void Awake()
     {
         rootPanel.SetActive(false); // 기본 비활성화
@@ -43,44 +48,30 @@ public class StageInfoPanelManager : MonoBehaviour
         currentStageData = stage;
         rootPanel.SetActive(true);
 
-        enterButton.onClick.RemoveAllListeners();
-        enterButton.onClick.AddListener(() =>
-        {
-            int cost = stage.requiredEnergy > 0 ? stage.requiredEnergy : 10;
-            if (!energyManager.Instance.TryConsumeMeat(cost))
-            {
-                Debug.Log("에너지가 부족합니다!");
-                // 팝업 등 추가 처리
-                return;
-            }
-            StageEnter(stage);
-        });
-        // UI에 cost(고기 소모량) 표시
-        // enterButton이나 따로 TMP_Text로 cost 표시
-        costText.text = $"{stage.requiredEnergy}"; // 예시: 10
-        
-        // 1. 모든 그룹 비활성
+        // cost UI 표시만 유지 (색상 등 상관 X)
+        costText.text = $"{stage.requiredEnergy}";
+
+        // 별 그룹 비활성/활성화 로직 유지
         foreach (var group in scoreGroups)
             group.SetActive(false);
 
-        // 2. stage.stageId에 따라 그룹 활성화
         if (stage.stageId == "stage_1_1")
             scoreGroups[0].SetActive(true);
         else if (stage.stageId == "stage_1_2")
             scoreGroups[1].SetActive(true);
-        // 필요에 따라 else if 더 추가
 
-        // 나머지 기존 코드 (타이틀, 적, 보상 등)
+        // 나머지 UI 세팅
         titleText.text = $"{stage.stageName}";
         RefreshEnemyList(stage.enemyIds);
         RefreshRewardList(stage.rewards, stage.stageId);
 
+        // ⭐⭐ enterButton 항상 활성 (interactable = true도 추가해도 무방)
+        enterButton.interactable = true;
+        // ⭐⭐⭐ 중복 방지! 반드시 RemoveAllListeners
         enterButton.onClick.RemoveAllListeners();
-        enterButton.onClick.AddListener(() =>
-        {
-            StageEnter(stage);
-        });
+        enterButton.onClick.AddListener(() => TryEnterStage(stage));
     }
+
 
     // ⭐⭐ 이 함수가 핵심!
     private void SetScoreGroupActive(string stageId)
@@ -138,11 +129,48 @@ public class StageInfoPanelManager : MonoBehaviour
             }
         }
     }
-    private void StageEnter(StageData stage)
+    
+    // 별도의 함수로 분리!
+    private void TryEnterStage(StageData stage)
+    {
+        int cost = stage.requiredEnergy > 0 ? stage.requiredEnergy : 10;
+        if (energyManager.Instance.Currentenergy < cost)
+        {
+            ShowEnergyPopup(() => {
+                if (MoneyManager.Instance.TryConsumeGem(10))
+                {
+                    energyManager.Instance.FillOverCharge();
+                    // 바로 입장 시도
+                    if (energyManager.Instance.Currentenergy >= cost)
+                    {
+                        energyManager.Instance.TryConsumeenergy(cost);
+                        EnterStage(stage);
+                    }
+                    else
+                    {
+                        Debug.Log("에너지가 여전히 부족합니다.");
+                    }
+                }
+                else
+                {
+                    Debug.Log("보석 부족!");
+                }
+            });
+            return;
+        }
+
+        // 충분하면 바로 입장
+        energyManager.Instance.TryConsumeenergy(cost);
+        EnterStage(stage);
+    }
+    
+
+    private void EnterStage(StageData stage)
     {
         GameSession.Instance.currentStageId = stage.stageId;
-        GameSession.Instance.currentStageData = stage; // ⭐ 반드시 할당
-        // SceneManager.LoadScene("InGame");
+        GameSession.Instance.currentStageData = stage;
+        Debug.Log($"[StageEnter] {stage.stageId}, meat:{energyManager.Instance.Currentenergy}");
+        SceneManager.LoadScene("InGame"); // ⭐ 꼭 필요!
     }
     
     public void OnStageClear(string stageId, int clearStars)
@@ -153,5 +181,68 @@ public class StageInfoPanelManager : MonoBehaviour
         foreach (var btn in allButtons)
             if (btn.stageId == stageId)
                 btn.RefreshStarUI();
+    }
+    
+    // 에너지 팝업 함수 (VictoryPanelManager와 구조 동일)
+    private void ShowEnergyPopup(System.Action onConfirm)
+    {
+        if (energyPopup == null) return; // Null 체크
+        energyPopup.SetActive(true);
+
+        // 버튼 할당 (Hierarchy에서 직접 드래그한 Button 컴포넌트 필요)
+        var cancelBtn = energyPopup.transform.Find("CancelButton")?.GetComponent<Button>();
+        var confirmBtn = energyPopup.transform.Find("ConfirmButton")?.GetComponent<Button>();
+
+        if (cancelBtn != null)
+        {
+            cancelBtn.onClick.RemoveAllListeners();
+            cancelBtn.onClick.AddListener(() =>
+            {
+                energyPopup.SetActive(false);
+            });
+        }
+        if (confirmBtn != null)
+        {
+            confirmBtn.onClick.RemoveAllListeners();
+            confirmBtn.onClick.AddListener(() =>
+            {
+                energyPopup.SetActive(false);
+                onConfirm?.Invoke();
+            });
+        }
+    }
+    
+    public void OnClickEnergyOverChargeAndEnter()
+    {
+        // 현재 스테이지 데이터 필요
+        if (currentStageData == null) return;
+
+        int gemCost = 10;
+        int cost = currentStageData.requiredEnergy > 0 ? currentStageData.requiredEnergy : 10;
+
+        if (MoneyManager.Instance.TryConsumeGem(gemCost))
+        {
+            energyManager.Instance.Currentenergy = energyManager.MaxEnergy + energyManager.Instance.Currentenergy;
+
+            // 입장 코스트 차감
+            if (energyManager.Instance.TryConsumeenergy(cost))
+            {
+                EnterStage(currentStageData);
+            }
+            else
+            {
+                Debug.Log("에너지 충전 후에도 입장 비용 부족! (이론상 발생 불가)");
+            }
+        }
+        else
+        {
+            Debug.Log("보석 부족!");
+            // 필요시 팝업 닫기 등 추가
+            energyPopup.SetActive(false);
+        }
+    }
+    public void OnClickCloseEnergyPopup()
+    {
+        energyPopup.SetActive(false);
     }
 }

@@ -12,11 +12,14 @@ ScriptsOnlyBuild:
     - SPUM_Prefabs
     - SpritePos
     Assembly-CSharp.dll:
+    - Arrow
+    - AutoDestroy
     - CostBar
     - CostManager
     - DataManager
     - DefaultTurnManager
     - EnemyIconDatabase
+    - Fireball
     - GameInitializer
     - GameSession
     - GroggyBar
@@ -25,6 +28,9 @@ ScriptsOnlyBuild:
     - HealthBarFollower
     - InputServiceNew
     - MainMenuManager
+    - MoneyManager
+    - MoneyUI
+    - RewardManager
     - SimpleCombatExecutor
     - SkillButtonTooltip
     - SpawnPoint
@@ -35,6 +41,8 @@ ScriptsOnlyBuild:
     - UnitFactory
     - VictoryPanelManager
     - VictoryStarController
+    - energyManager
+    - energyUI
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridBrush
     - UnityEditor.Tilemaps.GridBrushEditor
@@ -62,6 +70,7 @@ ScriptsOnlyBuild:
     - UnityEngine.InputSystem.UI.InputSystemUIInputModule
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.RiderScriptEditorData
+    - Packages.Rider.Editor.RiderScriptEditorPersistedState
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
     - TMPro.TMP_ColorGradient
@@ -88,7 +97,8 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEditor.UI.dll:
-    - UnityEditor.UI.CanvasScalerEditor
+    - UnityEditor.UI.ButtonEditor
+    - UnityEditor.UI.ImageEditor
     UnityEngine.UI:
     - UnityEngine.UI.Image
     UnityEngine.UI.dll:
@@ -109,6 +119,7 @@ ScriptsOnlyBuild:
     - SpumAnimationClip
     - SpumPackage
     - SpumTextureData
+    - StageData
     Unity.2D.Tilemap.Extras:
     - UnityEngine.RuleTile/TilingRule
     Unity.InputSystem:
@@ -150,6 +161,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: StageButton
+    methodName: OnStageButtonClick
   - assembly: Assembly-CSharp
     fullTypeName: StageButton
     methodName: OnStageButtonClick
@@ -216,51 +230,53 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 18286}
     - Class: 114
-      Script: {instanceID: 19232}
+      Script: {instanceID: 19236}
     - Class: 114
-      Script: {instanceID: 19310}
+      Script: {instanceID: 19314}
     - Class: 114
-      Script: {instanceID: 19420}
+      Script: {instanceID: 19424}
     - Class: 114
-      Script: {instanceID: 19842}
+      Script: {instanceID: 19846}
     - Class: 114
-      Script: {instanceID: 19906}
+      Script: {instanceID: 19910}
     - Class: 114
-      Script: {instanceID: 20586}
+      Script: {instanceID: 20034}
     - Class: 114
-      Script: {instanceID: 20702}
+      Script: {instanceID: 20594}
     - Class: 114
-      Script: {instanceID: 21082}
+      Script: {instanceID: 20710}
     - Class: 114
-      Script: {instanceID: 21502}
+      Script: {instanceID: 21090}
     - Class: 114
-      Script: {instanceID: 21774}
+      Script: {instanceID: 21512}
     - Class: 114
-      Script: {instanceID: 21778}
+      Script: {instanceID: 21784}
     - Class: 114
-      Script: {instanceID: 21892}
+      Script: {instanceID: 21788}
     - Class: 114
-      Script: {instanceID: 21934}
+      Script: {instanceID: 21902}
     - Class: 114
-      Script: {instanceID: 21980}
+      Script: {instanceID: 21944}
     - Class: 114
-      Script: {instanceID: 22500}
+      Script: {instanceID: 21990}
     - Class: 114
-      Script: {instanceID: 22688}
+      Script: {instanceID: 22512}
     - Class: 114
-      Script: {instanceID: 22754}
+      Script: {instanceID: 22700}
     - Class: 114
-      Script: {instanceID: 22822}
+      Script: {instanceID: 22766}
     - Class: 114
-      Script: {instanceID: 23154}
+      Script: {instanceID: 22834}
     - Class: 114
-      Script: {instanceID: 23538}
+      Script: {instanceID: 23168}
     - Class: 114
-      Script: {instanceID: 23618}
+      Script: {instanceID: 23552}
     - Class: 114
-      Script: {instanceID: 23654}
+      Script: {instanceID: 23632}
     - Class: 114
-      Script: {instanceID: 23682}
+      Script: {instanceID: 23668}
+    - Class: 114
+      Script: {instanceID: 23696}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -341,43 +357,51 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 18530}
     - Class: 114
-      Script: {instanceID: 19420}
+      Script: {instanceID: 18842}
     - Class: 114
-      Script: {instanceID: 19780}
+      Script: {instanceID: 19034}
     - Class: 114
-      Script: {instanceID: 19904}
+      Script: {instanceID: 19424}
     - Class: 114
-      Script: {instanceID: 19906}
+      Script: {instanceID: 19784}
     - Class: 114
-      Script: {instanceID: 20004}
+      Script: {instanceID: 19908}
     - Class: 114
-      Script: {instanceID: 20012}
+      Script: {instanceID: 19910}
     - Class: 114
-      Script: {instanceID: 20226}
+      Script: {instanceID: 20008}
     - Class: 114
-      Script: {instanceID: 20336}
+      Script: {instanceID: 20016}
     - Class: 114
-      Script: {instanceID: 21082}
+      Script: {instanceID: 20232}
     - Class: 114
-      Script: {instanceID: 21638}
+      Script: {instanceID: 20342}
     - Class: 114
-      Script: {instanceID: 21734}
+      Script: {instanceID: 20462}
     - Class: 114
-      Script: {instanceID: 21778}
+      Script: {instanceID: 21090}
     - Class: 114
-      Script: {instanceID: 21934}
+      Script: {instanceID: 21648}
     - Class: 114
-      Script: {instanceID: 21980}
+      Script: {instanceID: 21744}
     - Class: 114
-      Script: {instanceID: 22648}
+      Script: {instanceID: 21788}
     - Class: 114
-      Script: {instanceID: 22822}
+      Script: {instanceID: 21944}
     - Class: 114
-      Script: {instanceID: 23654}
+      Script: {instanceID: 21990}
     - Class: 114
-      Script: {instanceID: 23682}
+      Script: {instanceID: 22308}
     - Class: 114
-      Script: {instanceID: 23944}
+      Script: {instanceID: 22660}
+    - Class: 114
+      Script: {instanceID: 22834}
+    - Class: 114
+      Script: {instanceID: 23668}
+    - Class: 114
+      Script: {instanceID: 23696}
+    - Class: 114
+      Script: {instanceID: 23958}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -873,6 +897,12 @@ ScriptsOnlyBuild:
     className: UnityOnTransformParentChangedMessageListener
   - hash:
       serializedVersion: 2
+      Hash: bc9e7c1b2b2bc8c3a23288e186922fd5
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: energyUI
+  - hash:
+      serializedVersion: 2
       Hash: 88e92d0b98d0b940a2f096c6dd73f4e6
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -913,6 +943,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: IconLayout
+  - hash:
+      serializedVersion: 2
+      Hash: e6aa0e6bc6f8425b424f8acea9939784
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MoneyUI
   - hash:
       serializedVersion: 2
       Hash: 5b8b7230ad968399f6726aa1269dcdcb
@@ -1149,16 +1185,22 @@ ScriptsOnlyBuild:
     className: DictionaryAsset
   - hash:
       serializedVersion: 2
-      Hash: aab916d83f4b52bbdf1ad2384feb84e3
+      Hash: 28d1647b551e39e00a4990ecc1e8609e
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameSession
   - hash:
       serializedVersion: 2
-      Hash: d88b0155db29d4c2964b694226b997c5
+      Hash: 2761c755499a7f68ae5e12bf09515b6f
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: StageDataManager
+  - hash:
+      serializedVersion: 2
+      Hash: af06a8f1d4c7e9190adee3de5393ba10
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: RewardManager
   - hash:
       serializedVersion: 2
       Hash: e7e95903ca66d58e1a7cbd71f824e16d
@@ -1243,6 +1285,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnPointerClickMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: a654cd2f9b3b0774fa9e91f52a706bb9
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MoneyManager
   - hash:
       serializedVersion: 2
       Hash: d0d571cfb02b3747a4b2f6e5364d24bd
@@ -1461,6 +1509,12 @@ ScriptsOnlyBuild:
     className: UnityOnDeselectMessageListener
   - hash:
       serializedVersion: 2
+      Hash: e9db290ba9af421b1b157c3d8c9102b7
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GiveStageReward
+  - hash:
+      serializedVersion: 2
       Hash: e2434ecff3e2f89abb82061f641e3892
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -1515,7 +1569,7 @@ ScriptsOnlyBuild:
     className: Benchmark02
   - hash:
       serializedVersion: 2
-      Hash: ffc3f6f6f1621308acb4a9dabfc63b0c
+      Hash: d2f9ee3f39663a246f65b6a0c954e1b8
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: StageInfoPanelManager
@@ -1609,6 +1663,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: TMPro.Examples
     className: Benchmark03
+  - hash:
+      serializedVersion: 2
+      Hash: ba90f56f950959dc6bad4ffe26284057
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: energyManager
   - hash:
       serializedVersion: 2
       Hash: fc5f473132116619f1c6e566ad803096
@@ -1899,7 +1959,7 @@ ScriptsOnlyBuild:
     className: SignalTrack
   - hash:
       serializedVersion: 2
-      Hash: 449a4c001d5eec7f5763c71d690544dd
+      Hash: bfd6ec823c1499c1d4c891cd6312c38b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: DefaultTurnManager

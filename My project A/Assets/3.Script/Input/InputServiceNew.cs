@@ -102,7 +102,6 @@ public class InputServiceNew : MonoBehaviour
                 }
                 _selectedUnit = playerUnit;
                 playerUnit.SetSelected(true);
-                Debug.Log($"[선택] {playerUnit.UnitName}이 선택됨");
                 UIManager.Instance.ShowActionButtons(playerUnit);
 
                 // === 추가 ===
@@ -200,7 +199,6 @@ public class InputServiceNew : MonoBehaviour
     // ✅ PlayerPhase에서 호출 (반드시 필요!)
     public async UniTask<PlayerAction> WaitForPlayerAction(PlayerUnit p)
     {
-        Debug.Log($"[InputServiceNew] WaitForPlayerAction 진입: {p.UnitName}");
         _selectedUnit = p;
         _currentMode = ActionMode.None;
         _selectedSkill = null;

@@ -72,7 +72,6 @@ public class SkillButtonTooltip : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log($"[Tooltip] OnPointerEnter: cachedTooltip={cachedTooltip}");
         Vector2 fixedPos = new Vector2(30, -30);
         UIManager.Instance.ShowTooltip(cachedTooltip, fixedPos);
     }
