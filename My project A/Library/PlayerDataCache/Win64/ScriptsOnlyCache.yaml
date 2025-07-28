@@ -12,14 +12,11 @@ ScriptsOnlyBuild:
     - SPUM_Prefabs
     - SpritePos
     Assembly-CSharp.dll:
-    - Arrow
-    - AutoDestroy
     - CostBar
     - CostManager
     - DataManager
     - DefaultTurnManager
     - EnemyIconDatabase
-    - Fireball
     - GameInitializer
     - GameSession
     - GroggyBar
@@ -87,18 +84,13 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
-    UnityEditor.UI.dll:
-    - UnityEditor.UI.ButtonEditor
-    - UnityEditor.UI.ImageEditor
     UnityEngine.UI:
     - UnityEngine.UI.Image
     UnityEngine.UI.dll:
@@ -162,8 +154,11 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
-    fullTypeName: StageButton
-    methodName: OnStageButtonClick
+    fullTypeName: StageInfoPanelManager
+    methodName: OnClickEnergyOverChargeAndEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: StageInfoPanelManager
+    methodName: OnClickCloseEnergyPopup
   - assembly: Assembly-CSharp
     fullTypeName: StageButton
     methodName: OnStageButtonClick
@@ -171,8 +166,8 @@ ScriptsOnlyBuild:
     fullTypeName: StageButton
     methodName: OnStageButtonClick
   - assembly: Assembly-CSharp
-    fullTypeName: VictoryPanelManager
-    methodName: OnRetryClicked
+    fullTypeName: StageButton
+    methodName: OnStageButtonClick
   - assembly: Assembly-CSharp
     fullTypeName: VictoryPanelManager
     methodName: OnExitClicked
@@ -218,9 +213,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 638}
     - Class: 114
-      Script: {instanceID: 16700}
+      Script: {instanceID: 16696}
     - Class: 114
       Script: {instanceID: 16702}
+    - Class: 114
+      Script: {instanceID: 16704}
     - Class: 114
       Script: {instanceID: 16942}
     - Class: 114
@@ -329,15 +326,13 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 16700}
+      Script: {instanceID: 16696}
     - Class: 114
       Script: {instanceID: 16702}
     - Class: 114
-      Script: {instanceID: 16710}
+      Script: {instanceID: 16704}
     - Class: 114
       Script: {instanceID: 16780}
-    - Class: 114
-      Script: {instanceID: 16942}
     - Class: 114
       Script: {instanceID: 17086}
     - Class: 114
@@ -435,6 +430,12 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
+      Hash: 33f160a5c07e580c29aba2bd1e4db811
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: HorizontalLayoutGroup
+  - hash:
+      serializedVersion: 2
       Hash: a90f6a00b23520788be7d89ee3b0773d
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
@@ -477,12 +478,6 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: 33f160a5c07e580c29aba2bd1e4db811
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: HorizontalLayoutGroup
-  - hash:
-      serializedVersion: 2
       Hash: 55060a7bf226ac385ce19ebd450f199f
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UIElements
@@ -519,7 +514,7 @@ ScriptsOnlyBuild:
     className: LayoutElement
   - hash:
       serializedVersion: 2
-      Hash: 7d27c76c8ebd9711b7ac5871f115c30a
+      Hash: b9965694493d84b468ced260f9a08385
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: VictoryPanelManager
@@ -1569,7 +1564,7 @@ ScriptsOnlyBuild:
     className: Benchmark02
   - hash:
       serializedVersion: 2
-      Hash: d2f9ee3f39663a246f65b6a0c954e1b8
+      Hash: 34ac424e0dfb0917ff976d7f65bc97a5
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: StageInfoPanelManager

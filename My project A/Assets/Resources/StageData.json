@@ -10,9 +10,9 @@
       { "type": "gem", "amount": 100 },
       { "type": "gold", "amount": 1000 }
     ],
-    "backgroundImage": "bg_01",
+    "backgroundImage": "bg_01",  
     "requiredPower": 1000,
-    "requiredEnergy": 60
+    "requiredEnergy": 20
   },
   {
     "stageId": "stage_1_2",

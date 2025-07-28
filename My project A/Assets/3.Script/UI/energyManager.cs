@@ -7,13 +7,13 @@ public class energyManager : MonoBehaviour
 
 
    
-    public const int MaxEnergy = 100; // ← 대문자 E로 변경!
+    public const int MaxEnergy = 100;
     public int Currentenergy { get; set; }
 
-    public float recoveryInterval = 60f; // 10초마다 1 회복
+    public float recoveryInterval = 60f; // 60초마다 1 회복
     private float recoveryTimer = 0f;
 
-    // Meat 변경시 UI에 알릴 이벤트
+    // 변경시 UI에 알릴 이벤트
     public event Action<int> OnenergyChanged;
 
     private void Awake()
@@ -27,6 +27,7 @@ public class energyManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         Loadenergy();
+        RecoverOfflineEnergy();
     }
 
     void Update()
@@ -42,7 +43,21 @@ public class energyManager : MonoBehaviour
             }
         }
     }
+    
+    void RecoverOfflineEnergy()
+    {
+        if (PlayerPrefs.HasKey("lastLoginTime"))
+        {
+            DateTime lastLogin = DateTime.Parse(PlayerPrefs.GetString("lastLoginTime"));
+            TimeSpan diff = DateTime.Now - lastLogin;
+            int recoverCount = Mathf.FloorToInt((float)diff.TotalSeconds / recoveryInterval);
+            if (recoverCount > 0)
+                Addenergy(recoverCount);
 
+            Debug.Log($"[오프라인 에너지 회복] +{recoverCount}개 (부재시간: {diff.TotalSeconds:F0}초)");
+        }
+    }
+    
     public bool TryConsumeenergy(int amount)
     {
         if (Currentenergy < amount)
@@ -93,6 +108,21 @@ public class energyManager : MonoBehaviour
         Currentenergy = MaxEnergy + Currentenergy;
         Saveenergy();
         OnenergyChanged?.Invoke(Currentenergy);
+    }
+    
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.SetString("lastLoginTime", DateTime.Now.ToString());
+        PlayerPrefs.Save();
+    }
+    
+    void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            PlayerPrefs.SetString("lastLoginTime", DateTime.Now.ToString());
+            PlayerPrefs.Save();
+        }
     }
     
 }
