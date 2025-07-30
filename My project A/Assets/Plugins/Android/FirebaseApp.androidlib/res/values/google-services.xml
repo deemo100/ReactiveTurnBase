@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id">
+  <string name="gcm_defaultSenderId" translatable="false">78724410825</string>
+  <string name="google_storage_bucket" translatable="false">turngame-bffbe.firebasestorage.app</string>
+  <string name="project_id" translatable="false">turngame-bffbe</string>
+  <string name="google_api_key" translatable="false">AIzaSyDCdwcfzYbS_tcSkE8cd7H4Nrk2WdAUDvI</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDCdwcfzYbS_tcSkE8cd7H4Nrk2WdAUDvI</string>
+  <string name="google_app_id" translatable="false">1:78724410825:android:bfd3185813bbe97eef4c18</string>
+</resources>

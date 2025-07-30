@@ -9,7 +9,7 @@ onBoardingDoNotAskAgain = true
 showPackageIndexes = false
 showStatusBar = false
 scopes = {
-	"last_search.66F56946" = "PlayerControl"
+	"last_search.66F56946" = "External"
 	"OpenInspectorPreview.66F56946" = "0"
 	"currentGroup.66F56946" = "all"
 }
@@ -63,6 +63,11 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"External"
+	"ExternalDependencyManager"
+	"Custom Package"
+	"Package"
+	"Import Package"
 	"PlayerControls"
 	"PlayerControls.inputa"
 	"PlayerControls.inputactions"
