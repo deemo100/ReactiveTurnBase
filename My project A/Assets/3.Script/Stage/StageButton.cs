@@ -28,8 +28,9 @@ public class StageButton : MonoBehaviour
 
     public void RefreshStarUI()
     {
+        Debug.Log($"[StageButton] RefreshStarUI 호출: stageId={stageId}");
         int starCount = StageStarSaveUtil.LoadStarCount(stageId);
-        
+        Debug.Log($"[StageButton] stageId={stageId}, starCount={starCount}");
 
         for (int i = 0; i < starImages.Length; i++)
         {

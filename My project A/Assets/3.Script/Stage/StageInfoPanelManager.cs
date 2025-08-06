@@ -13,9 +13,12 @@ public class StageInfoPanelManager : MonoBehaviour
     public Transform rewardListParent;
     public Button enterButton;
     public Button closeButton;
-
-    // (적/보상 아이콘용 프리팹)
-    public GameObject enemyIconPrefab;
+    
+    [Header("게임 종료 버튼")]
+    public GameObject exitPopup;    // Inspector에서 exitpopup 오브젝트 할당
+    public Button arrowButton;      // 왼쪽 상단 화살표 버튼
+    public Button quitConfirmButton;  // "확인" 버튼
+    public Button quitCancelButton;   // "취소" 버튼
     
     [Header("보상 프리팹")]
     public GameObject moneyIcon;
@@ -24,7 +27,10 @@ public class StageInfoPanelManager : MonoBehaviour
 
     public EnemyIconDatabase enemyIconDB; 
     
-    // ⭐⭐ [추가] 여러 스테이지별 별 그룹 (score1, score2 등)
+    [Header("오토 클리어 Victory")]
+    [SerializeField] private AutoVictoryPanelManager autoVictoryPanelManager;
+    
+    // [추가] 여러 스테이지별 별 그룹 (score1, score2 등)
     [Header("별 UI 그룹")]
     public GameObject[] scoreGroups; 
 
@@ -33,13 +39,19 @@ public class StageInfoPanelManager : MonoBehaviour
     public TMP_Text costText;
     
     public GameObject energyPopup;
-    
+    // (적/보상 아이콘용 프리팹)
+    public GameObject enemyIconPrefab;
     
     
     void Awake()
     {
         rootPanel.SetActive(false); // 기본 비활성화
         closeButton.onClick.AddListener(() => rootPanel.SetActive(false));
+        
+        arrowButton.onClick.AddListener(OpenExitPopup);
+        quitConfirmButton.onClick.AddListener(OnQuitConfirmed);
+        quitCancelButton.onClick.AddListener(CloseExitPopup);
+        exitPopup.SetActive(false); // 처음엔 꺼진 상태
     }
 
     // 외부에서 호출 (예: 스테이지 버튼 클릭 시)
@@ -59,21 +71,23 @@ public class StageInfoPanelManager : MonoBehaviour
             scoreGroups[0].SetActive(true);
         else if (stage.stageId == "stage_1_2")
             scoreGroups[1].SetActive(true);
-
+        else if (stage.stageId == "stage_1_3")
+            scoreGroups[1].SetActive(true);
+        
         // 나머지 UI 세팅
         titleText.text = $"{stage.stageName}";
         RefreshEnemyList(stage.enemyIds);
         RefreshRewardList(stage.rewards, stage.stageId);
 
-        // ⭐⭐ enterButton 항상 활성 (interactable = true도 추가해도 무방)
+        // enterButton 항상 활성 (interactable = true도 추가해도 무방)
         enterButton.interactable = true;
-        // ⭐⭐⭐ 중복 방지! 반드시 RemoveAllListeners
+        // 중복 방지! 반드시 RemoveAllListeners
         enterButton.onClick.RemoveAllListeners();
         enterButton.onClick.AddListener(() => TryEnterStage(stage));
     }
 
 
-    // ⭐⭐ 이 함수가 핵심!
+    // 이 함수가 핵심!
     private void SetScoreGroupActive(string stageId)
     {
         foreach (var group in scoreGroups)
@@ -170,7 +184,7 @@ public class StageInfoPanelManager : MonoBehaviour
         GameSession.Instance.currentStageId = stage.stageId;
         GameSession.Instance.currentStageData = stage;
         Debug.Log($"[StageEnter] {stage.stageId}, meat:{energyManager.Instance.Currentenergy}");
-        SceneManager.LoadScene("InGame"); // ⭐ 꼭 필요!
+        SceneManager.LoadScene("InGame"); //  꼭 필요!
     }
     
     public void OnStageClear(string stageId, int clearStars)
@@ -245,4 +259,67 @@ public class StageInfoPanelManager : MonoBehaviour
     {
         energyPopup.SetActive(false);
     }
+    
+    private void OnAutoButtonClicked()
+    {
+        int star = StageStarSaveUtil.LoadStarCount(currentStageData.stageId);
+        if (star < 3)
+        {
+            // 경고 등 표시
+            Debug.Log("3별 클리어 시에만 오토 클리어 가능!");
+            return;
+        }
+        // 보상 지급 (별도 함수 활용)
+        GiveClearReward(currentStageData);
+
+        // 오토 Victory 패널 노출
+        if (autoVictoryPanelManager != null)
+            autoVictoryPanelManager.ShowAutoVictory(currentStageData);
+    }
+    
+    // 오토 클리어 시 보상 지급
+    private void GiveClearReward(StageData stage)
+    {
+        foreach (var reward in stage.rewards)
+        {
+            switch (reward.type)
+            {
+                case "gold": MoneyManager.Instance.AddGold(reward.amount); break;
+                case "gem": MoneyManager.Instance.AddGem(reward.amount); break;
+                // 기타 아이템 등
+            }
+        }
+        // 오토로도 별 획득/갱신(이미 3별이라면 값이 동일하겠지만)
+        StageStarSaveUtil.SaveStarCount(stage.stageId, 3);
+    }
+    
+    private void OpenExitPopup()
+    {
+        exitPopup.SetActive(true);
+    }
+
+    private void CloseExitPopup()
+    {
+        exitPopup.SetActive(false);
+    }
+
+    private void OnQuitConfirmed()
+    {
+        Debug.Log("게임 종료 버튼 클릭됨");
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // 에디터에서만 동작
+#endif
+    }
+ 
+    
+    private void OnQuitClicked()
+    {
+        Debug.Log("게임 종료 버튼 클릭됨");
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+    }
+    
 }

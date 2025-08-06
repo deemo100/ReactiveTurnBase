@@ -19,7 +19,7 @@ public class VictoryPanelManager : MonoBehaviour
     public Button popupCancelButton;
     public Button popupConfirmButton;
 
-    // ⭐ 중복 팝업 방지용 플래그
+    //  중복 팝업 방지용 플래그
     private bool isEnergyPopupActive = false;
 
     public void Setup(string clearStageId, int clearStars)
@@ -115,8 +115,9 @@ public class VictoryPanelManager : MonoBehaviour
             {
                 string gemKey = $"gemReward_{stage.stageId}";
                 bool gemReceived = PlayerPrefs.GetInt(gemKey, 0) == 1;
-                if (gemReceived)
-                    continue;
+
+                if (starCount < 3 || gemReceived)
+                    continue; // 표시 안 함
             }
 
             if (slotIdx >= rewardSlots.Length) break;
@@ -138,8 +139,8 @@ public class VictoryPanelManager : MonoBehaviour
             slotIdx++;
         }
 
-        for (int i = slotIdx; i < rewardSlots.Length; i++)
-            rewardSlots[i].gameObject.SetActive(false);
+        //for (int i = slotIdx; i < rewardSlots.Length; i++)
+        //    rewardSlots[i].gameObject.SetActive(false);
     }
 
     // ** 팝업은 중복 호출 방지, 확인/취소 명확히 분리 **

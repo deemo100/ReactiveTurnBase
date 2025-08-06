@@ -28,7 +28,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // ✅ Skill id로 SkillData 반환
+    //  Skill id로 SkillData 반환
     public SkillData GetSkillById(int id)
     {
         if (SkillTable.TryGetValue(id, out var skill))

@@ -12,7 +12,7 @@ public class InputServiceNew : MonoBehaviour
     
     private UniTaskCompletionSource<PlayerUnit> _unitSelectTcs;
     private List<PlayerUnit> _unitSelectCandidates;
-    
+
     public static InputServiceNew Instance { get; private set; }
 
     private PlayerUnit _selectedUnit;
@@ -27,6 +27,7 @@ public class InputServiceNew : MonoBehaviour
         Instance = this;
     }
 
+    // 유닛 선택 대기
     public async UniTask<PlayerUnit> WaitForUnitSelect(List<PlayerUnit> candidates)
     {
         Debug.Log("[InputServiceNew] WaitForUnitSelect 진입, 행동 가능한 유닛 선택 대기 중...");
@@ -36,106 +37,105 @@ public class InputServiceNew : MonoBehaviour
     }
     
    void Update()
-{
-    // 전체 PlayerUnit 중 하나라도 busy면 차단
-    if (DefaultTurnManager.Instance != null && DefaultTurnManager.Instance.players.Any(p => p.IsBusy))
-        return;
-    
-    if (Mouse.current == null) return;
-    if (Mouse.current.leftButton.wasPressedThisFrame)
     {
-        Vector3 screenPos = Mouse.current.position.ReadValue();
-        Ray ray = Camera.main.ScreenPointToRay(screenPos);
+        // 1. busy 상태 유닛이 있으면 입력 차단
+        if (DefaultTurnManager.Instance != null && DefaultTurnManager.Instance.players.Any(p => p.IsBusy))
+            return;
 
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Mouse.current == null) return;
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            // --- 공격/스킬 명령 입력 상태 ---
-            if (_awaitTarget)
+            Vector3 screenPos = Mouse.current.position.ReadValue();
+            Ray ray = Camera.main.ScreenPointToRay(screenPos);
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                // 1. 공격 모드 (EnemyUnit 자식 포함)
-                var enemy = hit.collider.GetComponentInChildren<EnemyUnit>();
-                if (_currentMode == ActionMode.Attack && enemy != null && !enemy.IsDead)
+                // --- 공격/스킬 명령 입력 상태 ---
+                if (_awaitTarget)
                 {
-                    Debug.Log($"{_selectedUnit.UnitName}이 {enemy.UnitName}을 공격!");
-                    TryCompletePlayerAction(new PlayerAction
+                    // 1. 공격 모드: 적 유닛 클릭 시
+                    if (_currentMode == ActionMode.Attack && hit.collider.TryGetComponent<EnemyUnit>(out var enemy) && !enemy.IsDead)
                     {
-                        Type = PlayerActionType.BasicAttack,
-                        Actor = _selectedUnit,
-                        Target = enemy
-                    });
+                        Debug.Log($"{_selectedUnit.UnitName}이 {enemy.UnitName}을 공격!");
+                        TryCompletePlayerAction(new PlayerAction
+                        {
+                            Type = PlayerActionType.BasicAttack,
+                            Actor = _selectedUnit,
+                            Target = enemy
+                        });
+                        return;
+                    }
+
+                    // 2. 스킬 모드: 스킬 타겟 가능한 유닛 클릭 시
+                    if (_currentMode == ActionMode.Skill && hit.collider.TryGetComponent<Unit>(out var unit) && IsSkillTargetValid(unit))
+                    {
+                        Debug.Log($"{_selectedUnit.UnitName}이 {unit.UnitName}에게 스킬({_selectedSkill.Name}) 사용!");
+                        TryCompletePlayerAction(new PlayerAction
+                        {
+                            Type = PlayerActionType.Skill,
+                            Actor = _selectedUnit,
+                            Target = unit,
+                            SkillData = _selectedSkill
+                        });
+                        return;
+                    }
+
+                    // 3. 타겟이 아니면(빈 화면 클릭): 행동 명령만 취소, 유닛 선택은 유지
+                    Debug.Log("빈 화면 클릭 - 행동 명령 취소(유닛 선택은 유지)");
+                    CancelActionMode();
+                    UIManager.Instance.HideActionButtons();
+                    TryCompletePlayerAction(null); // null로 해제(실패 취급)
                     return;
                 }
 
-                // 2. 스킬 모드 (Unit 자식 포함)
-                var unit = hit.collider.GetComponentInChildren<Unit>();
-                if (_currentMode == ActionMode.Skill && unit != null && IsSkillTargetValid(unit))
+                // --- 평상시 유닛 선택 ---
+                if (!_awaitTarget && hit.collider.TryGetComponent<PlayerUnit>(out var playerUnit) && !playerUnit.HasActedThisTurn)
                 {
-                    Debug.Log($"{_selectedUnit.UnitName}이 {unit.UnitName}에게 스킬({_selectedSkill.Name}) 사용!");
-                    TryCompletePlayerAction(new PlayerAction
-                    {
-                        Type = PlayerActionType.Skill,
-                        Actor = _selectedUnit,
-                        Target = unit,
-                        SkillData = _selectedSkill
-                    });
-                    return;
-                }
+                    // 이전 선택 유닛 해제(자기 자신이 아닐 때)
+                    if (_selectedUnit != null && _selectedUnit != playerUnit)
+                        _selectedUnit.SetSelected(false);
 
-                // 3. 타겟이 아니면(빈 화면 클릭): 행동 명령 취소
-                Debug.Log("빈 화면 클릭 - 행동 명령 취소");
-                CancelActionMode();
-                DeselectCurrentUnit();
-                UIManager.Instance.HideActionButtons();
-                TryCompletePlayerAction(null); // null로 해제(실패 취급)
-                return;
-            }
-
-            // --- 평상시 유닛 선택 ---
-            var playerUnit = hit.collider.GetComponentInChildren<PlayerUnit>();
-            if (!_awaitTarget && playerUnit != null && !playerUnit.HasActedThisTurn)
-            {
-                if (_selectedUnit != null)
-                {
                     _selectedUnit = playerUnit;
                     playerUnit.SetSelected(true);
                     UIManager.Instance.ShowActionButtons(playerUnit);
-                }
-                _selectedUnit = playerUnit;
-                playerUnit.SetSelected(true);
-                UIManager.Instance.ShowActionButtons(playerUnit);
 
-                // === 추가 ===
-                // 만약 WaitForUnitSelect() 중이라면 유닛 선택 결과 반환!
-                if (_unitSelectTcs != null && _unitSelectCandidates != null && _unitSelectCandidates.Contains(playerUnit))
-                {
-                    _unitSelectTcs.TrySetResult(playerUnit);
-                    _unitSelectTcs = null;
+                    // WaitForUnitSelect() 대기 중일 때 결과 반환
+                    if (_unitSelectTcs != null && _unitSelectCandidates != null && _unitSelectCandidates.Contains(playerUnit))
+                    {
+                        _unitSelectTcs.TrySetResult(playerUnit);
+                        _unitSelectTcs = null;
+                    }
                 }
             }
-        }
-        else
-        {
-            // 아무 오브젝트도 클릭되지 않은(=빈 화면 클릭) 경우: 유닛 선택 해제
-            if (!_awaitTarget && _selectedUnit != null)
+            else
             {
-                Debug.Log("빈 화면 클릭 - 유닛 선택 해제");
-                DeselectCurrentUnit();
-                UIManager.Instance.HideActionButtons();
+                // 아무 오브젝트도 클릭되지 않은(=빈 화면 클릭) 경우: 유닛 선택 해제
+                if (!_awaitTarget && _selectedUnit != null)
+                {
+                    Debug.Log("빈 화면 클릭 - 유닛 선택 해제");
+                    DeselectCurrentUnit();
+                    UIManager.Instance.HideActionButtons();
+                }
+                // 행동 명령 모드 중이면, 위에서 이미 처리됨
             }
-            // 행동 명령 모드 중이면, 위에서 이미 처리됨
         }
     }
-}
-
+   
     // --- 외부에서 호출(버튼 등) ---
     public void EnterAttackMode()
     {
-        if (_selectedUnit == null) return;
+        Debug.Log($"[EnterAttackMode] _selectedUnit: {_selectedUnit}, _currentMode: {_currentMode}");
+        if (_selectedUnit == null)
+        {
+            Debug.LogWarning("[EnterAttackMode] 선택된 유닛이 없습니다!");
+            return;
+        }
         _currentMode = ActionMode.Attack;
         _awaitTarget = true;
-        UIManager.Instance.SetAttackHighlight(true); // 공격 효과 활성화
-        UIManager.Instance.SetSkillHighlight(false); // 스킬 효과 비활성
+        UIManager.Instance.SetAttackHighlight(true);
+        UIManager.Instance.SetSkillHighlight(false);
     }
+    
     // 스킬 버튼 누를 때 전체 타겟형 처리
     public void EnterSkillMode(SkillData skill)
     {
@@ -145,11 +145,13 @@ public class InputServiceNew : MonoBehaviour
         UIManager.Instance.SetAttackHighlight(false);
         UIManager.Instance.SetSkillHighlight(true);
 
-        UIManager.Instance.HideTooltip(); // ← 추가!
+        UIManager.Instance.HideTooltip();
 
+        // 전체 타겟형 스킬은 별도 타겟 없이 바로 완료 처리
         if (skill.TargetType == SkillTargetType.EnemyAll ||
             skill.TargetType == SkillTargetType.AllyAll)
         {
+            // 연출용 딜레이를 두고 싶으면 아래 라인 앞에 await UniTask.Yield() 가능
             TryCompletePlayerAction(new PlayerAction
             {
                 Type = PlayerActionType.Skill,
@@ -168,6 +170,7 @@ public class InputServiceNew : MonoBehaviour
         UIManager.Instance.SetAttackHighlight(false);
         UIManager.Instance.SetSkillHighlight(false);
     }
+    
     private void DeselectCurrentUnit()
     {
         if (_selectedUnit != null)
@@ -176,6 +179,7 @@ public class InputServiceNew : MonoBehaviour
             _selectedUnit = null;
         }
     }
+    
     private bool IsSkillTargetValid(Unit target)
     {
         if (_selectedSkill == null || _selectedUnit == null || target == null) return false;
@@ -195,16 +199,20 @@ public class InputServiceNew : MonoBehaviour
         }
     }
     
-    
-    // ✅ PlayerPhase에서 호출 (반드시 필요!)
+    // PlayerPhase에서 호출 (반드시 필요!)
     public async UniTask<PlayerAction> WaitForPlayerAction(PlayerUnit p)
     {
+        if (_actionTcs != null)
+        {
+            Debug.LogWarning("[WaitForPlayerAction] 기존 미완료 _actionTcs 존재. 강제 완료 처리!");
+            _actionTcs.TrySetResult(null);
+            _actionTcs = null;
+        }
         _selectedUnit = p;
         _currentMode = ActionMode.None;
         _selectedSkill = null;
         _awaitTarget = false;
         _actionTcs = new UniTaskCompletionSource<PlayerAction>();
-        // 버튼 클릭(EnterAttackMode/EnterSkillMode) → 타겟 클릭 → TryCompletePlayerAction()에서 SetResult!
         return await _actionTcs.Task;
     }
 
@@ -212,6 +220,8 @@ public class InputServiceNew : MonoBehaviour
     private void TryCompletePlayerAction(PlayerAction action)
     {
         _actionTcs?.TrySetResult(action);
+        _actionTcs = null; // ★꼭 null로 초기화
+
         _selectedUnit?.SetSelected(false);
         _selectedUnit = null;
         _currentMode = ActionMode.None;
@@ -219,6 +229,7 @@ public class InputServiceNew : MonoBehaviour
         _awaitTarget = false;
 
         UIManager.Instance.HideActionButtons();
-        UIManager.Instance.SetAttackHighlight(false); // ← 반드시 추가!
+        UIManager.Instance.SetAttackHighlight(false);
+        UIManager.Instance.SetSkillHighlight(false);
     }
 }
