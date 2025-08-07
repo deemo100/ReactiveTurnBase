@@ -12,6 +12,7 @@ ScriptsOnlyBuild:
     - SPUM_Prefabs
     - SpritePos
     Assembly-CSharp.dll:
+    - AutoVictoryPanelManager
     - CostBar
     - CostManager
     - DataManager
@@ -85,8 +86,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -156,7 +159,13 @@ ScriptsOnlyBuild:
   methodsToPreserve:
   - assembly: Assembly-CSharp
     fullTypeName: StageInfoPanelManager
+    methodName: OnAutoButtonClicked
+  - assembly: Assembly-CSharp
+    fullTypeName: StageInfoPanelManager
     methodName: OnClickEnergyOverChargeAndEnter
+  - assembly: Assembly-CSharp
+    fullTypeName: StageInfoPanelManager
+    methodName: OnClickCloseEnergyPopup
   - assembly: Assembly-CSharp
     fullTypeName: StageInfoPanelManager
     methodName: OnClickCloseEnergyPopup
@@ -164,11 +173,17 @@ ScriptsOnlyBuild:
     fullTypeName: StageButton
     methodName: OnStageButtonClick
   - assembly: Assembly-CSharp
+    fullTypeName: StageInfoPanelManager
+    methodName: OnClickEnergyOverChargeAndEnter
+  - assembly: Assembly-CSharp
     fullTypeName: StageButton
     methodName: OnStageButtonClick
   - assembly: Assembly-CSharp
     fullTypeName: StageButton
     methodName: OnStageButtonClick
+  - assembly: Assembly-CSharp
+    fullTypeName: DataManager
+    methodName: OnClickResetStageData
   - assembly: Assembly-CSharp
     fullTypeName: VictoryPanelManager
     methodName: OnExitClicked
@@ -236,45 +251,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 19950}
     - Class: 114
-      Script: {instanceID: 20018}
+      Script: {instanceID: 20020}
     - Class: 114
-      Script: {instanceID: 20144}
+      Script: {instanceID: 20146}
     - Class: 114
-      Script: {instanceID: 20712}
+      Script: {instanceID: 20714}
     - Class: 114
-      Script: {instanceID: 20830}
+      Script: {instanceID: 20832}
     - Class: 114
-      Script: {instanceID: 21216}
+      Script: {instanceID: 21218}
     - Class: 114
-      Script: {instanceID: 21654}
+      Script: {instanceID: 21656}
     - Class: 114
-      Script: {instanceID: 21928}
+      Script: {instanceID: 21930}
     - Class: 114
-      Script: {instanceID: 21932}
+      Script: {instanceID: 21934}
     - Class: 114
-      Script: {instanceID: 22046}
+      Script: {instanceID: 22048}
     - Class: 114
-      Script: {instanceID: 22088}
+      Script: {instanceID: 22090}
     - Class: 114
-      Script: {instanceID: 22134}
+      Script: {instanceID: 22136}
     - Class: 114
-      Script: {instanceID: 22674}
+      Script: {instanceID: 22676}
     - Class: 114
-      Script: {instanceID: 22866}
+      Script: {instanceID: 22868}
     - Class: 114
-      Script: {instanceID: 22934}
+      Script: {instanceID: 22936}
     - Class: 114
-      Script: {instanceID: 23002}
+      Script: {instanceID: 23004}
     - Class: 114
-      Script: {instanceID: 23338}
+      Script: {instanceID: 23340}
     - Class: 114
-      Script: {instanceID: 23732}
+      Script: {instanceID: 23734}
     - Class: 114
-      Script: {instanceID: 23812}
+      Script: {instanceID: 23814}
     - Class: 114
-      Script: {instanceID: 23848}
+      Script: {instanceID: 23850}
     - Class: 114
-      Script: {instanceID: 23876}
+      Script: {instanceID: 23878}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -361,45 +376,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 19888}
     - Class: 114
-      Script: {instanceID: 20016}
+      Script: {instanceID: 19958}
     - Class: 114
       Script: {instanceID: 20018}
     - Class: 114
-      Script: {instanceID: 20118}
+      Script: {instanceID: 20020}
     - Class: 114
-      Script: {instanceID: 20126}
+      Script: {instanceID: 20120}
     - Class: 114
-      Script: {instanceID: 20344}
+      Script: {instanceID: 20128}
     - Class: 114
-      Script: {instanceID: 20456}
+      Script: {instanceID: 20346}
     - Class: 114
-      Script: {instanceID: 20580}
+      Script: {instanceID: 20458}
     - Class: 114
-      Script: {instanceID: 21216}
+      Script: {instanceID: 20582}
     - Class: 114
-      Script: {instanceID: 21790}
+      Script: {instanceID: 21218}
     - Class: 114
-      Script: {instanceID: 21886}
+      Script: {instanceID: 21792}
     - Class: 114
-      Script: {instanceID: 21932}
+      Script: {instanceID: 21888}
     - Class: 114
-      Script: {instanceID: 22088}
+      Script: {instanceID: 21934}
     - Class: 114
-      Script: {instanceID: 22134}
+      Script: {instanceID: 22090}
     - Class: 114
-      Script: {instanceID: 22460}
+      Script: {instanceID: 22136}
     - Class: 114
-      Script: {instanceID: 22826}
+      Script: {instanceID: 22462}
     - Class: 114
-      Script: {instanceID: 23002}
+      Script: {instanceID: 22828}
     - Class: 114
-      Script: {instanceID: 23848}
+      Script: {instanceID: 23004}
     - Class: 114
-      Script: {instanceID: 23876}
+      Script: {instanceID: 23850}
     - Class: 114
-      Script: {instanceID: 24072}
+      Script: {instanceID: 23878}
     - Class: 114
-      Script: {instanceID: 24146}
+      Script: {instanceID: 24074}
+    - Class: 114
+      Script: {instanceID: 24148}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1141,6 +1158,12 @@ ScriptsOnlyBuild:
     className: PhysicsRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 2ed1c0853e7cf59b6ff40c2cda3331b6
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: AutoVictoryPanelManager
+  - hash:
+      serializedVersion: 2
       Hash: 042785b832afb73fd0585521aa7baf43
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
@@ -1567,7 +1590,7 @@ ScriptsOnlyBuild:
     className: Benchmark02
   - hash:
       serializedVersion: 2
-      Hash: 34ac424e0dfb0917ff976d7f65bc97a5
+      Hash: d9365eaad8c31ad801145d98bfb4af51
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: StageInfoPanelManager

@@ -27,6 +27,8 @@ public class VictoryPanelManager : MonoBehaviour
         stageId = clearStageId;
         starCount = clearStars;
 
+        StageStarSaveUtil.SaveStarCount(stageId, starCount);
+        
         var stageData = GameSession.Instance.currentStageData;
         int cost = stageData.requiredEnergy > 0 ? stageData.requiredEnergy : 10;
         Debug.Log($"[VictoryPanel] 클리어 성공! 에너지 차감 시도: {cost}, 현재:{energyManager.Instance.Currentenergy}");

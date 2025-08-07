@@ -363,6 +363,7 @@
 "Assets/3.Script/Stage/VictoryPanelManager.cs"
 "Assets/3.Script/Turn/DefaultTurnManager.cs"
 "Assets/3.Script/Turn/SimpleCombatExecutor.cs"
+"Assets/3.Script/UI/AutoVictoryPanelManager.cs"
 "Assets/3.Script/UI/energyManager.cs"
 "Assets/3.Script/UI/energyUI.cs"
 "Assets/3.Script/UI/GroggyBar.cs"

@@ -10,7 +10,15 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance { get; private set; }
     public Dictionary<int, SkillData> SkillTable { get; private set; }
     public Dictionary<int, UnitStat> UnitStatTable { get; private set; }
-
+    
+    public void OnClickResetStageData()
+    {
+        StageStarSaveUtil.ResetAllStageData();
+        Debug.Log("스테이지 데이터 리셋 완료");
+        foreach (var btn in FindObjectsOfType<StageButton>())
+            btn.RefreshStarUI();
+    }
+    
     void Awake()
     {
         if (Instance == null)

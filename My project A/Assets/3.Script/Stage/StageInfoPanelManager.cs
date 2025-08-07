@@ -4,6 +4,12 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
+public enum StageEnterType
+{
+    Normal, // 일반 입장(인게임 진입)
+    Auto    // 오토 클리어
+}
+
 public class StageInfoPanelManager : MonoBehaviour
 {
     [Header("UI 요소")]
@@ -145,37 +151,31 @@ public class StageInfoPanelManager : MonoBehaviour
     }
     
     // 별도의 함수로 분리!
+    // 3. TryEnterStage에서는 일반 입장 콜백 전달
     private void TryEnterStage(StageData stage)
     {
         int cost = stage.requiredEnergy > 0 ? stage.requiredEnergy : 10;
         if (energyManager.Instance.Currentenergy < cost)
         {
-            ShowEnergyPopup(() => {
-                if (MoneyManager.Instance.TryConsumeGem(10))
-                {
-                    energyManager.Instance.FillOverCharge();
-                    // 바로 입장 시도
-                    if (energyManager.Instance.Currentenergy >= cost)
-                    {
-                        energyManager.Instance.TryConsumeenergy(cost);
-                        EnterStage(stage);
-                    }
-                    else
-                    {
-                        Debug.Log("에너지가 여전히 부족합니다.");
-                    }
-                }
-                else
-                {
-                    Debug.Log("보석 부족!");
-                }
-            });
+            ShowEnergyPopup(() => TryEnterStageAfterCharge(stage));
             return;
         }
-
-        // 충분하면 바로 입장
         energyManager.Instance.TryConsumeenergy(cost);
         EnterStage(stage);
+    }
+
+    private void TryEnterStageAfterCharge(StageData stage)
+    {
+        int cost = stage.requiredEnergy > 0 ? stage.requiredEnergy : 10;
+        if (energyManager.Instance.Currentenergy >= cost)
+        {
+            energyManager.Instance.TryConsumeenergy(cost);
+            EnterStage(stage);
+        }
+        else
+        {
+            Debug.Log("에너지가 여전히 부족합니다.");
+        }
     }
     
 
@@ -200,21 +200,13 @@ public class StageInfoPanelManager : MonoBehaviour
     // 에너지 팝업 함수 (VictoryPanelManager와 구조 동일)
     private void ShowEnergyPopup(System.Action onConfirm)
     {
-        if (energyPopup == null) return; // Null 체크
+        if (energyPopup == null) return;
         energyPopup.SetActive(true);
 
         // 버튼 할당 (Hierarchy에서 직접 드래그한 Button 컴포넌트 필요)
         var cancelBtn = energyPopup.transform.Find("CancelButton")?.GetComponent<Button>();
         var confirmBtn = energyPopup.transform.Find("ConfirmButton")?.GetComponent<Button>();
-
-        if (cancelBtn != null)
-        {
-            cancelBtn.onClick.RemoveAllListeners();
-            cancelBtn.onClick.AddListener(() =>
-            {
-                energyPopup.SetActive(false);
-            });
-        }
+        
         if (confirmBtn != null)
         {
             confirmBtn.onClick.RemoveAllListeners();
@@ -228,30 +220,16 @@ public class StageInfoPanelManager : MonoBehaviour
     
     public void OnClickEnergyOverChargeAndEnter()
     {
-        // 현재 스테이지 데이터 필요
         if (currentStageData == null) return;
-
         int gemCost = 10;
-        int cost = currentStageData.requiredEnergy > 0 ? currentStageData.requiredEnergy : 10;
-
         if (MoneyManager.Instance.TryConsumeGem(gemCost))
         {
             energyManager.Instance.Currentenergy = energyManager.MaxEnergy + energyManager.Instance.Currentenergy;
-
-            // 입장 코스트 차감
-            if (energyManager.Instance.TryConsumeenergy(cost))
-            {
-                EnterStage(currentStageData);
-            }
-            else
-            {
-                Debug.Log("에너지 충전 후에도 입장 비용 부족! (이론상 발생 불가)");
-            }
+            TryEnterStageAfterCharge(currentStageData);
         }
         else
         {
             Debug.Log("보석 부족!");
-            // 필요시 팝업 닫기 등 추가
             energyPopup.SetActive(false);
         }
     }
@@ -260,21 +238,72 @@ public class StageInfoPanelManager : MonoBehaviour
         energyPopup.SetActive(false);
     }
     
-    private void OnAutoButtonClicked()
+    public void OnAutoButtonClicked()
     {
         int star = StageStarSaveUtil.LoadStarCount(currentStageData.stageId);
         if (star < 3)
         {
-            // 경고 등 표시
-            Debug.Log("3별 클리어 시에만 오토 클리어 가능!");
+            Debug.Log("오토 클리어는 3별 클리어 시에만 가능합니다!");
             return;
         }
-        // 보상 지급 (별도 함수 활용)
+        int cost = currentStageData.requiredEnergy > 0 ? currentStageData.requiredEnergy : 10;
+        if (energyManager.Instance.Currentenergy < cost)
+        {
+            //  팝업 콜백으로 오토 클리어만!
+            ShowEnergyPopup(ProcessAutoClearAfterCharge);
+            return;
+        }
+        ProcessAutoClear();
+    }
+    private void ProcessAutoClearAfterCharge()
+    {
+        int cost = currentStageData.requiredEnergy > 0 ? currentStageData.requiredEnergy : 10;
+        if (energyManager.Instance.Currentenergy >= cost)
+        {
+            ProcessAutoClear();
+        }
+        else
+        {
+            Debug.Log("에너지가 여전히 부족합니다.");
+        }
+    }
+    
+    private void ProcessAutoClear()
+    {
+        // 1. 에너지 차감
+        int cost = currentStageData.requiredEnergy > 0 ? currentStageData.requiredEnergy : 10;
+        if (!energyManager.Instance.TryConsumeenergy(cost))
+        {
+            Debug.LogWarning("에너지 부족! (오토 클리어 내부)");
+            return;
+        }
+
+        // 2. 오토 클리어 보상 지급(별 3개 기준)
         GiveClearReward(currentStageData);
 
-        // 오토 Victory 패널 노출
+        // 3. 오토 클리어 보상창 호출
+        var autoVictoryPanelManager = FindObjectOfType<AutoVictoryPanelManager>();
         if (autoVictoryPanelManager != null)
             autoVictoryPanelManager.ShowAutoVictory(currentStageData);
+        else
+            Debug.LogError("autoVictoryPanelManager를 찾지 못함! Hierarchy에 활성화되어 있는지 확인.");
+    }
+    
+    public void OnClickEnergyOverChargeAndAuto()
+    {
+        if (currentStageData == null) return;
+        int gemCost = 10;
+        if (MoneyManager.Instance.TryConsumeGem(gemCost))
+        {
+            energyManager.Instance.Currentenergy = energyManager.MaxEnergy + energyManager.Instance.Currentenergy;
+            // 👉 오토 클리어 콜백만 호출!
+            ProcessAutoClearAfterCharge();
+        }
+        else
+        {
+            Debug.Log("보석 부족!");
+            energyPopup.SetActive(false);
+        }
     }
     
     // 오토 클리어 시 보상 지급
@@ -282,14 +311,26 @@ public class StageInfoPanelManager : MonoBehaviour
     {
         foreach (var reward in stage.rewards)
         {
-            switch (reward.type)
+            if (reward.type == "gem")
             {
-                case "gold": MoneyManager.Instance.AddGold(reward.amount); break;
-                case "gem": MoneyManager.Instance.AddGem(reward.amount); break;
-                // 기타 아이템 등
+                string gemKey = $"gemReward_{stage.stageId}";
+                bool gemReceived = PlayerPrefs.GetInt(gemKey, 0) == 1;
+                if (gemReceived)
+                    continue; // 이미 받았으면 지급하지 않음
+
+                // 3별 조건일 때만 보상
+                int star = StageStarSaveUtil.LoadStarCount(stage.stageId);
+                if (star < 3) continue;
+
+                MoneyManager.Instance.AddGem(reward.amount);
+                PlayerPrefs.SetInt(gemKey, 1); // 1회만 지급
             }
+            else if (reward.type == "gold")
+            {
+                MoneyManager.Instance.AddGold(reward.amount);
+            }
+            // ... 아이템 등 기타 보상
         }
-        // 오토로도 별 획득/갱신(이미 3별이라면 값이 동일하겠지만)
         StageStarSaveUtil.SaveStarCount(stage.stageId, 3);
     }
     

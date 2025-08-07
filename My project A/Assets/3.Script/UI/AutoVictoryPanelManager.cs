@@ -1,34 +1,63 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class AutoVictoryPanelManager : MonoBehaviour
 {
     [Header("UI")]
-    public GameObject rootPanel;        // 오토 결과 전체 패널
-    public Image[] rewardSlots;         // 보상 아이콘 이미지 배열
+    public GameObject rootPanel; // 내부 패널만 껐다 켜기
+    public Image[] rewardSlots;
     public Sprite goldIcon, gemIcon, itemIcon;
-    public Button exitButton;           // 확인/닫기 버튼
+    public Button exitButton;
 
-    // 데이터
     private StageData currentStageData;
 
-    // 외부에서 호출
+    void Awake()
+    {
+        rootPanel.SetActive(false);
+        if (exitButton != null)
+            exitButton.onClick.AddListener(() => rootPanel.SetActive(false));
+    }
+
+    /// <summary>
+    /// 오토 클리어 보상 지급 + 패널 띄우기
+    /// </summary>
     public void ShowAutoVictory(StageData stageData)
     {
         currentStageData = stageData;
         rootPanel.SetActive(true);
+        
+        // 2. 보상 지급 (보석은 1회성)
+        GiveClearReward(stageData);
 
-        // 보상 표시
-        ShowAutoClearRewards(stageData);
-
-        // 버튼 리스너 초기화
-        exitButton.onClick.RemoveAllListeners();
-        exitButton.onClick.AddListener(() => rootPanel.SetActive(false));
+        // 3. 보상 UI 표시
+        ShowClearRewards(stageData);
     }
 
-    // 보상 아이콘만 표시
-    private void ShowAutoClearRewards(StageData stage)
+    private void GiveClearReward(StageData stage)
+    {
+        foreach (var reward in stage.rewards)
+        {
+            if (reward.type == "gem")
+            {
+                string gemKey = $"gemReward_{stage.stageId}";
+                bool gemReceived = PlayerPrefs.GetInt(gemKey, 0) == 1;
+                if (gemReceived) continue;
+                int star = StageStarSaveUtil.LoadStarCount(stage.stageId);
+                if (star < 3) continue;
+                MoneyManager.Instance.AddGem(reward.amount);
+                PlayerPrefs.SetInt(gemKey, 1);
+            }
+            else if (reward.type == "gold")
+            {
+                MoneyManager.Instance.AddGold(reward.amount);
+            }
+            // 기타 아이템 등도 필요 시 추가
+        }
+        StageStarSaveUtil.SaveStarCount(stage.stageId, 3);
+    }
+
+    public void ShowClearRewards(StageData stage)
     {
         for (int i = 0; i < rewardSlots.Length; i++)
             rewardSlots[i].gameObject.SetActive(false);
@@ -36,7 +65,6 @@ public class AutoVictoryPanelManager : MonoBehaviour
         int slotIdx = 0;
         foreach (var reward in stage.rewards)
         {
-            // 예: gem 보상은 이미 받았으면 제외
             if (reward.type == "gem")
             {
                 string gemKey = $"gemReward_{stage.stageId}";
@@ -50,11 +78,25 @@ public class AutoVictoryPanelManager : MonoBehaviour
 
             switch (reward.type)
             {
-                case "gold": rewardSlots[slotIdx].sprite = goldIcon; break;
-                case "gem": rewardSlots[slotIdx].sprite = gemIcon; break;
-                default: rewardSlots[slotIdx].sprite = itemIcon; break;
+                case "gold":
+                    rewardSlots[slotIdx].sprite = goldIcon;
+                    break;
+                case "gem":
+                    rewardSlots[slotIdx].sprite = gemIcon;
+                    break;
+                default:
+                    rewardSlots[slotIdx].sprite = itemIcon;
+                    break;
             }
             slotIdx++;
         }
+    }
+
+    /// <summary>
+    /// 외부에서 직접 종료시 호출
+    /// </summary>
+    public void Hide()
+    {
+        rootPanel.SetActive(false);
     }
 }
